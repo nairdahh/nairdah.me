@@ -1,7 +1,7 @@
 ---
 name: Klaussified
 tools: [Web App]
-image:
+image: https://i.imgur.com/4Np5aOn.png
 description: A modern, feature-rich Secret Santa web application built with Flutter and Firebase.
 ---
 
