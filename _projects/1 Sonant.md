@@ -1,8 +1,8 @@
 ---
 name: Sonant
-tools: []
-image:
-description:
+tools: [Audibooks, eBooks, Web App]
+image: https://i.imgur.com/KJjrYI7.png
+description: A work in progress book reader with TTS integrated
 ---
 
 <h2 style="text-align:center; font-weight: bold;"><span class="project-title">Sonant</span></h2>
