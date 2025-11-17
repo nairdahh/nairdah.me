@@ -16,26 +16,20 @@ Anchorr - a small Discord bot that lets you request movies/TV via Jellyseerr and
 Use slash commands to search/request (TMDB and OMDB-backed) and get pretty embeds when content shows up on your server.
   <br>
 
-### Features:
+## 🌟 Features
 
-- `/search <title>` — search TMDB and show details in an embed; from the embed you can Request.
-- `/request <title>` — send a request immediately to Jellyseerr.
-- Receives Jellyfin-style webhooks and posts Add notifications into a configured Discord channel (embed with director, short summary, runtime, rating, and quick buttons).
-- Optional OMDb lookup for IMDb rating / director / actors.
-
-### Prerequisites
-
-Before you begin, ensure you have the following:
-
-- A running **Jellyfin** server.
-- A running **Jellyseerr** instance.
-- A **Discord account** and a server where you have administrative privileges.
-- API keys from:
-  - **The Movie Database (TMDB)**
-  - **OMDb API** (Optional, but recommended for richer data)
-- **Node.js** (version 18.x or later).
-- **Docker** and **Docker Compose** (if you choose the Docker installation method).
-  <br>
+- **🔍 Media Search**: Search for movies and TV shows with `/search` command - you can then request it later withtin the message embed
+- **📤 One-Click Requests**: Directly request media to Jellyseerr with `/request` command
+- **📺 Smart TV Handling**: Choose specific seasons when searching for TV series using `/search`, or request all the seasons at once with `/request`
+- **📬 Jellyfin Notifications**: Automatic Discord notifications when new media is added to your library
+- **🎨 Rich Embeds**: Beautiful, detailed embeds with:
+  - Movie/TV show posters and backdrops
+  - Director/Creator information
+  - IMDb ratings and links
+  - Runtime, genres, and synopsis
+  - Quick action buttons (IMDb, Letterboxd, Watch Now)
+- **🔗 Autocomplete Support**: Intelligent autocomplete for search queries
+- **⚙️ Web Dashboard**: User-friendly web interface for configuration
 
 ### Setup Guide
 
