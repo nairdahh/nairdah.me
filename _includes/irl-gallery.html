@@ -1,0 +1,114 @@
+<div class="irl-gallery-container">
+  <div class="irl-grid">
+    <div class="grid-sizer"></div>
+    {% for file in site.static_files %}
+      {% if file.path contains 'assets/irl-photography/' %}
+        <div class="irl-item wow animated fadeIn" data-wow-delay=".15s">
+           <a href="{{ file.path }}" class="simple-lightbox-irl">
+             <img src="{{ file.path }}" alt="IRL Photo" class="img-fluid rounded shadow-sm" loading="lazy">
+           </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Masonry & ImagesLoaded -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<style>
+/* Override requested by user */
+.mt-3, .my-3 {
+  margin-top: 0 !important;
+}
+
+.irl-gallery-container {
+  padding: 0 10px;
+  margin-top: 4rem;
+}
+
+.irl-grid {
+  width: 100%;
+}
+
+/* Clearfix */
+.irl-grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* Grid Items */
+.irl-item, .grid-sizer {
+  width: 50%; /* 2 columns mobile */
+}
+
+.irl-item {
+  float: left;
+  padding: 5px; /* Gap simulation */
+  margin-bottom: 0; /* Masonry handles positioning */
+}
+
+.irl-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  background-color: #202029;
+  color: transparent; /* Hide alt text while loading */
+  min-height: 200px; /* Placeholder height */
+}
+
+.irl-item img:hover {
+  transform: scale(1.02);
+}
+
+@media (min-width: 992px) {
+  .irl-gallery-container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .irl-item, .grid-sizer {
+    width: 33.333%; /* 3 columns desktop */
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var grid = document.querySelector('.irl-grid');
+    var items = Array.from(grid.querySelectorAll('.irl-item'));
+
+    // Fisher-Yates Shuffle
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+
+    // Re-append items in random order
+    items.forEach(item => grid.appendChild(item));
+
+    // Lightbox initialization
+    var lightbox = new SimpleLightbox('.simple-lightbox-irl', {
+        nav: true,
+        captions: true,
+        loop: true,
+        scrollZoom: false,
+    });
+
+    // Initialize Masonry
+    var msnry = new Masonry( grid, {
+      itemSelector: '.irl-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true
+    });
+
+    // Layout Masonry after each image loads to ensure correct positioning
+    imagesLoaded( grid ).on( 'progress', function() {
+      msnry.layout();
+    });
+});
+</script>

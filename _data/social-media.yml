@@ -102,3 +102,13 @@ keybase:
   url   : https://www.keybase.io/
   icon  : fab fa-keybase
   color : 66ccff
+
+discord:
+  url   : https://discord.gg/
+  icon  : fab fa-discord
+  color : 5865F2
+
+kofi:
+  url   : https://ko-fi.com/
+  icon  : fas fa-heart
+  color : FF5E5B

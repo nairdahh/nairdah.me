@@ -1,12 +1,11 @@
 ### Site Settings ###
-title               : nairdah
-description         : i sometime take cool pics in video games
-url                 : https://nairdah.me
-baseurl             : ""                     # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
-remote_theme        : YoussefRaafatNasry/portfolYOU
-logo                : /assets/avatar.png
-keywords: 'nairdah, nairdah.me, adrian28, vp, virtual, photography, romania, cinematic, video, games'
-
+title: nairdah
+description: i sometime take cool pics in video games
+url: https://nairdah.me
+baseurl: "" # Change to empty quotes if you are hosting your site at <your-username>.github.io directly
+remote_theme: YoussefRaafatNasry/portfolYOU
+logo: /assets/avatar.png
+keywords: "nairdah, nairdah.me, adrian28, vp, virtual, photography, romania, cinematic, video, games"
 
 ### Plugins ###
 plugins:
@@ -14,47 +13,42 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-
 ### Navbar Settings ###
-nav_exclude:                                            # The following paths are excluded from navbar
+nav_exclude: # The following paths are excluded from navbar
   - pages/tags.html
   - pages/404.html
   - pages/index.md
   - pages/showcase.html
 
-
-
 ### Author Info ###
 author:
-# name              : Adrian
-# image             : 
-# behance           : your_username
-# dribbble          : your_username
-  email             : hello@nairdah.me
-# facebook          : adrian28
-  github            : nairdahh
-# gitlab            : your_username
-# instagram         : your_username
-# kaggle            : your_username
-# linkedin          : your_username
-# medium            : your_username
-# soundcloud        : your_username
-  spotify           : adriannn28
-# stackoverflow     : your_user_id
-# tumblr            : your_username.tumblr.com
-# twitch            : your_username
-  twitter           : nairdah28
-# vimeo             : your_username
-# youtube           : your_channel_name
-# keybase           : your_username
-  bluesky           : nairdah.me
-
-
-
+  # name              : Adrian
+  # image             :
+  # behance           : your_username
+  # dribbble          : your_username
+  email: hello@nairdah.me
+  # facebook          : adrian28
+  github: nairdahh
+  # gitlab            : your_username
+  # instagram         : your_username
+  # kaggle            : your_username
+  # linkedin          : your_username
+  # medium            : your_username
+  # soundcloud        : your_username
+  spotify: adriannn28
+  # stackoverflow     : your_user_id
+  # tumblr            : your_username.tumblr.com
+  # twitch            : your_username
+  twitter: nairdah28
+  # vimeo             : your_username
+  # youtube           : your_channel_name
+  # keybase           : your_username
+  bluesky: nairdah.me
+  discord: S5JrsZe9mB
+  kofi: nairdah
 
 ### Posts ###
 permalink: /virtual-photography/:title
-
 
 ### Collections ###
 collections:
@@ -62,19 +56,11 @@ collections:
     output: true
     permalink: /projects/:name
 
-
-
-### Disqus ###
-disqus:
-  shortname: your-short-name-disqus                     # Your website Shortname on disqus
-
-
 ### Analytics ###
 analytics:
-  enabled: true                                        # Set true to enable analytics
+  enabled: true # Set true to enable analytics
   google:
     tracking_id: G-0HBKDVWV36
-
 
 ### Defaults for collections ###
 defaults:
@@ -88,8 +74,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      comments: false                                   # Set to true to enable disqus comments
-
+      comments: false # Set to true to enable disqus comments
 
 sass:
   style: compressed

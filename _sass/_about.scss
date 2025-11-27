@@ -1,156 +1,142 @@
 #hi-im-adrian {
-    font-size: 20px;
-    font-weight: 700;
-    display: inline-block;
-    transition: letter-spacing 0.3s ease;
+  font-size: 20px;
+  font-weight: 700;
+  display: inline-block;
+  transition: letter-spacing 0.3s ease;
 }
 
 #hi-im-adrian:hover {
-    letter-spacing: 2px;
-  }
-
-
+  letter-spacing: 2px;
+}
 
 #about-content {
-    position:relative;
+  position: relative;
 }
-
-
 
 .image-button-nav {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-
-
-.vpbuttonclass, .nonvpbuttonclass {
-    transition: transform 0.3s ease, box-shadow 0.3s !important;
-    border-radius: 12px;
+.vpbuttonclass,
+.nonvpbuttonclass {
+  transition: transform 0.3s ease, box-shadow 0.3s !important;
+  border-radius: 12px;
 }
 
 .vpbuttonclass:hover {
-    transform: scale(1.025);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: scale(1.025);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .nonvpbuttonclass:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.205);
+  transform: scale(1.05);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.205);
 }
 
 .vpbuttonclass2 {
-    transition: transform 0.3s ease, box-shadow 0.3s !important;
-    border-radius: 12px;
-    margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s !important;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
 .vpbuttonclass2:hover {
-    transform: scale(1.025);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: scale(1.025);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-
 .inspavatar {
-    transition: transform 0.3s ease !important;
+  transition: transform 0.3s ease !important;
 }
 
 .inspavatar:hover {
-    transform: scale(1.099);
+  transform: scale(1.099);
 }
 
 .aboutvpimg {
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
-
 #back-button {
-    position: absolute;
-    top: 6px;
-    left: -40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: none;
-    z-index: 1000;
+  position: absolute;
+  top: 6px;
+  left: -40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
 }
 
 #back-button i {
-    font-size: 34px;
-    color: $text-black ;
+  font-size: 34px;
+  color: $text-black;
+  opacity: 25%;
+
+  [data-theme="dark"] & {
+    color: $text-white;
     opacity: 25%;
-
-    [data-theme="dark"] & {
-        color: $text-white;
-        opacity: 25%;
-      }
+  }
 }
-
 
 #back-button:hover i {
-    opacity: 50% ;
+  opacity: 50%;
 
-    [data-theme="dark"] & {
-        opacity: 50%;
-      }
+  [data-theme="dark"] & {
+    opacity: 50%;
+  }
 }
 
-
-
-
-
-
 .simple-lightbox img {
-    width: 50%;
-  }
-  
+  width: 50%;
+}
+
 .sl-overlay {
-    background: rgb(0, 0, 0) !important;
+  background: rgb(0, 0, 0) !important;
 }
 
 .sl-wrapper .sl-image {
-    border-radius: 20px !important;
+  border-radius: 20px !important;
 }
 
 .sl-wrapper .sl-close {
-    color: $light !important;
+  color: $light !important;
 }
 
+.tippy-box[data-theme~="custom-theme"] {
+  background-color: 4c4f69;
+  color: eff1f5;
+  font-weight: 600;
+  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.212);
 
-.tippy-box[data-theme~='custom-theme'] {
-    background-color: 4c4f69;
-    color: eff1f5;
-    font-weight: 600;
-    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.212);
-
-    [data-theme="dark"] & {
-        background-color: #cdd6f4;
-        color: #1a1a21;
-      }
-
+  [data-theme="dark"] & {
+    background-color: #cdd6f4;
+    color: #1a1a21;
   }
-  
-.tippy-box[data-theme~='custom-theme'] > .tippy-arrow {
-    color: 4c4f69;
-
-    [data-theme="dark"] & {
-        color: #cdd6f4;
-      }
-
 }
 
-.light-theme-image-about, .dark-theme-image-about {
-    display: flex;
-  }
+.tippy-box[data-theme~="custom-theme"] > .tippy-arrow {
+  color: 4c4f69;
 
-  .light-theme-image-about, .dark-theme-image-about {
-    display: none;
+  [data-theme="dark"] & {
+    color: #cdd6f4;
   }
+}
+
+.light-theme-image-about,
+.dark-theme-image-about {
+  display: flex;
+}
+
+.light-theme-image-about,
+.dark-theme-image-about {
+  display: none;
+}
 
 [data-theme="light"] .light-theme-image-about {
-    display: flex;
-  }
-  
-  [data-theme="dark"] .dark-theme-image-about {
-    display: flex;
-  }
+  display: flex;
+}
+
+[data-theme="dark"] .dark-theme-image-about {
+  display: flex;
+}

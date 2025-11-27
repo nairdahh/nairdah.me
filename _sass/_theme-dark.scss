@@ -1,6 +1,6 @@
 $dark-100: $dark;
 $dark-300: #313244;
-$dark-600: #2c2d3d ;
+$dark-600: #2c2d3d;
 $dark-900: #1a1a21;
 
 [data-theme="dark"] {
@@ -79,9 +79,8 @@ $dark-900: #1a1a21;
     text-decoration: none;
   }
 
-  // Timeline 
-  .timeline-body .timeline-item:after{
+  // Timeline
+  .timeline-body .timeline-item:after {
     background-color: $dark-900;
   }
 }
-

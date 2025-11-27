@@ -1,5 +1,5 @@
 
-<div class="card-columns m-3 mt-5">
+<div class="row m-3 mt-5">
 
 
   <!-- Local Projects -->
@@ -18,7 +18,9 @@
       {%- assign project_url = project.url | relative_url -%}
     {%- endif -%}
 
-    {% include projects/project-card.html %}
+    <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-stretch">
+      {% include projects/project-card.html %}
+    </div>
 
   {% endfor %}
 
