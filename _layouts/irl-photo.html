@@ -16,9 +16,22 @@
     {% include navbar.html %}
   </div>
 
-  <main class="flex-shrink-0 container-fluid">
+  <main class="flex-shrink-0 container-fluid" style="opacity: 0; animation: fadeInUp 0.8s ease forwards;">
     {{ content }}
   </main>
+
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
   {% include footer.html %}
 
   {% include analytics.html %}

@@ -48,7 +48,7 @@ author:
   kofi: nairdah
 
 ### Posts ###
-permalink: /virtual-photography/:title
+permalink: /:categories/:title
 
 ### Collections ###
 collections:
@@ -71,9 +71,10 @@ defaults:
       layout: "page"
 
   - scope:
-      path: ""
+      path: "_posts"
       type: "posts"
     values:
+      layout: "post"
       comments: false # Set to true to enable disqus comments
 
 sass:
@@ -85,3 +86,5 @@ exclude:
   - CONTRIBUTING.md
   - LICENSE
   - "*.log"
+  - "nul"
+  - "to-do"

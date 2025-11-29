@@ -1,11 +1,11 @@
 <div class="irl-gallery-container">
-  <div class="irl-grid">
+  <div class="irl-grid" id="irl-gallery">
     <div class="grid-sizer"></div>
     {% for file in site.static_files %}
       {% if file.path contains 'assets/irl-photography/' %}
-        <div class="irl-item wow animated fadeIn" data-wow-delay=".15s">
-           <a href="{{ file.path }}" class="simple-lightbox-irl">
-             <img src="{{ file.path }}" alt="IRL Photo" class="img-fluid rounded shadow-sm" loading="lazy">
+        <div class="irl-item">
+           <a href="{{ file.path }}" data-fancybox="irl-gallery" class="irl-photo-link">
+             <img data-src="{{ file.path }}" alt="IRL Photo" class="img-fluid rounded shadow-sm lazy-img irl-thumb">
            </a>
         </div>
       {% endif %}
@@ -46,22 +46,54 @@
 
 .irl-item {
   float: left;
-  padding: 5px; /* Gap simulation */
-  margin-bottom: 0; /* Masonry handles positioning */
+  padding: 5px;
+  margin-bottom: 0;
+  box-sizing: border-box;
 }
 
-.irl-item img {
+.irl-photo-link {
+  display: block;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.irl-thumb {
   display: block;
   width: 100%;
   height: auto;
-  transition: transform 0.3s ease;
-  background-color: #202029;
-  color: transparent; /* Hide alt text while loading */
-  min-height: 200px; /* Placeholder height */
+  transition: transform 400ms, opacity 0.3s ease;
 }
 
-.irl-item img:hover {
-  transform: scale(1.02);
+.irl-photo-link:hover .irl-thumb {
+  transform: scale(1.03);
+}
+
+.irl-thumb.lazy-img {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.irl-thumb.loading {
+  opacity: 0;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.irl-thumb.loaded {
+  animation: scaleInFade 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes scaleInFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (min-width: 992px) {
@@ -75,6 +107,7 @@
     width: 33.333%; /* 3 columns desktop */
   }
 }
+
 </style>
 
 <script>
@@ -91,24 +124,129 @@ document.addEventListener('DOMContentLoaded', function() {
     // Re-append items in random order
     items.forEach(item => grid.appendChild(item));
 
-    // Lightbox initialization
-    var lightbox = new SimpleLightbox('.simple-lightbox-irl', {
-        nav: true,
-        captions: true,
-        loop: true,
-        scrollZoom: false,
-    });
-
     // Initialize Masonry
-    var msnry = new Masonry( grid, {
+    var msnry = new Masonry(grid, {
       itemSelector: '.irl-item',
       columnWidth: '.grid-sizer',
       percentPosition: true
     });
 
-    // Layout Masonry after each image loads to ensure correct positioning
-    imagesLoaded( grid ).on( 'progress', function() {
-      msnry.layout();
+    // Get all lazy images
+    var lazyImages = Array.from(grid.querySelectorAll('img.lazy-img'));
+    var loadedCount = 0;
+    var initialLoadCount = 6;
+    var silentLoadDelay = 400; // 0.4 second silent loading
+    var animationStagger = 0.08; // 80ms stagger between each image animation
+
+    // Function to load an image and set animation delay
+    function loadImage(img, animDelay, callback) {
+      var src = img.getAttribute('data-src');
+      if (src && img.getAttribute('data-src')) {
+        img.onload = function() {
+          // Add loading class immediately (image loaded but hidden)
+          img.classList.add('loading');
+          img.classList.remove('lazy-img');
+          img.removeAttribute('data-src');
+
+          // Set animation delay for when animation starts
+          if (animDelay !== null && animDelay !== undefined) {
+            img.style.animationDelay = animDelay + 's';
+          }
+
+          msnry.layout();
+          if (callback) callback();
+        };
+        img.src = src;
+      }
+    }
+
+    // Load first 6 images immediately (silent loading)
+    var initialBatch = lazyImages.slice(0, initialLoadCount);
+    var remainingImages = lazyImages.slice(initialLoadCount);
+
+    // Start loading first 6 images immediately with NULL delay (no animation yet)
+    initialBatch.forEach(function(img, index) {
+      loadImage(img, null, function() {
+        loadedCount++;
+        if (loadedCount === initialLoadCount) {
+          // After exactly 1 second, trigger animations
+          setTimeout(function() {
+            initialBatch.forEach(function(img, imgIndex) {
+              // Set animation delay BEFORE adding loaded class
+              var delay = imgIndex * animationStagger;
+              img.style.animationDelay = delay + 's';
+
+              // Force reflow to ensure animation delay is applied
+              void img.offsetWidth;
+
+              // Switch from 'loading' to 'loaded' to start animation
+              img.classList.remove('loading');
+              img.classList.add('loaded');
+            });
+          }, silentLoadDelay);
+
+          // Initialize Fancybox after first 6 images
+          Fancybox.bind('[data-fancybox="irl-gallery"]', {
+            Toolbar: {
+              display: {
+                left: [],
+                middle: [],
+                right: ["close"]
+              }
+            },
+            Images: {
+              zoom: true
+            },
+            Carousel: {
+              infinite: false,
+              Dots: false
+            },
+            caption: false
+          });
+
+          // Start loading remaining images on scroll
+          if (remainingImages.length > 0) {
+            var imageObserver = new IntersectionObserver(function(entries, observer) {
+              entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                  var img = entry.target;
+                  loadImage(img, '0', function() {
+                    // Force opacity to 1 for remaining images (no animation delay)
+                    img.style.opacity = '1';
+
+                    // Reinitialize Fancybox to include new images
+                    Fancybox.unbind('[data-fancybox="irl-gallery"]');
+                    Fancybox.bind('[data-fancybox="irl-gallery"]', {
+                      Toolbar: {
+                        display: {
+                          left: [],
+                          middle: [],
+                          right: ["close"]
+                        }
+                      },
+                      Images: {
+                        zoom: true
+                      },
+                      Carousel: {
+                        infinite: false,
+                        Dots: false
+                      },
+                      caption: false
+                    });
+                  });
+                  observer.unobserve(img);
+                }
+              });
+            }, {
+              rootMargin: '100px'
+            });
+
+            remainingImages.forEach(function(img) {
+              imageObserver.observe(img);
+            });
+          }
+        }
+      });
     });
 });
 </script>

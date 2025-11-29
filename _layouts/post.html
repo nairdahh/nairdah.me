@@ -110,9 +110,35 @@ layout: page-grid
     },
     addAnchorTag: true,
     anchorTargetDir: "",
-    anchorClass: "swipebox"
+    anchorClass: "vp-photo-link",
+    getUrl: function(imageUrls) {
+        return imageUrls.imageFull;
+    }
     }).enable();
-    ;( function( $ ) {
-    $( '.swipebox' ).swipebox();
-    } )( jQuery );
+
+    // Initialize Fancybox for virtual photography
+    setTimeout(function() {
+        var links = document.querySelectorAll('.vp-photo-link');
+        links.forEach(function(link) {
+            link.setAttribute('data-fancybox', 'vp-gallery');
+        });
+
+        Fancybox.bind('[data-fancybox="vp-gallery"]', {
+            Toolbar: {
+                display: {
+                    left: [],
+                    middle: [],
+                    right: ["close"]
+                }
+            },
+            Images: {
+                zoom: true
+            },
+            Carousel: {
+                infinite: false,
+                Dots: false
+            },
+            caption: false
+        });
+    }, 500);
 </script>

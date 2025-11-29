@@ -2,7 +2,9 @@
 <div class="card-group adjspace">
 
   {% for post in site.posts %}
-    {% include virtual-photography/post-card.html %}
+    {% if post.categories contains "virtual-photography" %}
+      {% include virtual-photography/post-card.html %}
+    {% endif %}
   {% endfor %}
-  
+
 </div>
