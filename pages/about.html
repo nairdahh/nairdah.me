@@ -21,16 +21,20 @@ weight: 3
 <br><br>
     on a personal note, life outside the screen can be challenging. living with tourette's and adhd, while dealing with some depression and anxiety, makes some days heavier than others. working on these projects and photos has been my anchor - it helps me focus, quiets the noise, and gives me a constructive way to navigate through it all.
 <br><br>
-        <!-- navigation links -->
-        <nav class="image-button-nav light-theme-image-about">
-            <a href="#" class="about-nav-link img-href vpbuttonclass" data-target="about-vp"><img src="/assets/button-about-vp-white.png" alt="About Virtual Photography" class="nav-image-button"></a><a href="#" class="about-nav-link img-href nonvpbuttonclass" data-target="music"><img src="/assets/button-music-white.png" alt="Movies" class="nav-image-button"></a><a href="#" class="about-nav-link img-href nonvpbuttonclass" data-target="movies"><img src="/assets/button-movies-white.png" alt="Music" class="nav-image-button"></a>
-            
-        </nav>
-        <nav class="image-button-nav dark-theme-image-about">
-            <a href="#" class="about-nav-link img-href vpbuttonclass" data-target="about-vp"><img src="/assets/button-about-vp.png" alt="About Virtual Photography" class="nav-image-button"></a><a href="#" class="about-nav-link img-href nonvpbuttonclass" data-target="music"><img src="/assets/button-music.png" alt="Movies" class="nav-image-button"></a><a href="#" class="about-nav-link img-href nonvpbuttonclass" data-target="movies"><img src="/assets/button-movies.png" alt="Music" class="nav-image-button"></a>
-        </nav>
+        <!-- modal buttons -->
+        <div class="modal-button-container">
+            <span class="preferences-label">my preferences in:</span>
+            <div class="modal-buttons-row">
+                <button class="modal-opener" data-modal="movies-modal">
+                    <span class="modal-button-label">movies</span>
+                </button>
+                <button class="modal-opener" data-modal="music-modal">
+                    <span class="modal-button-label">music</span>
+                </button>
+            </div>
+        </div>
     <br>
-        <small>also, here's <a href="/assets/tobi.jpg" class="simple-lightbox" data-lightbox="image-1" data-title="My cat, Tobi">my cat, Tobi!</a></small>
+        <small>also, here's <a href="/assets/tobi.jpg" data-fancybox="cat" data-caption="My cat, Tobi">my cat, Tobi!</a></small>
     </div>
 
    <!-- about VP -->
@@ -79,101 +83,214 @@ weight: 3
         i hope this inspires you to explore virtual photography or at least appreciate the incredible creativity within this community!
     </div>
 
-   <!-- movies -->
-   <div id="movies" style="display: none;">
-    i've always been fascinated by the art of filmmaking and have spent a lot of time studying and exploring cinematography, understanding how visuals and storytelling come together to create something unforgettable.
-    <br><br>
-    this has given me a deeper appreciation when watching movies and has also helped me develop a better way of discovering new films to enjoy.
-    <br><br>
-    if you're curious about what i watch, you can check out <a href="https://letterboxd.com/Adrian28/">my Letterboxd profile</a>, where i keep track of all my movies!
-    <br><br>
-    <p align="center"><a href="https://letterboxd.com/Adrian28/" class="img-href vpbuttonclass"><img src="/assets/letterboxdbanner.png" alt="my Letterboxd profile" class="nav-image-button center"></a></p>
+   <!-- movies code-block window -->
+   <div id="movies-modal" class="about-modal-overlay">
+       <div class="code-block about-code-block" id="movies-code-block">
+           <div class="code-block-header">
+               <div class="header-left">
+                   <span class="header-title" style="color: #cba6f7;">movies</span>
+               </div>
+               <div class="header-buttons">
+                   <button class="window-btn close-btn about-close-btn" title="Close">✕</button>
+               </div>
+           </div>
+           <div class="code-block-content">
+               <div class="normal-content">
+                   <p>i've always been fascinated by the art of filmmaking and have spent a lot of time studying and exploring cinematography, understanding how visuals and storytelling come together to create something unforgettable.</p>
+                   <br>
+                   <p>this has given me a deeper appreciation when watching movies and has also helped me develop a better way of discovering new films to enjoy.</p>
+                   <br>
+                   <p>if you're curious about what i watch, you can check out <a href="https://letterboxd.com/Adrian28/" target="_blank" class="tree-link">my Letterboxd profile</a>, where i keep track of all my movies!</p>
+                   <br>
+                   <p style="text-align: center;">
+                       <a href="https://letterboxd.com/Adrian28/" target="_blank" class="about-modal-button">
+                           <span class="button-text">visit letterboxd</span>
+                           <span class="button-icon">→</span>
+                       </a>
+                   </p>
+               </div>
+           </div>
+       </div>
    </div>
 
-   <!-- music -->
-   <div id="music" style="display: none;">
-        <p>music is more than just something i enjoy - it's an experience. sometimes it feels like stepping into another world, crafted by my favorite songs, where melodies and lyrics come together and hit me in such a unique way. it's not just about listening, it's about feeling, like the music knows me, and i know it.
-            <br><br>
-            there's something powerful about the way a song can resonate so deeply, transporting me, calming me, or stirring emotions i didn't know were there. sometimes it even helps me with my tourette's (the more you know), quieting everything else for a little while. music isn't just sound to me, it's a really important part of who i am, and i know it might sound exaggerated or "generic," but that's truly how i feel about it.
-            <br><br>
-            besides that, it's a really good way to connect with someone else. knowing i have people and friends with whom i can share my songs and discovering they also really resonate with and enjoy them is like food for my soul. it helps me bond with people in a way that feels special.
-            <br><br>
-            over the past years, i've come across many songs that i've fallen in love with. for my most recent ones, i started creating some Spotify playlists that I love to share with anyone. i mostly enjoy listening to and discovering songs from any era or genre (with a few exceptions, of course, that i don't resonate with), but my main genres are Metal and Electronic.
-            <br><br>
-            one playlist i built with love recently is <a href="https://open.spotify.com/playlist/4ytOVKZZukEdri73V1M2X0?si=847875c7222f4b67">Let Me Rust</a>, containing hand-picked alternative metal songs that i discovered and that hit me really hard. i also have lots of other personal playlists on <a href="https://open.spotify.com/user/adriannn28?si=3a5a45624c904bf8">my Spotify profile</a>, so feel free to explore.
-                        <p align="center"><a href="https://open.spotify.com/playlist/4ytOVKZZukEdri73V1M2X0?si=847875c7222f4b67" class="img-href vpbuttonclass"><img src="/assets/letmerust.png" alt="Let Me Rust spotify playlist" class="nav-image-button center"></a></p>
-            also, here's <a href="https://www.last.fm/user/Adrian28x">my Last.fm profile</a>!
-        </p>
-    </div>  
+   <!-- music code-block window -->
+   <div id="music-modal" class="about-modal-overlay">
+       <div class="code-block about-code-block" id="music-code-block">
+           <div class="code-block-header">
+               <div class="header-left">
+                   <span class="header-title" style="color: #cba6f7;">music</span>
+               </div>
+               <div class="header-buttons">
+                   <button class="window-btn close-btn about-close-btn" title="Close">✕</button>
+               </div>
+           </div>
+           <div class="code-block-content">
+               <div class="normal-content">
+                   <p>music is more than just something i enjoy - it's an experience. sometimes it feels like stepping into another world, crafted by my favorite songs, where melodies and lyrics come together and hit me in such a unique way. it's not just about listening, it's about feeling, like the music knows me, and i know it.</p>
+                   <br>
+                   <p>there's something powerful about the way a song can resonate so deeply, transporting me, calming me, or stirring emotions i didn't know were there. sometimes it even helps me with my tourette's (the more you know), quieting everything else for a little while. music isn't just sound to me, it's a really important part of who i am, and i know it might sound exaggerated or "generic," but that's truly how i feel about it.</p>
+                   <br>
+                   <p>besides that, it's a really good way to connect with someone else. knowing i have people and friends with whom i can share my songs and discovering they also really resonate with and enjoy them is like food for my soul. it helps me bond with people in a way that feels special.</p>
+                   <br>
+                   <p>over the past years, i've come across many songs that i've fallen in love with. for my most recent ones, i started creating some Spotify playlists that I love to share with anyone. i mostly enjoy listening to and discovering songs from any era or genre (with a few exceptions, of course, that i don't resonate with), but my main genres are Metal and Electronic.</p>
+                   <br>
+                   <p>one playlist i built with love recently is <a href="https://open.spotify.com/playlist/4ytOVKZZukEdri73V1M2X0?si=847875c7222f4b67" target="_blank" class="tree-link">Let Me Rust</a>, containing hand-picked alternative metal songs that i discovered and that hit me really hard. i also have lots of other personal playlists on <a href="https://open.spotify.com/user/adriannn28?si=3a5a45624c904bf8" target="_blank" class="tree-link">my Spotify profile</a>, so feel free to explore.</p>
+                   <br>
+                   <p style="text-align: center;">
+                       <a href="https://open.spotify.com/playlist/4ytOVKZZukEdri73V1M2X0?si=847875c7222f4b67" target="_blank" class="about-modal-button">
+                           <span class="button-text">let me rust</span>
+                           <span class="button-icon">♪</span>
+                       </a>
+                       <a href="https://open.spotify.com/user/adriannn28?si=3a5a45624c904bf8" target="_blank" class="about-modal-button">
+                           <span class="button-text">spotify</span>
+                           <span class="button-icon">→</span>
+                       </a>
+                       <a href="https://www.last.fm/user/Adrian28x" target="_blank" class="about-modal-button">
+                           <span class="button-text">last.fm</span>
+                           <span class="button-icon">→</span>
+                       </a>
+                   </p>
+               </div>
+           </div>
+       </div>
+   </div>  
 
 </div>
 
 
 
 
-<!-- back button -->
-<button id="back-button" style="display: none;">
-    <i class="fa-solid fa-circle-arrow-left"></i>
- </button>
-
-<!-- JavaScript for dynamic content switch and the back button -->
+<!-- JavaScript for code-block modals with drag support -->
 <script>
    document.addEventListener('DOMContentLoaded', function() {
-       // get all the links and divs
-       const links = document.querySelectorAll('.about-nav-link');
-       const contents = document.querySelectorAll('#about-content > div');
-       const backButton = document.getElementById('back-button');
+       // Modal overlay management
+       const modalOpeners = document.querySelectorAll('.modal-opener');
+       const modals = document.querySelectorAll('.about-modal-overlay');
 
-       // show content based on targetId
-       function showContent(targetId) {
-           // hide all content divs
-           contents.forEach(content => content.style.display = 'none');
-           
-           // show the targeted content div
-           const targetContent = document.getElementById(targetId);
-           if (targetContent) targetContent.style.display = 'block';
-       }
-
-       // show back button
-       function showBackButton() {
-           backButton.style.display = 'block';
-       }
-
-       // hide back button
-       function hideBackButton() {
-           backButton.style.display = 'none';
-       }
-
-       // click event for navigation links
-       links.forEach(link => {
-           link.addEventListener('click', function(e) {
+       // Open modal
+       modalOpeners.forEach(opener => {
+           opener.addEventListener('click', function(e) {
                e.preventDefault();
-               const targetId = this.getAttribute('data-target');
-               showContent(targetId);
-               showBackButton(); // show back button when switching to another div
+               const modalId = this.getAttribute('data-modal');
+               const modal = document.getElementById(modalId);
+               if (modal) {
+                   const codeBlock = modal.querySelector('.code-block');
+                   if (codeBlock) {
+                       codeBlock.classList.remove('closed');
+                       // Reset position on open
+                       codeBlock.style.transform = '';
+                       codeBlock.style.left = '';
+                       codeBlock.style.top = '';
+                   }
+                   modal.style.display = 'flex';
+                   // Force reflow before adding visible class
+                   void modal.offsetWidth;
+                   modal.classList.add('visible');
+               }
            });
        });
 
-       // back button click event
-       backButton.addEventListener('click', function() {
-           showContent('about-me'); // go back to the default content
-           hideBackButton(); // hide back button when on the default content
+       // Close buttons for about page code-blocks
+       document.querySelectorAll('.about-code-block').forEach(codeBlock => {
+           const closeBtn = codeBlock.querySelector('.close-btn');
+           const overlay = codeBlock.closest('.about-modal-overlay');
+
+           if (closeBtn) {
+               closeBtn.addEventListener('click', function(e) {
+                   e.preventDefault();
+                   e.stopPropagation();
+                   if (overlay) {
+                       overlay.classList.remove('visible');
+                       setTimeout(() => {
+                           overlay.style.display = 'none';
+                       }, 250);
+                   }
+               });
+           }
        });
 
-       // set default content and hide back button initially
-       showContent('about-me');
-       hideBackButton();
+       // Click outside to close modal
+       document.querySelectorAll('.about-modal-overlay').forEach(overlay => {
+           overlay.addEventListener('click', function(e) {
+               // Only close if clicking directly on overlay, not on the window
+               if (e.target === overlay) {
+                   overlay.classList.remove('visible');
+                   setTimeout(() => {
+                       overlay.style.display = 'none';
+                   }, 250);
+               }
+           });
+       });
 
-     // SimpleLightbox
-     var lightbox = new SimpleLightbox('.simple-lightbox', {
-    nav: false,
-    captions: true,
-    loop: false,
-    scrollZoom: false,
-  });
+       // Drag functionality
+       (function() {
+           let active = null;
+           let offsetX = 0;
+           let offsetY = 0;
 
+           document.querySelectorAll('.about-code-block .code-block-header').forEach(function(header) {
+               header.onmousedown = function(e) {
+                   if (e.target.closest('.window-btn')) return;
+                   
+                   var box = header.closest('.about-code-block');
+                   active = box;
+                   
+                   var rect = box.getBoundingClientRect();
+                   offsetX = e.clientX - rect.left;
+                   offsetY = e.clientY - rect.top;
+                   
+                   box.style.left = rect.left + 'px';
+                   box.style.top = rect.top + 'px';
+                   box.style.transform = 'none';
+                   box.classList.add('dragging');
+                   
+                   e.preventDefault();
+               };
+           });
+
+           document.onmousemove = function(e) {
+               if (!active) return;
+               active.style.left = (e.clientX - offsetX) + 'px';
+               active.style.top = (e.clientY - offsetY) + 'px';
+           };
+
+           document.onmouseup = function() {
+               if (active) {
+                   active.classList.remove('dragging');
+                   active = null;
+               }
+           };
+       })();
+
+       // Close on Escape key
+       document.addEventListener('keydown', function(e) {
+           if (e.key === 'Escape') {
+               modals.forEach(modal => {
+                   if (modal.classList.contains('visible')) {
+                       modal.classList.remove('visible');
+                       setTimeout(() => {
+                           modal.style.display = 'none';
+                       }, 250);
+                   }
+               });
+           }
+       });
+
+       // Initialize Fancybox for cat photo
+       Fancybox.bind('[data-fancybox="cat"]', {
+           Toolbar: {
+               display: {
+                   left: [],
+                   middle: [],
+                   right: ["close"]
+               }
+           },
+           Images: {
+               zoom: true
+           }
+       });
    });
-
-
 </script>
+
+
 

@@ -6,56 +6,62 @@ layout: default
   <!-- Hero Header -->
   <header class="post-header">
     {% if page.image %}
-      <div class="hero-wrapper">
-        <img src="{{ page.image }}" alt="{{ page.title }}" class="hero-bg">
-        <div class="hero-overlay"></div>
-        
-        <div class="glass-content-wrapper">
-          <div class="glass-effect"></div>
-          <div class="header-container">
-            <div class="title-meta-wrapper">
-              <div class="meta-top mono">
-                <span class="meta-item date">{{ page.date | date: "%B %d, %Y" | downcase }}</span>
-                <span class="meta-separator">/</span>
-                <span class="meta-item author">by {{ page.author | default: 'nairdah' }}</span>
-              </div>
-              <h1 class="post-title">{{ page.title }}</h1>
+    <div class="hero-wrapper">
+      <img src="{{ page.image }}" alt="{{ page.title }}" class="hero-bg" />
+      <div class="hero-overlay"></div>
+
+      <div class="glass-content-wrapper">
+        <div class="glass-effect"></div>
+        <div class="header-container">
+          <div class="title-meta-wrapper">
+            <div class="meta-top mono">
+              <span class="meta-item date"
+                >{{ page.date | date: "%B %d, %Y" | downcase }}</span
+              >
+              <span class="meta-separator">/</span>
+              <span class="meta-item author"
+                >by {{ page.author | default: 'nairdah' }}</span
+              >
             </div>
-            
-            {% if page.subtitle %}
-              <p class="post-subtitle">{{ page.subtitle }}</p>
-            {% endif %}
+            <h1 class="post-title">{{ page.title }}</h1>
           </div>
-        </div>
-      </div>
-    {% else %}
-      <!-- Fallback for no image -->
-      <div class="header-container no-image">
-        <div class="title-meta-wrapper">
-          <div class="meta-top mono">
-            <span class="meta-item date">{{ page.date | date: "%B %d, %Y" | downcase }}</span>
-            <span class="meta-separator">/</span>
-            <span class="meta-item author">by {{ page.author | default: 'nairdah' }}</span>
-          </div>
-          <h1 class="post-title">{{ page.title }}</h1>
-        </div>
-        
-        {% if page.subtitle %}
+
+          {% if page.subtitle %}
           <p class="post-subtitle">{{ page.subtitle }}</p>
-        {% endif %}
+          {% endif %}
+        </div>
       </div>
+    </div>
+    {% else %}
+    <!-- Fallback for no image -->
+    <div class="header-container no-image">
+      <div class="title-meta-wrapper">
+        <div class="meta-top mono">
+          <span class="meta-item date"
+            >{{ page.date | date: "%B %d, %Y" | downcase }}</span
+          >
+          <span class="meta-separator">/</span>
+          <span class="meta-item author"
+            >by {{ page.author | default: 'nairdah' }}</span
+          >
+        </div>
+        <h1 class="post-title">{{ page.title }}</h1>
+      </div>
+
+      {% if page.subtitle %}
+      <p class="post-subtitle">{{ page.subtitle }}</p>
+      {% endif %}
+    </div>
     {% endif %}
   </header>
 
   <!-- Main Content -->
   <main class="post-content-wrapper">
-    <div class="content-container markdown-body">
-      {{ content }}
-    </div>
+    <div class="content-container markdown-body">{{ content }}</div>
   </main>
 
   <!-- Navigation Footer -->
-  <footer class="post-footer">
+  <footer class="post-nav-footer">
     <div class="footer-container">
       <a href="/blog/" class="back-link mono">
         <span class="arrow">←</span> back to blog
@@ -65,325 +71,427 @@ layout: default
 </article>
 
 <style>
-/* Modern Post Layout Styles */
-.modern-post {
-  /* Theme Variables */
-  --bg-color: #ffffff;
-  --text-main: #4c4f69;
-  --text-muted: #6c6f85;
-  --accent: #8839ef;
-  --accent-light: rgba(136, 57, 239, 0.1);
-  --border-color: #e6e9ef;
-  --code-bg: #eff1f5;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --hero-height: 85vh;
-  
-  background: var(--bg-color);
-  min-height: 100vh;
-  font-family: 'Inter', sans-serif;
-  margin: 6rem 1rem 0 1rem; /* Push down and add side spacing */
-  border-radius: 24px; /* Rounded corners for the card */
-  overflow: hidden; /* Clip content/hero image to border radius */
-  /* box-shadow: 0 0 0 1px var(--border-color); Subtle border removed */
-}
+  /* Modern Post Layout Styles */
+  .modern-post {
+    /* Theme Variables */
+    --bg-color: #ffffff;
+    --text-main: #4c4f69;
+    --text-muted: #6c6f85;
+    --accent: #8839ef;
+    --accent-light: rgba(136, 57, 239, 0.1);
+    --border-color: #e6e9ef;
+    --code-bg: #eff1f5;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --hero-height: 85vh;
 
-[data-theme="dark"] .modern-post {
-  --bg-color: #2c2d3d;
-  --text-main: #cdd6f4;
-  --text-muted: #a6adc8;
-  --accent: #cba6f7;
-  --accent-light: rgba(203, 166, 247, 0.1);
-  --border-color: #313244;
-  --code-bg: #181825;
-  --glass-bg: rgba(44, 45, 61, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.1);
-}
-
-/* Header */
-.post-header {
-  width: 100%;
-  position: relative;
-  margin-bottom: 4rem;
-}
-
-.hero-wrapper {
-  width: 100%;
-  aspect-ratio: 21/9;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end; /* Align glass content to bottom */
-  justify-content: center;
-}
-
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.4));
-  z-index: 2;
-}
-
-/* Glass Effect Container */
-.glass-content-wrapper {
-  z-index: 10;
-  width: 100%;
-  padding: 6rem 1rem 2rem; /* Reduced top padding */
-}
-
-/* Glass Effect - Simple Glassmorphism */
-/* Glass Effect - Simple Glassmorphism */
-.glass-effect {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  /* border: 1px solid rgba(255, 255, 255, 0.2); Removed */
-  z-index: 0;
-  pointer-events: none;
-  /* Fade to solid background color */
-  /* Fade to solid background color */
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    var(--bg-color) 100%
-  );
-  /* Mask: Smooth gradient 0-80% */
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 1) 80%
-  );
-  mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 1) 80%
-  );
-}
-
-/* Color overlay for dark theme */
-.glass-effect::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* Fade to solid dark background color */
-  background: linear-gradient(to bottom,
-    transparent 0%,
-    rgba(44, 45, 61, 0.1) 50%,
-    var(--bg-color) 100%
-  );
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 1) 80%
-  );
-  mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 40%,
-    rgba(0, 0, 0, 1) 80%
-  );
-  pointer-events: none;
-}
-
-[data-theme="dark"] .glass-effect::after {
-  display: block;
-}
-
-/* Dark theme adjustment */
-[data-theme="dark"] .glass-effect {
-  background: transparent; /* Handled by ::after */
-  border: none;
-}
-
-.header-container {
-  max-width: 820px; /* Match content-container width */
-  margin: 0 auto;
-  text-align: left;
-  position: relative;
-  z-index: 1;
-}
-
-/* Fallback for no image */
-.header-container.no-image {
-  padding-top: 6rem;
-}
-
-.title-meta-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.1rem;
-  margin-bottom: 1rem;
-}
-
-.meta-top {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.9rem;
-  color: var(--accent);
-  opacity: 0.9;
-  margin: 0; /* Remove margin as it's handled by wrapper gap */
-}
-
-.meta-separator {
-  opacity: 0.3;
-}
-
-.post-title {
-  font-size: 3rem; /* Slightly smaller */
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--text-main);
-  letter-spacing: -0.02em;
-  margin: 0; /* Remove margin as it's handled by wrapper gap */
-}
-
-.post-subtitle {
-  font-size: 1.25rem;
-  color: var(--text-muted);
-  font-weight: 400;
-  margin-bottom: 0;
-  line-height: 1.6;
-}
-
-/* Content */
-.post-content-wrapper {
-  padding: 0 1rem 4rem;
-}
-
-.content-container {
-  max-width: 820px;
-  margin: 0 auto;
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--text-main);
-}
-
-/* Typography Improvements */
-.markdown-body h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-main);
-  letter-spacing: -0.01em;
-}
-
-.markdown-body h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-main);
-}
-
-.markdown-body p {
-  margin-bottom: 1.5rem;
-}
-
-.markdown-body a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
-}
-
-.markdown-body a:hover {
-  border-bottom-color: var(--accent);
-}
-
-.markdown-body blockquote {
-  border-left: 4px solid var(--accent);
-  background: var(--accent-light);
-  padding: 1.5rem;
-  border-radius: 0 12px 12px 0;
-  margin: 2rem 0;
-  font-style: italic;
-  color: var(--text-main);
-}
-
-.markdown-body code {
-  background: var(--code-bg);
-  color: var(--accent);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9em;
-}
-
-.markdown-body pre {
-  background: var(--code-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
-  overflow-x: auto;
-  margin: 2rem 0;
-  border: 1px solid var(--border-color);
-}
-
-.markdown-body img {
-  border-radius: 12px;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
-  margin: 2rem 0;
-  width: 100%;
-}
-
-/* Footer */
-.post-footer {
-  padding: 4rem 1rem;
-  border-top: 1px solid var(--border-color);
-  margin-top: 4rem;
-}
-
-.footer-container {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  background: var(--code-bg);
-  color: var(--text-main);
-  text-decoration: none;
-  transition: all 0.2s ease;
-  font-weight: 600;
-}
-
-.back-link:hover {
-  background: var(--accent);
-  color: white;
-  transform: translateX(-5px);
-  text-decoration: none;
-}
-
-.mono {
-  font-family: 'Fira Code', monospace;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .post-title {
-    font-size: 2.5rem;
+    background: var(--bg-color);
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+    margin: 6rem 1rem 0 1rem; /* Push down and add side spacing */
+    border-radius: 24px; /* Rounded corners for the card */
+    overflow: hidden; /* Clip content/hero image to border radius */
+    /* box-shadow: 0 0 0 1px var(--border-color); Subtle border removed */
   }
-  
+
+  [data-theme="dark"] .modern-post {
+    --bg-color: #2c2d3d;
+    --text-main: #cdd6f4;
+    --text-muted: #a6adc8;
+    --accent: #cba6f7;
+    --accent-light: rgba(203, 166, 247, 0.1);
+    --border-color: #313244;
+    --code-bg: #181825;
+    --glass-bg: rgba(44, 45, 61, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Header */
+  .post-header {
+    width: 100%;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
   .hero-wrapper {
-    height: 70vh;
+    width: 100%;
+    aspect-ratio: 21/9;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end; /* Align glass content to bottom */
+    justify-content: center;
   }
-}
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.4)
+    );
+    z-index: 2;
+  }
+
+  /* Glass Effect Container */
+  .glass-content-wrapper {
+    z-index: 10;
+    width: 100%;
+    padding: 6rem 1rem 2rem; /* Reduced top padding */
+  }
+
+  /* Glass Effect - Simple Glassmorphism */
+  /* Glass Effect - Simple Glassmorphism */
+  .glass-effect {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* border: 1px solid rgba(255, 255, 255, 0.2); Removed */
+    z-index: 0;
+    pointer-events: none;
+    /* Fade to solid background color */
+    /* Fade to solid background color */
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      var(--bg-color) 100%
+    );
+    /* Mask: Smooth gradient 0-80% */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 1) 80%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 1) 80%
+    );
+  }
+
+  /* Color overlay for dark theme */
+  .glass-effect::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Fade to solid dark background color */
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(44, 45, 61, 0.1) 50%,
+      var(--bg-color) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 1) 80%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 40%,
+      rgba(0, 0, 0, 1) 80%
+    );
+    pointer-events: none;
+  }
+
+  [data-theme="dark"] .glass-effect::after {
+    display: block;
+  }
+
+  /* Dark theme adjustment */
+  [data-theme="dark"] .glass-effect {
+    background: transparent; /* Handled by ::after */
+    border: none;
+  }
+
+  .header-container {
+    max-width: 820px; /* Match content-container width */
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Fallback for no image */
+  .header-container.no-image {
+    padding-top: 6rem;
+  }
+
+  .title-meta-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .meta-top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    opacity: 0.9;
+    margin: 0; /* Remove margin as it's handled by wrapper gap */
+  }
+
+  .meta-separator {
+    opacity: 0.3;
+  }
+
+  .post-title {
+    font-size: 3rem; /* Slightly smaller */
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-main);
+    letter-spacing: -0.02em;
+    margin: 0; /* Remove margin as it's handled by wrapper gap */
+  }
+
+  .post-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.6;
+  }
+
+  /* Content */
+  .post-content-wrapper {
+    padding: 0 1rem 4rem;
+  }
+
+  .content-container {
+    max-width: 820px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-main);
+  }
+
+  /* Typography Improvements */
+  .markdown-body h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    position: relative;
+    padding-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .markdown-body h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .markdown-body h2:hover::after {
+    width: 400px;
+  }
+
+  [data-theme="dark"] .markdown-body h2 {
+    color: #cdd6f4;
+  }
+
+  [data-theme="light"] .markdown-body h2 {
+    color: #4c4f69;
+  }
+
+  .markdown-body h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  .markdown-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-body a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .markdown-body a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .markdown-body a.img-href {
+    border-bottom: none !important;
+    display: block;
+    margin: 2rem auto;
+    width: fit-content;
+  }
+
+  .markdown-body a.img-href:hover {
+    border-bottom-color: transparent !important;
+  }
+
+  .markdown-body blockquote {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 1.5rem;
+    border-radius: 0 12px 12px 0;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text-main);
+  }
+
+  .markdown-body code {
+    background: var(--code-bg);
+    color: var(--accent);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: "Fira Code", monospace;
+    font-size: 0.9em;
+  }
+
+  .markdown-body pre {
+    background: var(--code-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+  }
+
+  .markdown-body img {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+    margin: 1rem auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .markdown-body a.img-href img {
+    margin: 0;
+    box-shadow: none; /* Let the link handle shadow if needed, or keep it on img? */
+  }
+
+  /* Navigation Footer */
+  .post-nav-footer {
+    padding: 4rem 1rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+  }
+
+  .footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    background: var(--code-bg);
+    color: var(--text-main);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    background: var(--accent);
+    color: var(--bg-color);
+    transform: translateX(-5px);
+    text-decoration: none;
+  }
+
+  /* Post Footer - References Section */
+  .post-footer {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 1.5rem 1rem 0 1rem;
+    margin-top: 2rem;
+    border-top: 1.5px solid var(--accent);
+    line-height: 1.5;
+  }
+
+  .post-footer > h3:first-of-type {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-footer h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    margin-top: 0.6rem;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  .post-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.3rem 0;
+  }
+
+  .post-footer li {
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+  }
+
+  .post-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .post-footer a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .mono {
+    font-family: "Fira Code", monospace;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-wrapper {
+      height: 70vh;
+    }
+  }
 </style>

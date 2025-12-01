@@ -13,6 +13,203 @@
   position: relative;
 }
 
+/* Modal button styles - subtle & clean */
+.modal-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.preferences-label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.6;
+  text-transform: lowercase;
+}
+
+.modal-buttons-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.modal-opener {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  background: #2c2d3d;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #cdd6f4;
+  transition: transform 0.2s ease;
+
+  [data-theme="light"] & {
+    background: #e6e9ef;
+    color: #4c4f69;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .modal-button-label {
+    text-transform: lowercase;
+  }
+}
+
+/* About page modal overlay */
+.about-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.075);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  [data-theme="dark"] & {
+    background: rgba(0, 0, 0, 0.125);
+  }
+}
+
+/* About page specific code-block adjustments */
+.about-code-block {
+  position: fixed;
+  max-width: 650px;
+  width: 90%;
+  max-height: 75vh;
+  overflow: hidden;
+  font-family: inherit !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  user-select: none;
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  
+  /* Intense blur on window */
+  background: rgba(32, 32, 41, 0.7) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid #2c2d3d !important;
+  border-radius: 12px;
+
+  .visible & {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  [data-theme="light"] & {
+    background: rgba(250, 251, 252, 0.7) !important;
+    border-color: #ccd0da !important;
+  }
+
+  .code-block-header {
+    cursor: grab;
+  }
+
+  &.dragging {
+    transition: none !important;
+    cursor: grabbing;
+    
+    .code-block-header {
+      cursor: grabbing;
+    }
+  }
+
+  .code-block-content {
+    max-height: calc(75vh - 50px);
+    overflow-y: auto;
+    font-family: inherit !important;
+
+    /* Custom scrollbar */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(137, 180, 250, 0.4);
+      border-radius: 10px;
+
+      &:hover {
+        background: rgba(137, 180, 250, 0.6);
+      }
+    }
+  }
+
+  .normal-content {
+    font-family: inherit !important;
+    font-size: 0.95rem;
+    line-height: 1.8;
+
+    p {
+      margin: 0;
+      font-family: inherit !important;
+    }
+
+    a {
+      font-family: inherit !important;
+    }
+  }
+}
+
+/* About modal buttons inside windows */
+.about-modal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: #2c2d3d;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #cdd6f4;
+  text-decoration: none !important;
+  transition: transform 0.2s ease;
+  margin: 0.3rem;
+
+  [data-theme="light"] & {
+    background: #e6e9ef;
+    color: #4c4f69;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    text-decoration: none !important;
+  }
+
+  .button-text {
+    text-transform: lowercase;
+  }
+
+  .button-icon {
+    font-size: 0.9rem;
+  }
+}
+
 .image-button-nav {
   display: flex;
   gap: 10px;
@@ -46,11 +243,37 @@
 }
 
 .inspavatar {
-  transition: transform 0.3s ease !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
 }
 
 .inspavatar:hover {
-  transform: scale(1.099);
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.avatar-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  overflow-x: auto;
+
+  img {
+    margin: 0 !important;
+    width: 42px !important; /* Slightly smaller for better control */
+    height: 42px !important;
+    box-shadow: none !important;
+    border-radius: 50%; /* Make them round */
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .aboutvpimg {
@@ -104,19 +327,23 @@
 }
 
 .tippy-box[data-theme~="custom-theme"] {
-  background-color: 4c4f69;
-  color: eff1f5;
+  background-color: #4c4f69;
+  color: #eff1f5;
   font-weight: 600;
-  box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.212);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
 
   [data-theme="dark"] & {
     background-color: #cdd6f4;
     color: #1a1a21;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 }
 
 .tippy-box[data-theme~="custom-theme"] > .tippy-arrow {
-  color: 4c4f69;
+  color: #4c4f69;
 
   [data-theme="dark"] & {
     color: #cdd6f4;
