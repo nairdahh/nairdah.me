@@ -5,7 +5,7 @@ date: 2025-11-28
 author: nairdah
 categories: [blog]
 tags: [virtual-photography, framed]
-image: https://i.imgur.com/3UJmoe1.jpeg
+image: /assets/images/blog/vp-journey.jpeg
 excerpt: "a deep dive into how i discovered virtual photography, the communities that inspired me, and the journey that transformed a casual hobby into a passion."
 ---
 
