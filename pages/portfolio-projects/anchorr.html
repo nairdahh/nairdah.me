@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Anchorr - A Discord bot for requesting media via Jellyseerr and receiving Jellyfin notifications."
+    />
+    <title>Anchorr | Adrian-Nicolae Neacșu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <script>
+      (function () {
+        const saved = localStorage.getItem("portfolio-theme");
+        const system = window.matchMedia("(prefers-color-scheme: light)")
+          .matches
+          ? "light"
+          : "dark";
+        document.documentElement.setAttribute("data-theme", saved || system);
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header__inner">
+        <a href="../index.html" class="header__logo">Adrian</a>
+
+        <nav class="header__nav">
+          <a href="../index.html#about" class="header__nav-link">About</a>
+          <a href="../index.html#projects" class="header__nav-link">Projects</a>
+          <a href="../index.html#contact" class="header__nav-link">Contact</a>
+        </nav>
+
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="project-page">
+      <div class="container container--narrow">
+        <!-- Back Link -->
+        <a href="../index.html#projects" class="project-page__back">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Projects
+        </a>
+
+        <!-- Hero Image -->
+        <div class="project-page__hero">
+          <img src="../assets/portfolio/anchorr/hero.png" alt="Anchorr Hero" />
+        </div>
+        <!-- Header -->
+        <div class="project-page__header">
+          <div class="project-page__title-group">
+            <h1 class="project-page__title gradient-text">Anchorr</h1>
+            <p class="project-page__tagline">Discord Bot for Media Requests</p>
+          </div>
+          <div class="project-page__status project-page__status--active">
+            <span class="project-page__status-dot"></span>
+            Active
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Overview</h2>
+          <div class="project-page__text">
+            <p>
+              Anchorr is a powerful Discord bot designed to streamline media
+              management for self-hosted media server users. It enables seamless
+              media requests through Jellyseerr and delivers real-time
+              notifications when new content lands in your Jellyfin library.
+            </p>
+            <p>
+              The bot integrates with TMDB and OMDb APIs to provide rich media
+              information, including posters, ratings, synopses, and IMDb links.
+              Users can search for movies and TV shows with autocomplete
+              support, make requests with a single click, and receive
+              personalized notifications when their requested content becomes
+              available.
+            </p>
+            <p>
+              Anchorr also features a web dashboard for easy configuration,
+              Docker deployment support, and comprehensive permission management
+              through Discord role-based allowlist and blocklist systems.
+            </p>
+          </div>
+        </section>
+
+        <!-- Technologies -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Technologies</h2>
+          <div class="tech-stack">
+            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge">Express.js</span>
+            <span class="tech-badge">Discord.js v14</span>
+            <span class="tech-badge">TMDB API</span>
+            <span class="tech-badge">OMDb API</span>
+            <span class="tech-badge">Jellyseerr API</span>
+            <span class="tech-badge">Jellyfin API</span>
+            <span class="tech-badge">WebSocket</span>
+            <span class="tech-badge">JWT Auth</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Winston Logger</span>
+          </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Key Features</h2>
+          <div class="features-list">
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Media search with autocomplete via /search command</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"
+                ></path>
+              </svg>
+              <span class="feature-item__text"
+                >Trending content browsing with /trending command</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span class="feature-item__text"
+                >One-click media requests with duplicate detection</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Real-time Jellyfin notifications via WebSocket</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Web dashboard for easy configuration</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Role-based permissions with allowlist/blocklist</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Docker & Docker Compose deployment ready</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+              <span class="feature-item__text"
+                >Private PM notifications when content is ready</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Approach -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Approach & Architecture</h2>
+          <div class="project-page__text">
+            <p>
+              The architecture follows a modular design pattern with separate
+              concerns for API integrations, Discord command handling, and
+              real-time notifications. The core application (app.js)
+              orchestrates Express routes, Discord slash commands, and manages
+              the WebSocket connection to Jellyfin for live updates.
+            </p>
+            <p>
+              External APIs are abstracted into dedicated modules (tmdb.js,
+              jellyseerr.js, jellyfin.js, omdb.js) with built-in caching using
+              node-cache to minimize API calls and improve response times. The
+              bot implements rate limiting to respect Discord's API limits and
+              provides comprehensive logging with Winston for debugging and
+              monitoring.
+            </p>
+            <p>
+              For user experience, I focused on rich Discord embeds with movie
+              posters, ratings, and interactive buttons for seamless request
+              flows. The ephemeral mode option ensures responses are only
+              visible to the command user, keeping channels clean while still
+              providing all necessary information.
+            </p>
+          </div>
+        </section>
+
+        <!-- Screenshots -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Screenshots</h2>
+          <div class="screenshot-gallery">
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/anchorr/screenshot-1.png"
+                alt="Screenshot 1"
+              />
+            </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/anchorr/screenshot-2.png"
+                alt="Screenshot 2"
+              />
+            </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/anchorr/screenshot-3.png"
+                alt="Screenshot 3"
+              />
+            </div>
+          </div>
+        </section>
+        <!-- Links -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Links</h2>
+          <div class="project-links">
+            <a
+              href="https://github.com/nairdahh/anchorr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link project-link--primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              View on GitHub
+            </a>
+            <a
+              href="https://anchorr.nairdah.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link project-link--secondary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+              Documentation
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__text">Built with passion by Adrian-Nicolae Neacșu</p>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,420 @@
+---
+permalink: /portfolio-projects/klaussified
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Klaussified - Full-featured Secret Santa web app with group management and gift tracking."
+    />
+    <title>Klaussified | Adrian-Nicolae Neacșu</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}" />
+
+    <script>
+      (function () {
+        const saved = localStorage.getItem("portfolio-theme");
+        const system = window.matchMedia("(prefers-color-scheme: light)")
+          .matches
+          ? "light"
+          : "dark";
+        document.documentElement.setAttribute("data-theme", saved || system);
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header__inner">
+        <a href="{{ '/portfolio' | relative_url }}" class="header__logo">Adrian</a>
+
+        <nav class="header__nav">
+          <a href="{{ '/portfolio#about' | relative_url }}" class="header__nav-link">About</a>
+          <a href="{{ '/portfolio#projects' | relative_url }}" class="header__nav-link">Projects</a>
+          <a href="{{ '/portfolio#contact' | relative_url }}" class="header__nav-link">Contact</a>
+        </nav>
+
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <svg
+            class="icon-moon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg
+            class="icon-sun"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" class="project-page">
+      <div class="container container--narrow">
+        <!-- Back Link -->
+        <a href="{{ '/portfolio#projects' | relative_url }}" class="project-page__back">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Projects
+        </a>
+
+        <!-- Hero Image -->
+        <div class="project-page__hero">
+          <img
+            src="../assets/portfolio/klaussified/hero.png"
+            alt="Klaussified Hero"
+          />
+        </div>
+
+        <!-- Header -->
+        <div class="project-page__header">
+          <div class="project-page__title-group">
+            <h1 class="project-page__title gradient-text">Klaussified</h1>
+            <p class="project-page__tagline">Secret Santa Made Effortless</p>
+          </div>
+          <div class="project-page__status project-page__status--active">
+            <span class="project-page__status-dot"></span>
+            Active
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Overview</h2>
+          <div class="project-page__text">
+            <p>
+              Klaussified is a comprehensive Secret Santa web application
+              designed to take the hassle out of organizing gift exchanges.
+              Built with Flutter Web and Firebase, it provides a modern,
+              responsive interface for creating groups, managing members, and
+              running Secret Santa events with smart assignment algorithms.
+            </p>
+            <p>
+              The app features a robust authentication system supporting
+              email/password, Google, and Apple sign-in. Group admins can set up
+              exclusion rules (e.g., couples shouldn't draw each other), manage
+              member wishlists, and track gift statuses throughout the holiday
+              season.
+            </p>
+            <p>
+              A festive Christmas-themed design with Material Design 3
+              components creates an immersive holiday experience, while
+              automated email notifications keep all participants informed about
+              their assignments and group updates.
+            </p>
+          </div>
+        </section>
+
+        <!-- Technologies -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Technologies</h2>
+          <div class="tech-stack">
+            <span class="tech-badge">Flutter Web</span>
+            <span class="tech-badge">Dart</span>
+            <span class="tech-badge">Firebase Auth</span>
+            <span class="tech-badge">Cloud Firestore</span>
+            <span class="tech-badge">Firebase Functions</span>
+            <span class="tech-badge">Firebase Hosting</span>
+            <span class="tech-badge">BLoC Pattern</span>
+            <span class="tech-badge">go_router</span>
+            <span class="tech-badge">Material Design 3</span>
+            <span class="tech-badge">Freezed</span>
+            <span class="tech-badge">get_it</span>
+          </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Key Features</h2>
+          <div class="features-list">
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Create and manage Secret Santa groups with unlimited
+                members</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <line x1="19" y1="8" x2="19" y2="14"></line>
+                <line x1="22" y1="11" x2="16" y2="11"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Invite members via email with automated notifications</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="16 3 21 3 21 8"></polyline>
+                <line x1="4" y1="20" x2="21" y2="3"></line>
+                <polyline points="21 16 21 21 16 21"></polyline>
+                <line x1="15" y1="15" x2="21" y2="21"></line>
+                <line x1="4" y1="4" x2="9" y2="9"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Smart random assignments with exclusion rules support</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span class="feature-item__text"
+                >Personal wishlists with preferences for each participant</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"></path>
+                <path d="M12 2v13"></path>
+                <path d="m7 7 5-5 5 5"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Gift tracking with purchased and wrapped status
+                indicators</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Multi-provider authentication (Email, Google, Apple)</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="feature-item__text"
+                >Address management for shipping physical gifts</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"
+                ></path>
+              </svg>
+              <span class="feature-item__text"
+                >Admin panel for user management and system settings</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Approach -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Approach & Architecture</h2>
+          <div class="project-page__text">
+            <p>
+              Klaussified follows clean architecture principles with a clear
+              separation between business logic, data, and presentation layers.
+              The BLoC (Business Logic Component) pattern manages state
+              throughout the app, providing predictable state transitions and
+              easy testability.
+            </p>
+            <p>
+              The data layer uses repository pattern to abstract Firebase
+              operations, making it easy to swap data sources if needed. Models
+              are generated using Freezed for immutability and automatic JSON
+              serialization, while get_it and injectable handle dependency
+              injection.
+            </p>
+            <p>
+              The UI is built with Material Design 3 components and a custom
+              Christmas theme featuring festive reds and greens. go_router
+              handles navigation with auth-aware redirects, ensuring users are
+              always routed to appropriate screens based on their authentication
+              state.
+            </p>
+            <p>
+              Firebase Cloud Functions power the email notification system,
+              sending automated emails when users are invited to groups or when
+              Secret Santa assignments are revealed. This serverless approach
+              keeps operational costs low while ensuring reliable delivery.
+            </p>
+          </div>
+        </section>
+
+        <!-- Screenshots -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Screenshots</h2>
+          <div class="screenshot-gallery">
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/klaussified/screenshot-1.png"
+                alt="Screenshot 1"
+              />
+            </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/klaussified/screenshot-2.png"
+                alt="Screenshot 2"
+              />
+            </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/klaussified/screenshot-3.png"
+                alt="Screenshot 3"
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- Links -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Links</h2>
+          <div class="project-links">
+            <a
+              href="https://klaussified.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link project-link--primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+              Visit Live App
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p class="footer__text">Built with passion by Adrian-Nicolae Neacșu</p>
+      </div>
+    </footer>
+
+    <script src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+  </body>
+</html>
