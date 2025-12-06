@@ -1,6 +1,7 @@
 ---
 permalink: /portfolio-projects/gamedash
 ---
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
@@ -14,7 +15,36 @@ permalink: /portfolio-projects/gamedash
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/portfolio.css' | relative_url }}"
+    />
+
+    <style>
+      .footer {
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      .footer .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .footer__inner {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+    </style>
 
     <script>
       (function () {
@@ -33,12 +63,26 @@ permalink: /portfolio-projects/gamedash
     <!-- Header -->
     <header class="header">
       <div class="container header__inner">
-        <a href="{{ '/portfolio' | relative_url }}" class="header__logo">Adrian</a>
+        <a href="{{ '/portfolio' | relative_url }}" class="header__logo"
+          >Adrian</a
+        >
 
         <nav class="header__nav">
-          <a href="{{ '/portfolio#about' | relative_url }}" class="header__nav-link">About</a>
-          <a href="{{ '/portfolio#projects' | relative_url }}" class="header__nav-link">Projects</a>
-          <a href="{{ '/portfolio#contact' | relative_url }}" class="header__nav-link">Contact</a>
+          <a
+            href="{{ '/portfolio#about' | relative_url }}"
+            class="header__nav-link"
+            >About</a
+          >
+          <a
+            href="{{ '/portfolio#projects' | relative_url }}"
+            class="header__nav-link"
+            >Projects</a
+          >
+          <a
+            href="{{ '/portfolio#contact' | relative_url }}"
+            class="header__nav-link"
+            >Contact</a
+          >
         </nav>
 
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
@@ -87,7 +131,10 @@ permalink: /portfolio-projects/gamedash
     <main id="main" class="project-page">
       <div class="container container--narrow">
         <!-- Back Link -->
-        <a href="{{ '/portfolio#projects' | relative_url }}" class="project-page__back">
+        <a
+          href="{{ '/portfolio#projects' | relative_url }}"
+          class="project-page__back"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

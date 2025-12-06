@@ -962,6 +962,13 @@ p {
   padding-bottom: var(--space-2xl);
 }
 
+.project-page .footer .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .project-page__back {
   display: inline-flex;
   align-items: center;
@@ -1094,6 +1101,34 @@ p {
 
 .project-page__text p:last-child {
   margin-bottom: 0;
+}
+
+.project-page .footer {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.project-page .footer .container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: var(--space-xl);
+}
+
+.project-page .footer__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 /* Tech Stack */

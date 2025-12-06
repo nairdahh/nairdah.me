@@ -1,5 +1,5 @@
 ---
-permalink: /portfolio-projects/sonant
+permalink: /portfolio-projects/toni
 ---
 
 <!DOCTYPE html>
@@ -9,9 +9,9 @@ permalink: /portfolio-projects/sonant
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Sonant - Intelligent eBook reader with AWS Polly text-to-speech integration."
+      content="TONI - Vinyl Turntable Audio Pass-Through Application built with Tauri and Svelte."
     />
-    <title>Sonant | Adrian-Nicolae Neacșu</title>
+    <title>TONI | Adrian-Nicolae Neacșu</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -152,15 +152,15 @@ permalink: /portfolio-projects/sonant
 
         <!-- Hero Image -->
         <div class="project-page__hero">
-          <img src="../assets/portfolio/sonant/hero.png" alt="Sonant Hero" />
+          <img src="../assets/portfolio/toni/hero.png" alt="TONI Hero" />
         </div>
 
         <!-- Header -->
         <div class="project-page__header">
           <div class="project-page__title-group">
-            <h1 class="project-page__title gradient-text">Sonant</h1>
+            <h1 class="project-page__title gradient-text">TONI</h1>
             <p class="project-page__tagline">
-              Intelligent eBook Reader with TTS
+              Vinyl Turntable Audio Pass-Through Application
             </p>
           </div>
           <div class="project-page__status project-page__status--dev">
@@ -174,27 +174,24 @@ permalink: /portfolio-projects/sonant
           <h2 class="project-page__section-title">Overview</h2>
           <div class="project-page__text">
             <p>
-              Sonant is a cross-platform eBook reader that brings your books to
-              life with high-quality text-to-speech powered by Kokoro, an
-              open-weight TTS model with 82 million parameters. Whether you're
-              commuting, exercising, or simply prefer listening to reading,
-              Sonant transforms any EPUB or PDF into an immersive audio
-              experience.
+              TONI is a cross-platform desktop application designed to provide
+              professional-grade audio pass-through capabilities for vinyl
+              turntable enthusiasts and audiophiles. Built with Tauri for a
+              lightweight, native feel and Svelte for a responsive, intuitive
+              UI, TONI bridges vintage hardware with modern computing.
             </p>
             <p>
-              The application supports multiple eBook formats with intelligent
-              text extraction and chapter navigation. Despite its lightweight
-              architecture with just 82M parameters, Kokoro delivers comparable
-              quality to larger models while being significantly faster and more
-              cost-efficient. Apache-licensed weights enable deployment across
-              multiple languages, making it perfect for both native content and
-              foreign language learning.
+              The application enables real-time audio processing and routing
+              from turntables through your computer while maintaining lossless
+              audio quality. Whether you're digitizing your vinyl collection or
+              mixing live, TONI provides the tools to achieve professional
+              results with minimal latency.
             </p>
             <p>
-              Built with Flutter for true cross-platform support, Sonant runs on
-              iOS, Android, macOS, Windows, Linux, and web browsers. Firebase
-              handles user authentication and cloud storage for syncing your
-              library and reading progress across all devices.
+              TONI runs natively on Windows, macOS, and Linux, with a unified
+              codebase that ensures consistent behavior across all platforms.
+              The compact Tauri runtime means fast startup times and minimal
+              system resource consumption compared to Electron alternatives.
             </p>
           </div>
         </section>
@@ -203,16 +200,12 @@ permalink: /portfolio-projects/sonant
         <section class="project-page__section">
           <h2 class="project-page__section-title">Technologies</h2>
           <div class="tech-stack">
-            <span class="tech-badge">Flutter</span>
-            <span class="tech-badge">Dart</span>
-            <span class="tech-badge">Kokoro TTS 82M</span>
-            <span class="tech-badge">Firebase Auth</span>
-            <span class="tech-badge">Cloud Firestore</span>
-            <span class="tech-badge">Firebase Storage</span>
-            <span class="tech-badge">Cloud Functions</span>
-            <span class="tech-badge">just_audio</span>
-            <span class="tech-badge">epubx</span>
-            <span class="tech-badge">Syncfusion PDF</span>
+            <span class="tech-badge">Tauri</span>
+            <span class="tech-badge">Svelte</span>
+            <span class="tech-badge">Vite</span>
+            <span class="tech-badge">Rust</span>
+            <span class="tech-badge">Web Audio API</span>
+            <span class="tech-badge">Cross-Platform</span>
           </div>
         </section>
 
@@ -229,31 +222,13 @@ permalink: /portfolio-projects/sonant
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                <path
-                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
-                ></path>
-              </svg>
-              <span class="feature-item__text"
-                >Support for EPUB and PDF formats with smart parsing</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <path
                   d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
                 ></path>
               </svg>
               <span class="feature-item__text"
-                >Natural-sounding TTS using Kokoro 82M (open-weight model)</span
+                >Real-time audio pass-through with minimal latency</span
               >
             </div>
             <div class="feature-item">
@@ -265,11 +240,12 @@ permalink: /portfolio-projects/sonant
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
+                <circle cx="12" cy="12" r="1"></circle>
+                <circle cx="19" cy="12" r="1"></circle>
+                <circle cx="5" cy="12" r="1"></circle>
               </svg>
               <span class="feature-item__text"
-                >Adjustable playback speed and voice selection</span
+                >Multi-track audio routing and mixing capabilities</span
               >
             </div>
             <div class="feature-item">
@@ -281,12 +257,10 @@ permalink: /portfolio-projects/sonant
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
+                <path d="M3 12h18M9 16l-6-4 6-4m6 8l6-4-6-4"></path>
               </svg>
               <span class="feature-item__text"
-                >Cloud sync for library and reading progress</span
+                >Advanced audio equalization and filtering presets</span
               >
             </div>
             <div class="feature-item">
@@ -303,26 +277,7 @@ permalink: /portfolio-projects/sonant
                 <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
               <span class="feature-item__text"
-                >Cross-platform: iOS, Android, macOS, Windows, Linux, Web</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path
-                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                ></path>
-              </svg>
-              <span class="feature-item__text"
-                >Multi-language support with voice options per language</span
+                >Cross-platform support for Windows, macOS, and Linux</span
               >
             </div>
             <div class="feature-item">
@@ -335,11 +290,13 @@ permalink: /portfolio-projects/sonant
                 stroke-width="2"
               >
                 <path
-                  d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
                 ></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
               </svg>
               <span class="feature-item__text"
-                >Chapter navigation with table of contents</span
+                >Session recording and playback for vinyl digitization</span
               >
             </div>
             <div class="feature-item">
@@ -351,12 +308,27 @@ permalink: /portfolio-projects/sonant
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path
-                  d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"
-                ></path>
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
               <span class="feature-item__text"
-                >Bookmarks and highlights with cloud backup</span
+                >Input device management and configuration</span
+              >
+            </div>
+            <div class="feature-item">
+              <svg
+                class="feature-item__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+              </svg>
+              <span class="feature-item__text"
+                >Real-time visualizers and waveform analysis</span
               >
             </div>
           </div>
@@ -367,25 +339,25 @@ permalink: /portfolio-projects/sonant
           <h2 class="project-page__section-title">Approach & Architecture</h2>
           <div class="project-page__text">
             <p>
-              Sonant leverages Flutter's cross-platform capabilities to maintain
-              a single codebase for all target platforms. The app uses
-              just_audio for seamless audio playback with support for background
-              audio, lock screen controls, and notification media controls on
-              mobile platforms.
+              TONI leverages Tauri's lightweight architecture built on Rust and
+              Webview to create a native desktop application with web
+              technologies. This hybrid approach provides native performance
+              while maintaining the flexibility and rapid development
+              capabilities of modern web frameworks.
             </p>
             <p>
-              Document parsing is handled by specialized libraries: epubx for
-              EPUB files and Syncfusion's Flutter PDF library for PDF documents.
-              Text is extracted chapter by chapter and processed through Kokoro
-              TTS in chunks, leveraging the model's efficiency as a 82M
-              parameter model that runs fast while maintaining high quality.
+              Svelte powers the user interface with reactive components that
+              respond to real-time audio state changes. Vite provides hot module
+              replacement during development and optimized production builds.
+              The separation between Tauri's Rust backend and Svelte frontend
+              ensures clean architecture and maintainability.
             </p>
             <p>
-              Firebase handles authentication, storage, and sync of user library
-              and progress. Generated audio is cached in Firebase Storage for
-              quick retrieval on subsequent listens. Being built on an
-              Apache-licensed open-weight model, Kokoro enables cost-effective
-              deployment compared to proprietary alternatives.
+              Audio processing is handled through the Web Audio API combined
+              with native system audio drivers, ensuring low-latency,
+              high-fidelity audio pass-through. The application communicates
+              with audio hardware through platform-specific APIs while
+              maintaining a unified interface across operating systems.
             </p>
           </div>
         </section>
@@ -396,20 +368,8 @@ permalink: /portfolio-projects/sonant
           <div class="screenshot-gallery">
             <div class="screenshot-item">
               <img
-                src="../assets/portfolio/sonant/screenshot-1.png"
+                src="../assets/portfolio/toni/screenshot-1.png"
                 alt="Screenshot 1"
-              />
-            </div>
-            <div class="screenshot-item">
-              <img
-                src="../assets/portfolio/sonant/screenshot-2.png"
-                alt="Screenshot 2"
-              />
-            </div>
-            <div class="screenshot-item">
-              <img
-                src="../assets/portfolio/sonant/screenshot-3.png"
-                alt="Screenshot 3"
               />
             </div>
           </div>
@@ -420,16 +380,35 @@ permalink: /portfolio-projects/sonant
           <h2 class="project-page__section-title">Development Status</h2>
           <div class="project-page__text">
             <p>
-              Sonant is currently in active development. The core architecture
-              is in place with Flutter project structure, Firebase integration,
-              and Kokoro TTS connectivity established. Current focus is on
-              perfecting the eBook parsing logic and building out the reader
-              interface.
+              TONI is currently in active development. The core Tauri + Svelte
+              architecture is established, with foundational audio routing
+              implemented. Current focus is on refining the audio processing
+              pipeline and building out the intuitive user interface.
             </p>
-            <p>
-              Stay tuned for updates as development progresses toward an initial
-              release!
-            </p>
+          </div>
+        </section>
+
+        <!-- Links -->
+        <section class="project-page__section">
+          <h2 class="project-page__section-title">Links</h2>
+          <div class="project-links">
+            <a
+              href="https://github.com/nairdahh/toni"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-link project-link--secondary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+              View Source
+            </a>
           </div>
         </section>
       </div>

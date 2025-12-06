@@ -1,6 +1,7 @@
 ---
 permalink: /portfolio-projects/anchorr
 ---
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
@@ -14,7 +15,36 @@ permalink: /portfolio-projects/anchorr
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/portfolio.css' | relative_url }}"
+    />
+
+    <style>
+      .footer {
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      .footer .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .footer__inner {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+    </style>
 
     <script>
       (function () {
@@ -33,12 +63,26 @@ permalink: /portfolio-projects/anchorr
     <!-- Header -->
     <header class="header">
       <div class="container header__inner">
-        <a href="{{ '/portfolio' | relative_url }}" class="header__logo">Adrian</a>
+        <a href="{{ '/portfolio' | relative_url }}" class="header__logo"
+          >Adrian</a
+        >
 
         <nav class="header__nav">
-          <a href="{{ '/portfolio#about' | relative_url }}" class="header__nav-link">About</a>
-          <a href="{{ '/portfolio#projects' | relative_url }}" class="header__nav-link">Projects</a>
-          <a href="{{ '/portfolio#contact' | relative_url }}" class="header__nav-link">Contact</a>
+          <a
+            href="{{ '/portfolio#about' | relative_url }}"
+            class="header__nav-link"
+            >About</a
+          >
+          <a
+            href="{{ '/portfolio#projects' | relative_url }}"
+            class="header__nav-link"
+            >Projects</a
+          >
+          <a
+            href="{{ '/portfolio#contact' | relative_url }}"
+            class="header__nav-link"
+            >Contact</a
+          >
         </nav>
 
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
@@ -87,7 +131,10 @@ permalink: /portfolio-projects/anchorr
     <main id="main" class="project-page">
       <div class="container container--narrow">
         <!-- Back Link -->
-        <a href="{{ '/portfolio#projects' | relative_url }}" class="project-page__back">
+        <a
+          href="{{ '/portfolio#projects' | relative_url }}"
+          class="project-page__back"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -111,7 +158,9 @@ permalink: /portfolio-projects/anchorr
         <div class="project-page__header">
           <div class="project-page__title-group">
             <h1 class="project-page__title gradient-text">Anchorr</h1>
-            <p class="project-page__tagline">Discord Bot for Media Requests</p>
+            <p class="project-page__tagline">
+              Discord Bot for Media Requests and Notifications
+            </p>
           </div>
           <div class="project-page__status project-page__status--active">
             <span class="project-page__status-dot"></span>
@@ -180,7 +229,8 @@ permalink: /portfolio-projects/anchorr
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
               <span class="feature-item__text"
-                >Media search with autocomplete via /search command</span
+                >Media search with autocomplete via </br>
+                /search command</span
               >
             </div>
             <div class="feature-item">
@@ -197,7 +247,8 @@ permalink: /portfolio-projects/anchorr
                 ></path>
               </svg>
               <span class="feature-item__text"
-                >Trending content browsing with /trending command</span
+                >Trending content browsing with </br>
+                /trending command</span
               >
             </div>
             <div class="feature-item">
@@ -356,6 +407,12 @@ permalink: /portfolio-projects/anchorr
                 alt="Screenshot 3"
               />
             </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/anchorr/screenshot-4.png"
+                alt="Screenshot 4"
+              />
+            </div>
           </div>
         </section>
         <!-- Links -->
@@ -398,7 +455,7 @@ permalink: /portfolio-projects/anchorr
                   d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
                 ></path>
               </svg>
-              Documentation
+              App Page
             </a>
           </div>
         </section>

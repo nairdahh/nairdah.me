@@ -1,6 +1,7 @@
 ---
 permalink: /portfolio-projects/nairdah-site
 ---
+
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
   <head>
@@ -8,13 +9,42 @@ permalink: /portfolio-projects/nairdah-site
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="nairdah.me - Personal portfolio site with virtual photography gallery and blog."
+      content="nairdah.me - Personal Website with IRL & In-Game Photography, Projects & Blog."
     />
     <title>nairdah.me | Adrian-Nicolae Neacșu</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/portfolio.css' | relative_url }}"
+    />
+
+    <style>
+      .footer {
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        right: 50% !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      .footer .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .footer__inner {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+    </style>
 
     <script>
       (function () {
@@ -33,12 +63,26 @@ permalink: /portfolio-projects/nairdah-site
     <!-- Header -->
     <header class="header">
       <div class="container header__inner">
-        <a href="{{ '/portfolio' | relative_url }}" class="header__logo">Adrian</a>
+        <a href="{{ '/portfolio' | relative_url }}" class="header__logo"
+          >Adrian</a
+        >
 
         <nav class="header__nav">
-          <a href="{{ '/portfolio#about' | relative_url }}" class="header__nav-link">About</a>
-          <a href="{{ '/portfolio#projects' | relative_url }}" class="header__nav-link">Projects</a>
-          <a href="{{ '/portfolio#contact' | relative_url }}" class="header__nav-link">Contact</a>
+          <a
+            href="{{ '/portfolio#about' | relative_url }}"
+            class="header__nav-link"
+            >About</a
+          >
+          <a
+            href="{{ '/portfolio#projects' | relative_url }}"
+            class="header__nav-link"
+            >Projects</a
+          >
+          <a
+            href="{{ '/portfolio#contact' | relative_url }}"
+            class="header__nav-link"
+            >Contact</a
+          >
         </nav>
 
         <button class="theme-toggle" aria-label="Toggle dark/light mode">
@@ -87,7 +131,10 @@ permalink: /portfolio-projects/nairdah-site
     <main id="main" class="project-page">
       <div class="container container--narrow">
         <!-- Back Link -->
-        <a href="{{ '/portfolio#projects' | relative_url }}" class="project-page__back">
+        <a
+          href="{{ '/portfolio#projects' | relative_url }}"
+          class="project-page__back"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -116,7 +163,7 @@ permalink: /portfolio-projects/nairdah-site
           <div class="project-page__title-group">
             <h1 class="project-page__title gradient-text">nairdah.me</h1>
             <p class="project-page__tagline">
-              Personal Portfolio & Virtual Photography Showcase
+              Personal Website with IRL & In-Game Photography, Projects & Blog
             </p>
           </div>
           <div class="project-page__status project-page__status--active">
@@ -131,24 +178,28 @@ permalink: /portfolio-projects/nairdah-site
           <div class="project-page__text">
             <p>
               nairdah.me is my personal corner of the internet - a
-              Jekyll-powered static site that serves as both a portfolio and a
-              creative outlet. Built on the portfolYou theme with extensive
-              customizations, it showcases my development projects alongside my
-              passion for virtual photography.
+              Jekyll-powered static site that serves as a comprehensive digital
+              portfolio. Built on the portfolYou theme with extensive
+              customizations, it showcases my development projects, creative
+              work, and online presence all in one place.
             </p>
             <p>
-              The site features a dedicated virtual photography gallery where I
-              share screenshots captured in various games using ReShade, photo
-              modes, and visual modification tools. Each image represents hours
-              of careful composition, lighting adjustment, and post-processing
-              to create compelling visual narratives within game worlds.
+              The site features multiple galleries - one for in-game virtual
+              photography where I share carefully composed screenshots from
+              various games using photo modes and visual modifications, and
+              another for real-world photography. Each collection represents
+              hours of creative effort, composition, and post-processing to
+              craft compelling visual narratives.
             </p>
             <p>
-              A blog section houses my thoughts on games, photography
-              techniques, and occasional tutorials on achieving specific visual
-              effects in different game engines. The entire site is optimized
-              for SEO and performance, with automatic sitemap generation and
-              social media meta tags.
+              A dedicated projects showcase highlights my development work with
+              live demo links and technical details. The blog section is my
+              personal space to explore diverse topics - from video games and
+              literature to philosophy and creative insights. It's where I share
+              thoughts, tutorials, and reflections across whatever captures my
+              interest. The entire site is optimized for SEO and performance,
+              with automatic sitemap genâeration and social media meta tags to
+              ensure discoverability.
             </p>
           </div>
         </section>
@@ -327,12 +378,6 @@ permalink: /portfolio-projects/nairdah-site
               for metadata.
             </p>
             <p>
-              The virtual photography section was a custom addition, featuring a
-              masonry-style gallery layout with lightbox functionality. Each
-              image includes EXIF-like metadata showing the game, tools used
-              (ReShade presets, camera mods), and any post-processing applied.
-            </p>
-            <p>
               Performance optimization was key - images are served in optimized
               formats, CSS is minified in production, and the static nature of
               Jekyll means lightning-fast page loads with no server-side
@@ -363,6 +408,18 @@ permalink: /portfolio-projects/nairdah-site
                 alt="Screenshot 3"
               />
             </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/nairdah/screenshot-4.png"
+                alt="Screenshot 4"
+              />
+            </div>
+            <div class="screenshot-item">
+              <img
+                src="../assets/portfolio/nairdah/screenshot-5.png"
+                alt="Screenshot 5"
+              />
+            </div>
           </div>
         </section>
 
@@ -390,23 +447,6 @@ permalink: /portfolio-projects/nairdah-site
                 ></path>
               </svg>
               Visit Website
-            </a>
-            <a
-              href="https://github.com/nairdahh/nairdah.me"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link project-link--secondary"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                />
-              </svg>
-              View Source
             </a>
           </div>
         </section>
