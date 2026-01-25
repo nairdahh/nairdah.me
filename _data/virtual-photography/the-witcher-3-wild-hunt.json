@@ -1,0 +1,44 @@
+[
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img005.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img005.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img000.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img000.webp",
+    "aspectRatio": 1,
+    "width": 1800,
+    "height": 1800
+  },
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img001.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img001.webp",
+    "aspectRatio": 0.75,
+    "width": 1620,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img002.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img002.webp",
+    "aspectRatio": 1.7778,
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img003.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img003.webp",
+    "aspectRatio": 1.25,
+    "width": 2160,
+    "height": 1728
+  },
+  {
+    "url": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/img004.jpg",
+    "thumb": "https://cdn.nairdah.me/the-witcher-3-wild-hunt/thumb/img004.webp",
+    "aspectRatio": 0.75,
+    "width": 1890,
+    "height": 2520
+  }
+]

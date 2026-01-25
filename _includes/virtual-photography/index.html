@@ -1,10 +1,39 @@
 <meta name="referrer" content="no-referrer">
 <div class="card-group adjspace">
 
-  {% for post in site.posts %}
-    {% if post.categories contains "virtual-photography" %}
+  {%- comment -%} Get album order from _data/virtual-photography/_album-order.json {%- endcomment -%}
+  {%- assign album_order = site.data.virtual-photography._album-order -%}
+  
+  {%- comment -%} Collect all VP posts {%- endcomment -%}
+  {%- assign vp_posts = "" | split: "" -%}
+  {%- for post in site.posts -%}
+    {%- if post.categories contains "virtual-photography" -%}
+      {%- assign vp_posts = vp_posts | push: post -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {%- comment -%} If we have a custom order, sort by it {%- endcomment -%}
+  {%- if album_order and album_order.size > 0 -%}
+    {%- comment -%} First output albums in custom order {%- endcomment -%}
+    {%- for slug in album_order -%}
+      {%- for post in vp_posts -%}
+        {%- if post.slug == slug -%}
+          {% include virtual-photography/post-card.html %}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    
+    {%- comment -%} Then output any albums not in the order list (newest first) {%- endcomment -%}
+    {%- for post in vp_posts -%}
+      {%- unless album_order contains post.slug -%}
+        {% include virtual-photography/post-card.html %}
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- comment -%} No custom order, show all by date (default) {%- endcomment -%}
+    {%- for post in vp_posts -%}
       {% include virtual-photography/post-card.html %}
-    {% endif %}
-  {% endfor %}
+    {%- endfor -%}
+  {%- endif -%}
 
 </div>

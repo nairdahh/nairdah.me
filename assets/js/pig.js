@@ -86,12 +86,13 @@
       '  position: relative;' +
       '}' +
       '.' + classPrefix + '-figure {' +
-      '  background-color: #202029;' +
+      '  background-color: var(--ctp-surface0, #ccd0da);' +
       '  overflow: hidden;' +
       '  left: 0;' +
       '  position: absolute;' +
       '  top: 0;' +
       '  margin: 0;' +
+      '  transition: background-color 0.3s ease;' +
       '}' +
       '.' + classPrefix + '-figure img {' +
       '  left: 0;' +

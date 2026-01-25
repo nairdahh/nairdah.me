@@ -8,7 +8,8 @@ layout: page-grid
     {% assign banner-pic = site.data.virtual-photography[page.slug][page.card-image] %}
 {% endif %}
 
-{% assign ar = banner-pic.aspect-ratio | plus: 0 %}
+{% assign banner_url = banner-pic.url %}
+
 <meta name="referrer" content="no-referrer">
 <style>
     .image-gallery {overflow: auto; margin-left: -1%!important;}
@@ -17,7 +18,7 @@ layout: page-grid
     .image-gallery a img {width: 100%; display: block;}
 
     .banner {
-    background-image: url('{{ banner-pic.image1080-link }}');
+    background-image: url('{{ banner_url }}');
     background-size: cover;
     background-position: right 0px bottom {{page.banner-offset}}%;
     height: 200px;
@@ -29,7 +30,7 @@ layout: page-grid
     position: relative;
 
     }
-    
+
     .banner::before {
         content: "";
         position: absolute;
@@ -44,7 +45,7 @@ layout: page-grid
 
     .banner-text {
     text-align: center;
-    text-shadow: 
+    text-shadow:
         0 0 16px #00000063,
         0px 2px 2px #0000005d;
     position: relative;
@@ -73,10 +74,11 @@ layout: page-grid
     }
 
     .pig-figure {
-        background-color: #ccd0da;
+        background-color: var(--ctp-surface0, #ccd0da);
+        transition: background-color 0.3s ease;
 
         [data-theme="dark"] & {
-            background-color: #202029;
+            background-color: var(--ctp-surface0, #202029);
         }
     }
 </style>
@@ -95,9 +97,23 @@ layout: page-grid
 <script type="text/javascript">
     var imageData = [
     {% for image in site.data.virtual-photography[page.slug] %}
-        {"thumbnail":"{{ image.thumbnail-link }}", "image1080":"{{ image.image1080-link }}", "imageFull":"{{ image.imageFull-link }}", "aspectRatio":{{ image.aspect-ratio }}},
+        {
+            "thumbnail": "{{ image.thumb }}",
+            "image1080": "{{ image.url }}",
+            "imageFull": "{{ image.url }}",
+            "aspectRatio": {{ image.aspectRatio }}
+        },
     {% endfor %}
     ];
+
+    {% if page.order-mode == 'random' %}
+    // Fisher-Yates shuffle for random order
+    for (let i = imageData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imageData[i], imageData[j]] = [imageData[j], imageData[i]];
+    }
+    {% endif %}
+
     var pig = new Pig(imageData, {
     urlForSize: function(imageUrls, sizewidth) {
     if (sizewidth <= 1080){

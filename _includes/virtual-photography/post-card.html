@@ -105,9 +105,12 @@
   }
 </style>
 
+{%- assign card_data = site.data.virtual-photography[post.slug][post.card-image] -%}
+{%- assign card_url = card_data.url -%}
+
 <div class="col-12 my-1 wow animated fadeIn" data-wow-delay=".15s">
   <a href="{{ post_url }}" class="vp card text-themed" {%- if post.external_url and site.open_new_tab -%} target="_blank" {%- endif -%}>
-    <img loading="lazy" src="{{ site.data.virtual-photography[post.slug][post.card-image].image1080-link }}" alt="{{ include.album.title }}" class="card-img-top" style="object-position: 0 {{post.card-offset}}%;">
+    <img loading="lazy" src="{{ card_url }}" alt="{{ post.title }}" class="card-img-top" style="object-position: 0 {{post.card-offset}}%;">
     <div class="card-img-overlay">
       <h3 class="card-title">{{ post.title }}</h3>
     </div>

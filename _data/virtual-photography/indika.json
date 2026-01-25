@@ -1,198 +1,233 @@
 [
-    {
-        "file_name": "indika1.jpg",
-        "imageFull-link": "https://i.imgur.com/aovRnXI.jpeg",
-        "thumbnail-link": "https://i.imgur.com/9472vQ1.jpeg",
-        "image1080-link": "https://i.imgur.com/NFIGqHC.jpeg",
-        "aspect-ratio": "2.0"
-    },
-    {
-        "file_name": "indika10.jpg",
-        "imageFull-link": "https://i.imgur.com/Vc0zSrA.jpeg",
-        "thumbnail-link": "https://i.imgur.com/BiOiBtP.jpeg",
-        "image1080-link": "https://i.imgur.com/70OraYg.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika11.jpg",
-        "imageFull-link": "https://i.imgur.com/mAzs7f2.jpeg",
-        "thumbnail-link": "https://i.imgur.com/o8MtWTN.jpeg",
-        "image1080-link": "https://i.imgur.com/cXEI5RQ.jpeg",
-        "aspect-ratio": "0.8"
-    },
-    {
-        "file_name": "indika12.jpg",
-        "imageFull-link": "https://i.imgur.com/TrD5nmr.jpeg",
-        "thumbnail-link": "https://i.imgur.com/rzA94Bv.jpeg",
-        "image1080-link": "https://i.imgur.com/VxN0UyM.jpeg",
-        "aspect-ratio": "0.75"
-    },
-    {
-        "file_name": "indika13.jpg",
-        "imageFull-link": "https://i.imgur.com/tZnhFdZ.jpeg",
-        "thumbnail-link": "https://i.imgur.com/ivQqq5E.jpeg",
-        "image1080-link": "https://i.imgur.com/gyGzBGh.jpeg",
-        "aspect-ratio": "2.334549244398124"
-    },
-    {
-        "file_name": "indika14.jpg",
-        "imageFull-link": "https://i.imgur.com/qTYCeuS.jpeg",
-        "thumbnail-link": "https://i.imgur.com/mKsRrTG.jpeg",
-        "image1080-link": "https://i.imgur.com/ZGL1iQx.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika15.jpg",
-        "imageFull-link": "https://i.imgur.com/ppCP8hp.jpeg",
-        "thumbnail-link": "https://i.imgur.com/fgM4FX3.jpeg",
-        "image1080-link": "https://i.imgur.com/IrsCpzq.jpeg",
-        "aspect-ratio": "2.334549244398124"
-    },
-    {
-        "file_name": "indika16.jpg",
-        "imageFull-link": "https://i.imgur.com/3UJmoe1.jpeg",
-        "thumbnail-link": "https://i.imgur.com/Q4Q8ioE.jpeg",
-        "image1080-link": "https://i.imgur.com/OFXEAfN.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika17.jpg",
-        "imageFull-link": "https://i.imgur.com/pCI0jMX.jpeg",
-        "thumbnail-link": "https://i.imgur.com/aP6bdZ6.jpeg",
-        "image1080-link": "https://i.imgur.com/uxjcZki.jpeg",
-        "aspect-ratio": "1.3333333333333333"
-    },
-    {
-        "file_name": "indika18.jpg",
-        "imageFull-link": "https://i.imgur.com/ekvVRrs.jpeg",
-        "thumbnail-link": "https://i.imgur.com/nrRR0sc.jpeg",
-        "image1080-link": "https://i.imgur.com/StlqdEn.jpeg",
-        "aspect-ratio": "0.8"
-    },
-    {
-        "file_name": "indika19.jpg",
-        "imageFull-link": "https://i.imgur.com/5dDKPAN.jpeg",
-        "thumbnail-link": "https://i.imgur.com/XJQOIVH.jpeg",
-        "image1080-link": "https://i.imgur.com/457JfAq.jpeg",
-        "aspect-ratio": "0.8"
-    },
-    {
-        "file_name": "indika2.jpg",
-        "imageFull-link": "https://i.imgur.com/OSkgjz5.jpeg",
-        "thumbnail-link": "https://i.imgur.com/acKYmkC.jpeg",
-        "image1080-link": "https://i.imgur.com/MnPpQDB.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika20.jpg",
-        "imageFull-link": "https://i.imgur.com/nwlaXo0.jpeg",
-        "thumbnail-link": "https://i.imgur.com/fnOGghY.jpeg",
-        "image1080-link": "https://i.imgur.com/ztf3b1L.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika21.jpg",
-        "imageFull-link": "https://i.imgur.com/bI0FSm2.jpeg",
-        "thumbnail-link": "https://i.imgur.com/ehbnC11.jpeg",
-        "image1080-link": "https://i.imgur.com/UMy74ab.jpeg",
-        "aspect-ratio": "2.334549244398124"
-    },
-    {
-        "file_name": "indika22.jpg",
-        "imageFull-link": "https://i.imgur.com/Jkfxr1s.jpeg",
-        "thumbnail-link": "https://i.imgur.com/9IBZsaV.jpeg",
-        "image1080-link": "https://i.imgur.com/lTMbB4K.jpeg",
-        "aspect-ratio": "2.333637192342753"
-    },
-    {
-        "file_name": "indika23.jpg",
-        "imageFull-link": "https://i.imgur.com/CotTcNc.jpeg",
-        "thumbnail-link": "https://i.imgur.com/SWcI48U.jpeg",
-        "image1080-link": "https://i.imgur.com/mfQF7pC.jpeg",
-        "aspect-ratio": "2.333637192342753"
-    },
-    {
-        "file_name": "indika24.jpg",
-        "imageFull-link": "https://i.imgur.com/l4dGPpJ.jpeg",
-        "thumbnail-link": "https://i.imgur.com/yQ4M5zx.jpeg",
-        "image1080-link": "https://i.imgur.com/XQo2O5p.jpeg",
-        "aspect-ratio": "2.332928311057108"
-    },
-    {
-        "file_name": "indika25.jpg",
-        "imageFull-link": "https://i.imgur.com/Z5TrK34.jpeg",
-        "thumbnail-link": "https://i.imgur.com/S9Sejgc.jpeg",
-        "image1080-link": "https://i.imgur.com/c6mA3xC.jpeg",
-        "aspect-ratio": "2.3340627279358133"
-    },
-    {
-        "file_name": "indika26.jpg",
-        "imageFull-link": "https://i.imgur.com/qf1b5O0.jpeg",
-        "thumbnail-link": "https://i.imgur.com/C14zCak.jpeg",
-        "image1080-link": "https://i.imgur.com/V5Eifay.jpeg",
-        "aspect-ratio": "1.0"
-    },
-    {
-        "file_name": "indika27.jpg",
-        "imageFull-link": "https://i.imgur.com/fZ0LzmH.jpeg",
-        "thumbnail-link": "https://i.imgur.com/v2uvK9v.jpeg",
-        "image1080-link": "https://i.imgur.com/3c45BcA.jpeg",
-        "aspect-ratio": "2.333637192342753"
-    },
-    {
-        "file_name": "indika28.jpg",
-        "imageFull-link": "https://i.imgur.com/OGqUB97.jpeg",
-        "thumbnail-link": "https://i.imgur.com/GxutMXX.jpeg",
-        "image1080-link": "https://i.imgur.com/aflCmMi.jpeg",
-        "aspect-ratio": "1.0"
-    },
-    {
-        "file_name": "indika29.jpg",
-        "imageFull-link": "https://i.imgur.com/qp23dKp.jpeg",
-        "thumbnail-link": "https://i.imgur.com/r7xaj6b.jpeg",
-        "image1080-link": "https://i.imgur.com/5yRz69Y.jpeg",
-        "aspect-ratio": "2.3343465045592704"
-    },
-    {
-        "file_name": "indika3.jpg",
-        "imageFull-link": "https://i.imgur.com/eSzIWqo.jpeg",
-        "thumbnail-link": "https://i.imgur.com/VRB4RDY.jpeg",
-        "image1080-link": "https://i.imgur.com/Ml0GiAA.jpeg",
-        "aspect-ratio": "2.333637192342753"
-    },
-    {
-        "file_name": "indika4.jpg",
-        "imageFull-link": "https://i.imgur.com/MvIlFCn.jpeg",
-        "thumbnail-link": "https://i.imgur.com/ZLPcIhq.jpeg",
-        "image1080-link": "https://i.imgur.com/RGBnw2o.jpeg",
-        "aspect-ratio": "0.75"
-    },
-    {
-        "file_name": "indika5.jpg",
-        "imageFull-link": "https://i.imgur.com/xkOdqyJ.jpeg",
-        "thumbnail-link": "https://i.imgur.com/hpo9zr2.jpeg",
-        "image1080-link": "https://i.imgur.com/0j1ncbS.jpeg",
-        "aspect-ratio": "1.0"
-    },
-    {
-        "file_name": "indika6.jpg",
-        "imageFull-link": "https://i.imgur.com/53hbEaI.jpeg",
-        "thumbnail-link": "https://i.imgur.com/ejeZOOK.jpeg",
-        "image1080-link": "https://i.imgur.com/bGozOba.jpeg",
-        "aspect-ratio": "1.3333333333333333"
-    },
-    {
-        "file_name": "indika8.jpg",
-        "imageFull-link": "https://i.imgur.com/K9T7NcX.jpeg",
-        "thumbnail-link": "https://i.imgur.com/t6HJqhC.jpeg",
-        "image1080-link": "https://i.imgur.com/CsNNECc.jpeg",
-        "aspect-ratio": "0.8"
-    },
-    {
-        "file_name": "indika9.jpg",
-        "imageFull-link": "https://i.imgur.com/Q1ZkGz5.jpeg",
-        "thumbnail-link": "https://i.imgur.com/WiB6ePe.jpeg",
-        "image1080-link": "https://i.imgur.com/pE7pAKr.jpeg",
-        "aspect-ratio": "2.333637192342753"
-    }
+  {
+    "url": "https://cdn.nairdah.me/indika/img000.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img000.webp",
+    "aspectRatio": 0.8,
+    "width": 2016,
+    "height": 2520
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img001.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img001.webp",
+    "aspectRatio": 0.8,
+    "width": 2304,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img002.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img002.webp",
+    "aspectRatio": 0.8,
+    "width": 2304,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img003.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img003.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img004.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img004.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img005.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img005.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img006.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img006.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img007.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img007.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img008.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img008.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img009.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img009.webp",
+    "aspectRatio": 2.3336,
+    "width": 5120,
+    "height": 2194
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img010.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img010.webp",
+    "aspectRatio": 1,
+    "width": 2880,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img011.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img011.webp",
+    "aspectRatio": 1,
+    "width": 2880,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img012.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img012.webp",
+    "aspectRatio": 0.75,
+    "width": 1620,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img013.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img013.webp",
+    "aspectRatio": 1.6,
+    "width": 3456,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img014.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img014.webp",
+    "aspectRatio": 1,
+    "width": 2520,
+    "height": 2520
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img015.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img015.webp",
+    "aspectRatio": 0.75,
+    "width": 2160,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img016.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img016.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img017.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img017.webp",
+    "aspectRatio": 2.3341,
+    "width": 3200,
+    "height": 1371
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img018.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img018.webp",
+    "aspectRatio": 2,
+    "width": 3840,
+    "height": 1920
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img019.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img019.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img020.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img020.webp",
+    "aspectRatio": 1.3333,
+    "width": 2880,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img021.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img021.webp",
+    "aspectRatio": 1.3333,
+    "width": 2880,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img022.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img022.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img023.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img023.webp",
+    "aspectRatio": 0.8,
+    "width": 3456,
+    "height": 4320
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img024.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img024.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img025.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img025.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img026.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img026.webp",
+    "aspectRatio": 0.8,
+    "width": 1728,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img027.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img027.webp",
+    "aspectRatio": 2.3345,
+    "width": 4480,
+    "height": 1919
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img028.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img028.webp",
+    "aspectRatio": 2.3345,
+    "width": 4480,
+    "height": 1919
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img029.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img029.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img030.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img030.webp",
+    "aspectRatio": 2.3345,
+    "width": 4480,
+    "height": 1919
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img031.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img031.webp",
+    "aspectRatio": 2.3343,
+    "width": 3840,
+    "height": 1645
+  },
+  {
+    "url": "https://cdn.nairdah.me/indika/img032.jpg",
+    "thumb": "https://cdn.nairdah.me/indika/thumb/img032.webp",
+    "aspectRatio": 0.8,
+    "width": 1728,
+    "height": 2160
+  }
 ]

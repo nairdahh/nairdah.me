@@ -89,3 +89,5 @@ exclude:
   - "*.log"
   - "nul"
   - "to-do"
+  - admin/
+  - .b2-config.json

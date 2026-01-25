@@ -11,4 +11,13 @@ Gemfile.lock
 # Log Files
 *.log
 
-.to-do  
+.to-do
+
+# Cloudinary credentials (local only)
+.cloudinary-config.json
+
+# Backblaze B2 credentials (local only)
+.b2-config.json
+
+# Admin panel
+admin/node_modules/
