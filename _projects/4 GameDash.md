@@ -2,7 +2,7 @@
 name: GameDash
 tools: [Firefox, Add-On]
 image: https://raw.githubusercontent.com/adrian28nn/GameDash/refs/heads/main/icons%20and%20screenshots/screenshot-blog-card.png
-description: Click to play a random browser game when you're bored!
+description: click to play a random browser game when you're bored!
 ---
 
 <h2 style="text-align:center; font-weight: bold;"><span class="project-title">GameDash</span></h2>
