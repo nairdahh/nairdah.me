@@ -14,7 +14,7 @@ excerpt: "how to build a personal website and use it as your virtual photography
 
 ## why i built this
 
-hey there. if you're into **virtual photography**, you've probably wondered where to showcase your work without spending a fortune on hosting or dealing with complicated setups. i created **Vippy** (name inspiration from VP "virtual photography") because i wanted a simple, affordable way for virtual photographers to have their own corner of the internet—a place that's truly theirs.
+hey there. if you're into **virtual photography**, you've probably wondered where to showcase your work without spending a fortune on hosting or dealing with complicated setups. i created **Vippy** (name inspiration from VP "virtual photography") because i wanted a simple, affordable way for virtual photographers to have their own corner of the internet – a place that's truly theirs.
 
 most portfolio platforms either charge monthly fees or lock you into their ecosystem. with **Vippy**, you own everything. your site, your photos, your rules. and the best part? it costs just **1$** to get started with full cloud storage for your images.
 
@@ -54,7 +54,7 @@ now that you have your own copy, let's get it running on your computer. don't wo
 before we clone the code, you need to install two programs that make the website and admin panel work.
 
 *   **Ruby & Jekyll** (for the website generation):
-    *   **windows:** download and install **[RubyInstaller](https://rubyinstaller.org/downloads/)** (choose the recommended version with Devkit). when the installation finishes, a command window will open asking you to install components—press ENTER to install everything.
+    *   **windows:** download and install **[RubyInstaller](https://rubyinstaller.org/downloads/)** (choose the recommended version with Devkit). when the installation finishes, a command window will open asking you to install components – press ENTER to install everything.
     *   **macOS/linux:** check out the **[official Jekyll installation guide](https://jekyllrb.com/docs/installation/)** for your specific system.
 *   **Node.js** (for the admin panel):
     *   download and install the "LTS" version from **[nodejs.org](https://nodejs.org/)**. just click next through the installer.
@@ -242,9 +242,9 @@ once you're comfortable with the basics, here are some Jekyll plugins and tools 
 - [google search console verification](https://github.com/erikw/jekyll-google_search_console_verification_file) - verify your site with google search console to monitor how your site appears in google search results
 - [google analytics for jekyll](https://michaelsoolee.com/google-analytics-jekyll/) - track your visitors and see which photos and pages are getting the most attention
 
+---
 **NOTE**
-
-if you are reading this recently after i posted the blog on february 5, 2026, the project is still in its early stages. in the future i will upload updates to make it as modular and configurable/customizable as possible so that the sites don't all look the same. and i'm sure not everything is ideal, in case you encounter any kind of problem, i am sorry for that but feel free to reach me immediately on discord or any way you can. you can find all my socials in the footer.
+- if you are reading this recently after i posted the blog on february 5, 2026, the project is still in its early stages. in the future i will upload updates to make it as modular and configurable/customizable as possible so that the sites don't all look the same. and i'm sure not everything is ideal, in case you encounter any kind of problem, i am sorry for that but feel free to reach me immediately on discord or any way you can. you can find all my socials in the footer.
 
 
 </div>
