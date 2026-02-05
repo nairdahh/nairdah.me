@@ -1,0 +1,235 @@
+<!-- Settings Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+            <style>
+                #settingsTab .nav-link {
+                    color: #7f5af0;
+                }
+                #settingsTab .nav-link:hover {
+                    color: #9171f2;
+                }
+                #settingsTab .nav-link.active {
+                    background-color: #7f5af0 !important;
+                    color: #fffffe !important;
+                    border-color: #7f5af0;
+                }
+            </style>
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title"><i class="bi bi-gear-fill me-2"></i>Virtual Photography Settings</h5>
+                <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="settingsAlertContainer"></div>
+
+                <!-- Tabs -->
+                <ul class="nav nav-tabs border-secondary mb-3" id="settingsTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="storage-tab" data-bs-toggle="tab" data-bs-target="#storage-pane" type="button" role="tab">Storage (Backblaze)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="vp-tab" data-bs-toggle="tab" data-bs-target="#vp-pane" type="button" role="tab">Virtual Photography</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="settingsTabContent">
+                    
+                    <!-- Storage Tab -->
+                    <div class="tab-pane fade show active" id="storage-pane" role="tabpanel">
+                        <form id="storageSettingsForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="application_key_id" class="form-label small fw-bold">Application Key ID</label>
+                                    <input type="text" class="form-control" id="application_key_id" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="application_key" class="form-label small fw-bold">Application Key</label>
+                                    <input type="password" class="form-control" id="application_key" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="bucket_name" class="form-label small fw-bold">Bucket Name</label>
+                                    <input type="text" class="form-control" id="bucket_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="bucket_id" class="form-label small fw-bold">Bucket ID (Optional)</label>
+                                    <input type="text" class="form-control" id="bucket_id" placeholder="Auto-detected if empty">
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check form-switch mt-2">
+                                        <input class="form-check-input" type="checkbox" id="use_cdn">
+                                        <label class="form-check-label small fw-bold" for="use_cdn">Use CDN (Cloudflare/Bunny)</label>
+                                    </div>
+                                </div>
+                                <div class="col-12" id="cdn_domain_group" style="display: none;">
+                                    <label for="cdn_domain" class="form-label small fw-bold">CDN Domain</label>
+                                    <input type="text" class="form-control" id="cdn_domain" placeholder="e.g. cdn.yourdomain.com">
+                                </div>
+                                <div class="col-12 text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">Save Storage Settings</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Virtual Photography Tab -->
+                    <div class="tab-pane fade" id="vp-pane" role="tabpanel">
+                        <form id="vpSettingsForm">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <h6 class="border-bottom pb-2 mb-3">Card Appearance</h6>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="vp_show_date">
+                                        <label class="form-check-label" for="vp_show_date">Show Date on Card</label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="vp_show_tags">
+                                        <label class="form-check-label" for="vp_show_tags">Show Tags on Card</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-end mt-3">
+                                    <button type="submit" class="btn btn-primary">Save VP Settings</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer border-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const settingsModalElement = document.getElementById('settingsModal');
+        if (!settingsModalElement) return;
+
+        const settingsModal = new bootstrap.Modal(settingsModalElement);
+        const isConfigured = "<%= locals.isConfigured || false %>" === "true";
+
+        // Auto-open settings if not configured
+        if (!isConfigured && window.location.pathname === '/vippy') {
+            settingsModal.show();
+            setTimeout(() => {
+                showSettingsAlert('info', 'Welcome! Please configure your Backblaze B2 settings to start managing albums.');
+            }, 500);
+        }
+
+        function showSettingsAlert(type, message) {
+            const container = document.getElementById('settingsAlertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+            container.innerHTML = '';
+            container.appendChild(alert);
+            if (type === 'success') setTimeout(() => alert.remove(), 3000);
+        }
+
+        // --- Load Data on Modal Show ---
+        settingsModalElement.addEventListener('show.bs.modal', async function() {
+            // Load B2 Config
+            try {
+                const response = await fetch('/settings/config');
+                const config = await response.json();
+                
+                document.getElementById('application_key_id').value = config.application_key_id || '';
+                document.getElementById('application_key').value = config.application_key || '';
+                document.getElementById('bucket_name').value = config.bucket_name || '';
+                document.getElementById('bucket_id').value = config.bucket_id || '';
+                document.getElementById('use_cdn').checked = config.use_cdn || false;
+                document.getElementById('cdn_domain').value = config.cdn_domain || '';
+                document.getElementById('cdn_domain_group').style.display = config.use_cdn ? 'block' : 'none';
+            } catch (err) {
+                console.error('Error fetching B2 config:', err);
+            }
+
+            // Load Site Config
+            try {
+                const response = await fetch('/settings/site-config');
+                const siteConfig = await response.json();
+
+                // Virtual Photography
+                if (siteConfig.virtual_photography) {
+                    document.getElementById('vp_show_date').checked = siteConfig.virtual_photography.show_date === true;
+                    document.getElementById('vp_show_tags').checked = siteConfig.virtual_photography.show_tags === true;
+                }
+            } catch (err) {
+                console.error('Error fetching site config:', err);
+            }
+        });
+
+        document.getElementById('use_cdn').addEventListener('change', function() {
+            document.getElementById('cdn_domain_group').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // --- Save Storage Settings ---
+        document.getElementById('storageSettingsForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Saving...';
+            btn.disabled = true;
+
+            const config = {
+                application_key_id: document.getElementById('application_key_id').value,
+                application_key: document.getElementById('application_key').value,
+                bucket_name: document.getElementById('bucket_name').value,
+                bucket_id: document.getElementById('bucket_id').value,
+                use_cdn: document.getElementById('use_cdn').checked,
+                cdn_domain: document.getElementById('cdn_domain').value
+            };
+
+            try {
+                const response = await fetch('/settings/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(config)
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    showSettingsAlert('success', 'Storage settings saved successfully!');
+                    if (!isConfigured) setTimeout(() => location.reload(), 1500);
+                } else {
+                    showSettingsAlert('danger', 'Error: ' + result.message);
+                }
+            } catch (err) {
+                showSettingsAlert('danger', 'Failed to save storage settings.');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // --- Save Site General & Author Settings (Reusable Function) ---
+        async function saveSiteConfig(formData) {
+            try {
+                const response = await fetch('/settings/site-config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    showSettingsAlert('success', result.message);
+                } else {
+                    showSettingsAlert('danger', 'Error saving site config.');
+                }
+            } catch (err) {
+                showSettingsAlert('danger', 'Failed to save site config.');
+            }
+        }
+
+        document.getElementById('vpSettingsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                vp_show_date: document.getElementById('vp_show_date').checked,
+                vp_show_tags: document.getElementById('vp_show_tags').checked
+            };
+            saveSiteConfig(data);
+        });
+    });
+</script>

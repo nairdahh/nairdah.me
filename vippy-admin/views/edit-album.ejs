@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Edit ' + album.title + ' - VP Admin' }) %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+    <style>
+        .card {
+            border: 2px solid #010101;
+            margin-bottom: 1rem;
+        }
+
+        .card-header {
+            background-color: var(--bg-secondary);
+            border-bottom: 2px solid #010101;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .card-header:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .card-header i.collapse-icon {
+            transition: transform 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .card-header:not(.collapsed) i.collapse-icon {
+            transform: rotate(180deg);
+        }
+        
+        .form-control, .form-select {
+            border: none;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border: none;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        /* Slider Styles */
+        .form-range::-webkit-slider-runnable-track {
+            background-color: var(--secondary);
+            border-radius: 1rem;
+            height: 0.5rem;
+        }
+        .form-range::-moz-range-track {
+            background-color: var(--secondary);
+            border-radius: 1rem;
+            height: 0.5rem;
+        }
+        
+        /* Green Sliders (Banner & Default) */
+        .form-range::-webkit-slider-thumb {
+            background: var(--success);
+            margin-top: -0.25rem;
+        }
+        .form-range::-moz-range-thumb {
+            background: var(--success);
+            border: none;
+        }
+        .form-range::-ms-thumb {
+            background: var(--success);
+        }
+
+        /* Purple Sliders (Card) */
+        .card-slider::-webkit-slider-thumb {
+            background: var(--accent);
+        }
+        .card-slider::-moz-range-thumb {
+            background: var(--accent);
+        }
+        .card-slider::-ms-thumb {
+            background: var(--accent);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: #fffffe;
+        }
+
+        .btn-success:hover {
+            background-color: #24a16b;
+            border-color: #24a16b;
+        }
+        
+        .dropzone {
+            border: 2px dashed var(--secondary);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: #16161a;
+            transition: all 0.3s;
+        }
+        
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--accent);
+            background-color: rgba(127, 90, 240, 0.05);
+        }
+        
+        .queue-container {
+            margin-top: 1rem;
+            border: 1px solid #010101;
+            border-radius: 8px;
+            background-color: #16161a;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .queue-item {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .queue-item:last-child {
+            border-bottom: none;
+        }
+
+        .queue-item .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .queue-item img {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .queue-item .file-name {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .image-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #010101;
+            border: 1px solid #010101;
+            cursor: grab;
+            transition: transform 0.2s;
+        }
+        
+        .image-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 8px;
+        }
+        
+        .bottom-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #94a1b2;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .index-badge, .size-badge {
+            color: #94a1b2;
+        }
+        
+        .image-item .top-actions {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .image-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .image-item .action-btn {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 4px;
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        
+        .image-item .action-btn:hover {
+            background-color: var(--accent);
+        }
+
+        .image-item .action-btn.banner:hover {
+            background-color: var(--success);
+        }
+        
+        .image-item .action-btn.delete:hover {
+            background-color: var(--danger);
+        }
+        
+        .image-item.selected-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid var(--accent);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .image-item.selected-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid var(--success);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .selection-badge.card-badge {
+            background-color: var(--accent);
+            color: #fffffe;
+        }
+        
+        .selection-badge.banner-badge {
+            background-color: var(--success);
+            color: #000;
+        }
+        
+        .preview-section {
+            background-color: #16161a;
+            border: 2px solid #010101;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .preview-label {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .combined-preview {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .card-preview-main {
+            flex: 0.8727;
+            aspect-ratio: 480 / 550;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .card-preview-banner {
+            flex: 5.819;
+            aspect-ratio: 1740 / 200;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            background-color: #010101;
+            box-shadow: 0 0 0 2px var(--success);
+        }
+        
+        .preview-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: transform 0.1s ease-out;
+        }
+        
+        .progress-bar {
+            background-color: var(--accent);
+        }
+
+        .alert-success {
+            background-color: rgba(44, 182, 125, 0.1);
+            border-color: var(--success);
+            color: var(--success);
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar', { album: album }) %>
+
+    <div class="container-fluid px-4 pb-5">
+        <div class="row align-items-start">
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div id="alertContainer"></div>
+
+                <!-- Album Details Collapsible -->
+                <div class="card">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#detailsCollapse">
+                        <h6 class="mb-0"><i class="bi bi-info-circle me-2" style="color: var(--accent);"></i>Album Details</h6>
+                        <i class="bi bi-chevron-down collapse-icon"></i>
+                    </div>
+                    <div id="detailsCollapse" class="collapse show">
+                        <div class="card-body">
+                            <form id="metadataForm">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title" value="<%= album.title %>">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="developer" class="form-label">Developer</label>
+                                    <input type="text" class="form-control" id="developer" value="<%= album.developer %>">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description <span class="text-secondary small fw-normal">(for social previews/embeds)</span></label>
+                                    <textarea class="form-control" id="description" rows="3"><%= album.description %></textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="text" class="form-control" id="date" value="<%= album.date %>" placeholder="Select Date">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="tags" class="form-label">Tags</label>
+                                    <input type="text" class="form-control" id="tags" value="<%= album.tags ? album.tags.join(', ') : '' %>" placeholder="e.g. cinematic, portrait, landscape">
+                                </div>
+                                
+                                <div id="detailsAlertContainer"></div>
+                                <button type="submit" class="btn btn-primary w-100 mt-2">
+                                    <i class="bi bi-check-lg me-1"></i> Save Details
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card & Banner Collapsible -->
+                <div class="card">
+                    <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#previewCollapse">
+                        <h6 class="mb-0"><i class="bi bi-layout-three-columns me-2" style="color: var(--success);"></i>Card & Banner</h6>
+                        <i class="bi bi-chevron-down collapse-icon"></i>
+                    </div>
+                    <div id="previewCollapse" class="collapse">
+                        <div class="card-body">
+                            <!-- Combined Preview restored -->
+                            <div class="preview-section mb-4">
+                                <div class="preview-label">Card & Banner Preview</div>
+                                <div class="combined-preview">
+                                    <div class="card-preview-main" id="cardPreviewMain">
+                                        <% 
+                                            const cardImg = album.images[album.cardImage];
+                                            const cardContainerAR = 480 / 550;
+                                            const cardImageAR = cardImg ? cardImg.aspectRatio : 1;
+                                            const cardZoomVal = album.cardZoom || 100;
+                                            let cardBgSize = 'cover';
+                                            if (cardImg) {
+                                                cardBgSize = cardImageAR > cardContainerAR ? `auto ${cardZoomVal}%` : `${cardZoomVal}% auto`;
+                                            }
+                                        %>
+                                        <div class="preview-bg" id="cardPreviewMainBg"
+                                             style="background-image: url('<%= cardImg?.thumb || '' %>');
+                                                    background-position: <%= album.cardOffsetX %>% <%= 100 - (album.cardOffset || 0) %>%;
+                                                    background-size: <%= cardBgSize %>;">
+                                        </div>
+                                    </div>
+                                    <div class="card-preview-banner">
+                                        <% 
+                                            const bannerImg = album.images[album.bannerImage];
+                                            const bannerContainerAR = 1745.7 / 300;
+                                            const bannerImageAR = bannerImg ? bannerImg.aspectRatio : 1;
+                                            const bannerZoomVal = album.bannerZoom || 100;
+                                            let bannerBgSize = 'cover';
+                                            if (bannerImg) {
+                                                bannerBgSize = bannerImageAR > bannerContainerAR ? `auto ${bannerZoomVal}%` : `${bannerZoomVal}% auto`;
+                                            }
+                                        %>
+                                        <div class="preview-bg" id="bannerPreviewBg"
+                                             style="background-image: url('<%= bannerImg?.url || '' %>');
+                                                    background-position: <%= album.bannerOffsetX || 50 %>% <%= 100 - (album.bannerOffset || 0) %>%;
+                                                    background-size: <%= bannerBgSize %>;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="preview-section mb-3">
+                                <div class="preview-label">Card Controls (Image #<span id="cardImageNum"><%= album.cardImage %></span>)</div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Horizontal: <span id="val-cardOffsetX"><%= album.cardOffsetX %></span>%</label>
+                                    <input type="range" class="form-range card-slider" id="cardOffsetX" min="0" max="100" value="<%= album.cardOffsetX %>">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Vertical: <span id="val-cardOffset"><%= album.cardOffset %></span>%</label>
+                                    <input type="range" class="form-range card-slider" id="cardOffset" min="0" max="100" value="<%= album.cardOffset %>">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Zoom: <span id="val-cardZoom"><%= album.cardZoom || 100 %></span>%</label>
+                                    <input type="range" class="form-range card-slider" id="cardZoom" min="100" max="200" value="<%= album.cardZoom || 100 %>">
+                                </div>
+                            </div>
+                            
+                            <div class="preview-section mb-4">
+                                <div class="preview-label">Banner Controls (Image #<span id="bannerImageNum"><%= album.bannerImage %></span>)</div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Horizontal: <span id="val-bannerOffsetX"><%= album.bannerOffsetX %></span>%</label>
+                                    <input type="range" class="form-range" id="bannerOffsetX" min="0" max="100" value="<%= album.bannerOffsetX %>">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Vertical: <span id="val-bannerOffset"><%= album.bannerOffset %></span>%</label>
+                                    <input type="range" class="form-range" id="bannerOffset" min="0" max="100" value="<%= album.bannerOffset %>">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="form-label small">Zoom: <span id="val-bannerZoom"><%= album.bannerZoom || 100 %></span>%</label>
+                                    <input type="range" class="form-range" id="bannerZoom" min="100" max="200" value="<%= album.bannerZoom || 100 %>">
+                                </div>
+                            </div>
+                            
+                            <div id="previewAlertContainer"></div>
+                            <button id="savePreviewBtn" class="btn btn-primary w-100">
+                                <i class="bi bi-check-lg me-1"></i> Save Card & Banner
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Photos Collapsible -->
+                <div class="card">
+                    <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#uploadCollapse">
+                        <h6 class="mb-0"><i class="bi bi-cloud-arrow-up me-2" style="color: var(--accent);"></i>Upload Photos</h6>
+                        <i class="bi bi-chevron-down collapse-icon"></i>
+                    </div>
+                    <div id="uploadCollapse" class="collapse">
+                        <div class="card-body">
+                            <div class="dropzone" id="dropzone">
+                                <i class="bi bi-images d-block mb-2 text-secondary" style="font-size: 2.5rem;"></i>
+                                <span class="d-block text-secondary small">Drag & drop or click to add to queue</span>
+                            </div>
+                            
+                            <!-- Queue Display -->
+                            <div id="uploadQueueSection" style="display: none;" class="mt-3">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h6 class="mb-0 small fw-bold text-primary">Upload Queue (<span id="queueCount">0</span>)</h6>
+                                    <button class="btn btn-link btn-sm text-danger p-0 text-decoration-none" id="clearQueueBtn">Clear All</button>
+                                </div>
+                                <div class="queue-container" id="queueList">
+                                    <!-- Queue items will be injected here -->
+                                </div>
+
+                                <div class="mt-3 p-3 border border-secondary rounded bg-dark bg-opacity-50">
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="compressToggle" checked>
+                                        <label class="form-check-label fw-bold small text-primary" for="compressToggle">
+                                            Squoosh Compression (WASM)
+                                        </label>
+                                    </div>
+                                    
+                                    <div id="advancedCompressSettings">
+                                        <div class="row g-2 mb-3">
+                                            <div class="col-12">
+                                                <label class="form-label small fw-bold mb-1">Encoder</label>
+                                                <select class="form-select form-select-sm" id="squooshEncoder">
+                                                    <option value="mozjpeg">MozJPEG</option>
+                                                    <option value="webp">WebP</option>
+                                                    <option value="avif">AVIF</option>
+                                                    <option value="oxipng">OxiPNG</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div id="settings-mozjpeg" class="encoder-settings">
+                                            <div class="mb-2">
+                                                <label class="form-label small d-flex justify-content-between mb-1">
+                                                    Quality <span class="badge bg-dark border border-secondary" id="val-mozjpeg-quality">75</span>
+                                                </label>
+                                                <input type="range" class="form-range" id="mozjpeg-quality" min="0" max="100" value="75">
+                                            </div>
+                                        </div>
+
+                                        <div id="settings-webp" class="encoder-settings" style="display: none;">
+                                            <div class="mb-2">
+                                                <label class="form-label small d-flex justify-content-between mb-1">
+                                                    Quality <span class="badge bg-dark border border-secondary" id="val-webp-quality">75</span>
+                                                </label>
+                                                <input type="range" class="form-range" id="webp-quality" min="0" max="100" value="75">
+                                            </div>
+                                        </div>
+
+                                        <div id="settings-avif" class="encoder-settings" style="display: none;">
+                                            <div class="mb-2">
+                                                <label class="form-label small d-flex justify-content-between mb-1">
+                                                    Quality <span class="badge bg-dark border border-secondary" id="val-avif-quality">50</span>
+                                                </label>
+                                                <input type="range" class="form-range" id="avif-quality" min="0" max="100" value="50">
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="settings-oxipng" class="encoder-settings" style="display: none;">
+                                            <div class="mb-2">
+                                                <label class="form-label small d-flex justify-content-between mb-1">
+                                                    Effort <span class="badge bg-dark border border-secondary" id="val-oxipng-effort">2</span>
+                                                </label>
+                                                <input type="range" class="form-range" id="oxipng-effort" min="0" max="6" value="2">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" type="checkbox" id="resizeToggle">
+                                            <label class="form-check-label small fw-bold text-primary" for="resizeToggle">Resize Image</label>
+                                        </div>
+                                        <div id="resizeSettings" style="display: none;" class="mt-2">
+                                            <div class="mb-2">
+                                                <label class="form-label small d-flex justify-content-between mb-1">
+                                                    Resolution Scale <span class="badge bg-dark border border-secondary" id="val-resizeScale">100</span>%
+                                                </label>
+                                                <input type="range" class="form-range" id="resizeScale" min="10" max="100" value="100">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button id="startUploadBtn" class="btn btn-success w-100 mt-4">
+                                        <i class="bi bi-cloud-arrow-up-fill me-2"></i>Start Upload
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp" style="display: none;">
+                            
+                            <div class="upload-progress mt-3" id="uploadProgress" style="display: none;">
+                                <div class="progress mb-2">
+                                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                                </div>
+                                <small class="text-secondary" id="uploadStatus">Uploading...</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header border-0 bg-transparent py-3 px-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="bi bi-images me-2" style="color: var(--accent);"></i>
+                                <span id="imageCount"><%= album.images.length %></span> Photos
+                            </h5>
+                            <div class="d-flex align-items-center gap-3 ms-4">
+                                <small class="text-secondary d-none d-md-block">
+                                    <i class="bi bi-arrows-move me-1"></i> Drag to reorder
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body px-4">
+                        <div class="image-grid" id="imageGrid">
+                            <% album.images.forEach(function(image, index) { %>
+                                <div class="image-item <%= index === album.cardImage ? 'selected-card' : '' %> <%= index === album.bannerImage ? 'selected-banner' : '' %>" 
+                                     data-index="<%= index %>">
+                                    <img src="<%= image.thumb %>" alt="Image <%= index %>" loading="lazy">
+                                    
+                                    <% if (index === album.cardImage) { %>
+                                        <span class="selection-badge card-badge">Card</span>
+                                    <% } %>
+                                    <% if (index === album.bannerImage) { %>
+                                        <span class="selection-badge banner-badge" style="<%= index === album.cardImage ? 'top: 26px;' : '' %>">Banner</span>
+                                    <% } %>
+                                    
+                                    <div class="overlay">
+                                        <div class="top-actions">
+                                            <button class="action-btn" onclick="setAsCard(<%= index %>)" title="Set as Card Image">
+                                                <i class="bi bi-card-image"></i>
+                                            </button>
+                                            <button class="action-btn banner" onclick="setAsBanner(<%= index %>)" title="Set as Banner Image">
+                                                <i class="bi bi-layout-sidebar-inset-reverse"></i>
+                                            </button>
+                                            <a href="<%= image.url %>" target="_blank" class="action-btn" title="View Full Size">
+                                                <i class="bi bi-arrows-fullscreen"></i>
+                                            </a>
+                                            <button class="action-btn delete" onclick="deleteImage(<%= index %>)" title="Delete">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="bottom-info">
+                                            <span class="index-badge">#<%= index %></span>
+                                            <span class="size-badge"><%= image.width %>×<%= image.height %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Delete Image</h5>
+                    <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this image?</p>
+                    <p class="text-danger"><small>This will permanently delete the image from Backblaze B2.</small></p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    
+    <script type="module">
+        const albumSlug = '<%= album.slug %>';
+        let cardImage = <%= album.cardImage %>;
+        let bannerImage = <%= album.bannerImage %>;
+        let images = <%- JSON.stringify(album.images) %>;
+        
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const imageGrid = document.getElementById('imageGrid');
+        const alertContainer = document.getElementById('alertContainer');
+        const deleteModalElement = document.getElementById('deleteModal');
+        const deleteModal = deleteModalElement ? new bootstrap.Modal(deleteModalElement) : null;
+        let imageToDelete = null;
+
+        // Queue logic
+        let fileQueue = [];
+        const queueList = document.getElementById('queueList');
+        const queueCount = document.getElementById('queueCount');
+        const uploadQueueSection = document.getElementById('uploadQueueSection');
+        const startUploadBtn = document.getElementById('startUploadBtn');
+        const clearQueueBtn = document.getElementById('clearQueueBtn');
+
+        // --- Functions ---
+
+        function handleFiles(files) {
+            for (const file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                fileQueue.push(file);
+            }
+            updateQueueUI();
+        }
+
+        function updateQueueUI() {
+            queueList.innerHTML = '';
+            queueCount.textContent = fileQueue.length;
+            
+            if (fileQueue.length > 0) {
+                uploadQueueSection.style.display = 'block';
+            } else {
+                uploadQueueSection.style.display = 'none';
+            }
+
+            const isResizeEnabled = document.getElementById('resizeToggle').checked;
+            const resizeScale = parseInt(document.getElementById('resizeScale').value) / 100;
+
+            fileQueue.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'queue-item';
+                
+                const info = document.createElement('div');
+                info.className = 'file-info';
+                
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                
+                const nameContainer = document.createElement('div');
+                nameContainer.className = 'd-flex flex-column';
+                
+                const name = document.createElement('div');
+                name.className = 'file-name';
+                name.textContent = file.name;
+                
+                const resolutionInfo = document.createElement('small');
+                resolutionInfo.className = 'text-secondary';
+                resolutionInfo.style.fontSize = '0.7rem';
+                
+                // We'll update the resolution info once the image is loaded
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    const originalRes = `${tempImg.width}×${tempImg.height}`;
+                    if (isResizeEnabled && resizeScale < 1) {
+                        const newWidth = Math.round(tempImg.width * resizeScale);
+                        const newHeight = Math.round(tempImg.height * resizeScale);
+                        resolutionInfo.textContent = `${originalRes} → (${newWidth}×${newHeight})`;
+                    } else {
+                        resolutionInfo.textContent = originalRes;
+                    }
+                };
+                tempImg.src = URL.createObjectURL(file);
+                
+                nameContainer.appendChild(name);
+                nameContainer.appendChild(resolutionInfo);
+                
+                info.appendChild(img);
+                info.appendChild(nameContainer);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'btn btn-link btn-sm text-danger p-0';
+                removeBtn.innerHTML = '<i class="bi bi-x-circle"></i>';
+                removeBtn.onclick = () => {
+                    fileQueue.splice(index, 1);
+                    updateQueueUI();
+                };
+                
+                item.appendChild(info);
+                item.appendChild(removeBtn);
+                queueList.appendChild(item);
+            });
+        }
+
+        async function processQueue() {
+            if (fileQueue.length === 0) return;
+            
+            startUploadBtn.disabled = true;
+            const originalBtnContent = startUploadBtn.innerHTML;
+            startUploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Processing Queue...';
+            
+            const uploadProgress = document.getElementById('uploadProgress');
+            const progressBar = document.getElementById('progressBar');
+            const uploadStatus = document.getElementById('uploadStatus');
+            const isCompressEnabled = document.getElementById('compressToggle').checked;
+            const isResizeEnabled = document.getElementById('resizeToggle').checked;
+            const resizeScale = parseInt(document.getElementById('resizeScale').value) / 100;
+            
+            uploadProgress.style.display = 'block';
+            uploadProgress.classList.add('active');
+            progressBar.style.width = '0%';
+            
+            const formData = new FormData();
+            
+            // Dynamic imports for jSquash
+            let mozjpeg, webp, avif, oxipng, png, resize;
+            
+            if (isCompressEnabled) {
+                uploadStatus.textContent = 'Loading codecs...';
+                try {
+                    [mozjpeg, webp, avif, oxipng, png, resize] = await Promise.all([
+                        import('https://esm.sh/@jsquash/jpeg@1.2.0'),
+                        import('https://esm.sh/@jsquash/webp@1.2.0'),
+                        import('https://esm.sh/@jsquash/avif@1.2.0'),
+                        import('https://esm.sh/@jsquash/oxipng@1.1.0'),
+                        import('https://esm.sh/@jsquash/png@1.1.0'),
+                        import('https://esm.sh/@jsquash/resize@1.1.0')
+                    ]);
+                } catch (err) {
+                    console.error('Failed to load codecs:', err);
+                    showAlert('danger', 'Failed to load codecs. Uploading original files.');
+                }
+            }
+            
+            for (let i = 0; i < fileQueue.length; i++) {
+                let file = fileQueue[i];
+                let currentFileName = file.name;
+                
+                if (isCompressEnabled && mozjpeg && webp && avif && oxipng && png && resize) {
+                    uploadStatus.textContent = `Compressing ${i + 1}/${fileQueue.length}: ${file.name}`;
+                    try {
+                        let imageData;
+                        const buffer = await file.arrayBuffer();
+                        if (file.type === 'image/jpeg' || file.type === 'image/jpg') {
+                            imageData = await mozjpeg.decode(buffer);
+                        } else if (file.type === 'image/webp') {
+                            imageData = await webp.decode(buffer);
+                        } else if (file.type === 'image/avif') {
+                            imageData = await avif.decode(buffer);
+                        } else if (file.type === 'image/png') {
+                            imageData = await png.decode(buffer);
+                        } else {
+                            imageData = await decodeWithCanvas(file);
+                        }
+
+                        if (isResizeEnabled && resizeScale < 1) {
+                            const width = Math.round(imageData.width * resizeScale);
+                            const height = Math.round(imageData.height * resizeScale);
+                            imageData = await resize.default(imageData, { width, height, method: 'lanczos3' });
+                        }
+
+                        const encoder = document.getElementById('squooshEncoder').value;
+                        let encodedBuffer;
+                        let extension = 'jpg';
+                        let mimeType = 'image/jpeg';
+
+                        if (encoder === 'mozjpeg') {
+                            const quality = parseInt(document.getElementById('mozjpeg-quality').value);
+                            encodedBuffer = await mozjpeg.encode(imageData, { quality });
+                        } else if (encoder === 'webp') {
+                            const quality = parseInt(document.getElementById('webp-quality').value);
+                            encodedBuffer = await webp.encode(imageData, { quality });
+                            extension = 'webp';
+                            mimeType = 'image/webp';
+                        } else if (encoder === 'avif') {
+                            const quality = parseInt(document.getElementById('avif-quality').value);
+                            encodedBuffer = await avif.encode(imageData, { quality });
+                            extension = 'avif';
+                            mimeType = 'image/avif';
+                        } else if (encoder === 'oxipng') {
+                            const effort = parseInt(document.getElementById('oxipng-effort').value);
+                            const pngBuffer = await png.encode(imageData);
+                            encodedBuffer = await oxipng.encode(pngBuffer, { level: effort });
+                            extension = 'png';
+                            mimeType = 'image/png';
+                        }
+
+                        const baseName = currentFileName.split('.').slice(0, -1).join('.') || 'image';
+                        file = new File([encodedBuffer], `${baseName}.${extension}`, { type: mimeType });
+                    } catch (err) {
+                        console.error('Compression error:', err);
+                    }
+                }
+                
+                formData.append('images', file);
+                progressBar.style.width = `${((i + 0.5) / fileQueue.length) * 50}%`;
+            }
+            
+            uploadStatus.textContent = `Uploading ${fileQueue.length} images...`;
+            
+            try {
+                const response = await fetch(`/vippy/add-images/${albumSlug}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    progressBar.style.width = '100%';
+                    uploadStatus.textContent = 'Upload complete!';
+                    showAlert('success', 'Images uploaded successfully!');
+                    setTimeout(() => window.location.reload(), 1000);
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (err) {
+                showAlert('danger', 'Error: ' + err.message);
+                startUploadBtn.disabled = false;
+                startUploadBtn.innerHTML = originalBtnContent;
+                uploadProgress.style.display = 'none';
+                uploadProgress.classList.remove('active');
+            }
+        }
+
+        async function decodeWithCanvas(file) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    resolve(ctx.getImageData(0, 0, img.width, img.height));
+                };
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        function showAlert(type, message, container = alertContainer) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.style.fontSize = '0.85rem';
+            alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+            container.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        async function saveOrder() {
+            const items = imageGrid.querySelectorAll('.image-item');
+            const order = Array.from(items).map(item => parseInt(item.dataset.index));
+            try {
+                const response = await fetch(`/vippy/vp/reorder-images/${albumSlug}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    items.forEach((item, i) => {
+                        item.dataset.index = i;
+                        item.querySelector('.index-badge').textContent = `#${i}`;
+                    });
+                }
+            } catch (err) {
+                console.error('Error saving order:', err);
+            }
+        }
+
+        function updateSelections() {
+            document.querySelectorAll('.image-item').forEach((item, i) => {
+                item.classList.remove('selected-card', 'selected-banner');
+                item.querySelectorAll('.selection-badge').forEach(b => b.remove());
+                if (i === cardImage) {
+                    item.classList.add('selected-card');
+                    const badge = document.createElement('span');
+                    badge.className = 'selection-badge card-badge';
+                    badge.textContent = 'Card';
+                    item.appendChild(badge);
+                }
+                if (i === bannerImage) {
+                    item.classList.add('selected-banner');
+                    const badge = document.createElement('span');
+                    badge.className = 'selection-badge banner-badge';
+                    badge.textContent = 'Banner';
+                    if (i === cardImage) {
+                        badge.style.top = '26px';
+                        badge.style.color = '#000'; // Success text color
+                    }
+                    item.appendChild(badge);
+                }
+            });
+        }
+
+        function updatePreviews() {
+            document.getElementById('cardImageNum').textContent = cardImage;
+            document.getElementById('bannerImageNum').textContent = bannerImage;
+            if (images[cardImage]) {
+                document.getElementById('cardPreviewMainBg').style.backgroundImage = `url('${images[cardImage].thumb}')`;
+                updateCardPosition();
+            }
+            if (images[bannerImage]) {
+                document.getElementById('bannerPreviewBg').style.backgroundImage = `url('${images[bannerImage].url}')`;
+                updateBannerPosition();
+            }
+        }
+
+        function updateCardPosition() {
+            const x = document.getElementById('cardOffsetX').value;
+            const y = document.getElementById('cardOffset').value;
+            const zoom = document.getElementById('cardZoom').value;
+            const bg = document.getElementById('cardPreviewMainBg');
+            const img = images[cardImage];
+            
+            document.getElementById('val-cardOffsetX').textContent = x;
+            document.getElementById('val-cardOffset').textContent = y;
+            document.getElementById('val-cardZoom').textContent = zoom;
+
+            if (img) {
+                const containerAR = 480 / 550;
+                const imageAR = img.aspectRatio || 1;
+                bg.style.backgroundSize = imageAR > containerAR ? `auto ${zoom}%` : `${zoom}% auto`;
+            }
+            bg.style.backgroundPosition = `${x}% ${100 - y}%`;
+        }
+
+        function updateBannerPosition() {
+            const x = document.getElementById('bannerOffsetX').value;
+            const y = document.getElementById('bannerOffset').value;
+            const zoom = document.getElementById('bannerZoom').value;
+            const bg = document.getElementById('bannerPreviewBg');
+            const img = images[bannerImage];
+            
+            document.getElementById('val-bannerOffsetX').textContent = x;
+            document.getElementById('val-bannerOffset').textContent = y;
+            document.getElementById('val-bannerZoom').textContent = zoom;
+
+            if (img) {
+                const containerAR = 1745.7 / 300;
+                const imageAR = img.aspectRatio || 1;
+                bg.style.backgroundSize = imageAR > containerAR ? `auto ${zoom}%` : `${zoom}% auto`;
+            }
+            bg.style.backgroundPosition = `${x}% ${100 - y}%`;
+        }
+
+        // --- Initialization ---
+
+        window.setAsCard = (index) => { cardImage = index; updateSelections(); updatePreviews(); };
+        window.setAsBanner = (index) => { bannerImage = index; updateSelections(); updatePreviews(); };
+        window.deleteImage = (index) => { imageToDelete = index; deleteModal.show(); };
+
+        // Initialize previews
+        updatePreviews();
+
+        startUploadBtn.addEventListener('click', processQueue);
+        clearQueueBtn.addEventListener('click', () => { fileQueue = []; updateQueueUI(); });
+
+        document.getElementById('squooshEncoder').addEventListener('change', (e) => {
+            document.querySelectorAll('.encoder-settings').forEach(el => el.style.display = 'none');
+            document.getElementById(`settings-${e.target.value}`).style.display = 'block';
+        });
+
+        document.getElementById('resizeToggle').addEventListener('change', (e) => {
+            document.getElementById('resizeSettings').style.display = e.target.checked ? 'block' : 'none';
+            updateQueueUI();
+        });
+
+        document.getElementById('resizeScale').addEventListener('input', (e) => {
+            document.getElementById('val-resizeScale').textContent = e.target.value;
+            updateQueueUI();
+        });
+
+        ['mozjpeg-quality', 'webp-quality', 'avif-quality', 'oxipng-effort'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', (e) => {
+                    document.getElementById(`val-${id}`).textContent = e.target.value;
+                });
+            }
+        });
+
+        if (imageGrid) {
+            new Sortable(imageGrid, {
+                animation: 150,
+                onEnd: () => saveOrder()
+            });
+        }
+
+        if (dropzone && fileInput) {
+            dropzone.addEventListener('click', () => fileInput.click());
+            dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+            dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+            dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        }
+
+        ['cardOffset', 'cardOffsetX', 'cardZoom', 'bannerOffset', 'bannerOffsetX', 'bannerZoom'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('input', id.startsWith('card') ? updateCardPosition : updateBannerPosition);
+        });
+
+        document.getElementById('savePreviewBtn').addEventListener('click', async function() {
+            this.disabled = true;
+            try {
+                const response = await fetch(`/vippy/update/${albumSlug}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cardImage,
+                        cardOffset: parseInt(document.getElementById('cardOffset').value),
+                        cardOffsetX: parseInt(document.getElementById('cardOffsetX').value),
+                        cardZoom: parseInt(document.getElementById('cardZoom').value),
+                        bannerImage,
+                        bannerOffset: parseInt(document.getElementById('bannerOffset').value),
+                        bannerOffsetX: parseInt(document.getElementById('bannerOffsetX').value),
+                        bannerZoom: parseInt(document.getElementById('bannerZoom').value)
+                    })
+                });
+                const data = await response.json();
+                if (data.success) showAlert('success', 'Preview settings saved!', document.getElementById('previewAlertContainer'));
+            } catch (err) {
+                showAlert('danger', 'Error saving settings', document.getElementById('previewAlertContainer'));
+            }
+            this.disabled = false;
+        });
+
+        document.getElementById('metadataForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            try {
+                const response = await fetch(`/vippy/update/${albumSlug}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: document.getElementById('title').value,
+                        developer: document.getElementById('developer').value,
+                        description: document.getElementById('description').value,
+                        date: document.getElementById('date').value,
+                        tags: document.getElementById('tags').value
+                    })
+                });
+                const data = await response.json();
+                if (data.success) showAlert('success', 'Details saved!', document.getElementById('detailsAlertContainer'));
+            } catch (err) {
+                showAlert('danger', 'Error saving details', document.getElementById('detailsAlertContainer'));
+            }
+            btn.disabled = false;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', async function() {
+            if (imageToDelete === null) return;
+            this.disabled = true;
+            try {
+                const response = await fetch(`/vippy/delete-image/${albumSlug}/${imageToDelete}`, { method: 'POST' });
+                const data = await response.json();
+                if (data.success) window.location.reload();
+            } catch (err) {
+                showAlert('danger', 'Error deleting image');
+                this.disabled = false;
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#date", {
+            dateFormat: "Y-m-d",
+            altInput: true,
+            altFormat: "d / M / Y",
+            defaultDate: "<%= album.date %>",
+            theme: "dark"
+        });
+    </script>
+</body>
+</html>

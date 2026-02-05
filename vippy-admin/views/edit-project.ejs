@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: project ? 'Edit Project' : 'New Project' }) %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <style>
+        .CodeMirror {
+            background-color: #16161a;
+            color: #fffffe;
+            border: 1px solid #7f5af0;
+        }
+        .CodeMirror-cursor {
+            border-left: 1px solid #fffffe;
+        }
+        .editor-toolbar {
+            background-color: #242629;
+            border-color: #7f5af0;
+            opacity: 1;
+        }
+        .editor-toolbar a {
+            color: #fffffe !important;
+        }
+        .editor-toolbar a.active, .editor-toolbar a:hover {
+            background-color: #7f5af0;
+            border-color: #7f5af0;
+        }
+        .editor-preview {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+        .editor-preview-side {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container px-4 pb-5">
+        <div class="d-flex align-items-center mb-4">
+            <a href="/vippy/projects" class="btn btn-outline-secondary me-3 border-0">
+                <i class="bi bi-arrow-left fs-5"></i>
+            </a>
+            <h2 class="mb-0"><%= project ? 'Edit Project' : 'New Project' %></h2>
+        </div>
+
+        <form action="/vippy/projects/save" method="POST" enctype="multipart/form-data">
+            <% if (project) { %>
+                <input type="hidden" name="originalFilename" value="<%= project.fileSlug %>">
+            <% } %>
+
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Project Name</label>
+                                <input type="text" class="form-control" id="name" name="name" value="<%= project ? project.name : '' %>" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"><%= project ? project.description : '' %></textarea>
+                                <div class="form-text">A short description displayed on the project card.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Detailed Case Study (Markdown)</label>
+                                <textarea class="form-control" id="content" name="content"><%= project ? project.content : '' %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header bg-transparent fw-bold">Metadata</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="tools" class="form-label">Tools Used</label>
+                                <input type="text" class="form-control" id="tools" name="tools" value="<%= project ? project.tools.join(', ') : '' %>" placeholder="e.g. React, Node.js">
+                                <div class="form-text">Comma separated</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="external_url" class="form-label">External Link (Optional)</label>
+                                <input type="url" class="form-control" id="external_url" name="external_url" value="<%= project ? project.external_url : '' %>" placeholder="https://example.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-transparent fw-bold">Project Image</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Image URL</label>
+                                <input type="text" class="form-control mb-2" id="imageUrl" name="imageUrl" value="<%= project ? project.image : '' %>" placeholder="https://...">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="projectImage" class="form-label">Or Upload New Image</label>
+                                <input type="file" class="form-control" id="projectImage" name="projectImage" accept="image/*">
+                            </div>
+
+                            <% if (project && project.image) { %>
+                                <div class="mt-2">
+                                    <small class="text-secondary d-block mb-1">Current Image:</small>
+                                    <img src="<%= project.image %>" class="img-fluid rounded" style="max-height: 150px;">
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-save me-2"></i>Save Project
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var simplemde = new SimpleMDE({ 
+            element: document.getElementById("content"),
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                uniqueId: "project_content_<%= project ? project.fileSlug : 'new' %>",
+                delay: 1000,
+            },
+        });
+    </script>
+</body>
+</html>

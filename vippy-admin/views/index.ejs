@@ -1,0 +1,158 @@
+<%- include('partials/head', { title: 'Vippy Admin - Dashboard' }) %>
+
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container py-5">
+        <header class="mb-5 d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="display-5 fw-bold text-white mb-2">Vippy Configuration</h1>
+                <p class="lead text-secondary mb-1">Manage and organize your site's sections.</p>
+                <p class="text-secondary small">Drag modules to reorder the site menu.</p>
+            </div>
+            <div>
+                <a href="/vippy/settings" class="btn btn-outline-light btn-lg">
+                    <i class="bi bi-gear-fill me-2"></i>Site Settings
+                </a>
+            </div>
+        </header>
+
+        <!-- Fixed Landing Page Module -->
+        <div class="row">
+            <div class="col-12 mb-3">
+                <div class="card h-100 shadow-sm module-card border-0 bg-dark text-light position-relative">
+                    <div class="card-body d-flex align-items-center justify-content-between p-4">
+                        <div class="d-flex align-items-center gap-4 flex-grow-1">
+                            <div class="text-secondary fs-3 d-flex justify-content-center" style="width: 40px;" title="Fixed Module">
+                                <i class="bi bi-pin-angle-fill"></i>
+                            </div>
+                            <div class="module-icon p-3 rounded-circle" style="background-color: rgba(44, 182, 125, 0.1); color: #2cb67d;">
+                                <i class="bi bi-house-door-fill fs-2"></i>
+                            </div>
+                            <div>
+                                <h3 class="h4 card-title mb-1">
+                                    <a href="/vippy/landing" class="text-decoration-none text-white stretched-link">Landing Page</a>
+                                </h3>
+                                <small class="text-secondary">Path: /</small>
+                            </div>
+                        </div>
+                        <div class="text-secondary small fst-italic me-3">
+                            Primary Module
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="modules-list">
+            <% modules.forEach(module => { %>
+            <div class="col-12 mb-3" data-id="<%= module.id %>">
+                <div class="card h-100 shadow-sm module-card border-0 bg-dark text-light position-relative">
+                    <div class="card-body d-flex align-items-center justify-content-between p-4">
+                        <div class="d-flex align-items-center gap-4 flex-grow-1">
+                            <div class="handle text-secondary cursor-move position-relative d-flex justify-content-center" style="z-index: 2; width: 40px;">
+                                <i class="bi bi-grip-vertical fs-3"></i>
+                            </div>
+                            <div class="module-icon p-3 rounded-circle" style="background-color: rgba(127, 90, 240, 0.1); color: #7f5af0;">
+                                <i class="bi <%= module.icon || 'bi-box' %> fs-2"></i>
+                            </div>
+                            <div>
+                                <h3 class="h4 card-title mb-1">
+                                    <a href="<%= module.admin_url %>" class="text-decoration-none text-white stretched-link"><%= module.name %></a>
+                                </h3>
+                                <small class="text-secondary">Path: <%= module.url %></small>
+                            </div>
+                        </div>
+                        <div class="form-check form-switch position-relative" style="z-index: 2;">
+                            <input class="form-check-input module-toggle" type="checkbox" role="switch" 
+                                style="width: 3.5em; height: 1.75em;"
+                                id="toggle-<%= module.id %>" <%= module.enabled ? 'checked' : '' %>
+                                data-id="<%= module.id %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+
+        <div class="mt-5 p-3 rounded border" style="border-color: #242629 !important;">
+            <div class="d-flex gap-3 align-items-start">
+                <i class="bi bi-info-circle-fill fs-4 mt-1" style="color: #2cb67d;"></i>
+                <div>
+                    <h5 class="h6 mb-1" style="color: #2cb67d;">Important Note</h5>
+                    <p class="mb-0 text-secondary small">
+                        Changes made here (like toggling modules, reordering, or changing settings inside modules themselves) modify the <code style="color: #2cb67d;">_config.yml</code> file. 
+                        For these changes to appear on your live site, you typically need to restart your Jekyll server or rebuild the site 
+                        (e.g., run <code style="color: #2cb67d;">bundle exec jekyll serve</code>).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('modules-list');
+            const sortable = Sortable.create(el, {
+                handle: '.handle',
+                animation: 150,
+                onEnd: function () {
+                    saveModulesState();
+                }
+            });
+
+            document.querySelectorAll('.module-toggle').forEach(toggle => {
+                toggle.addEventListener('change', () => {
+                    saveModulesState();
+                });
+            });
+
+            function saveModulesState() {
+                const modules = [];
+                document.querySelectorAll('#modules-list > div').forEach(card => {
+                    const id = card.getAttribute('data-id');
+                    const enabled = card.querySelector('.module-toggle').checked;
+                    modules.push({ id, enabled });
+                });
+
+                fetch('/api/modules/reorder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ modules })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) console.log('Saved');
+                    else alert('Error saving state');
+                });
+            }
+        });
+    </script>
+    <style>
+        .cursor-move { cursor: grab; }
+        .cursor-move:active { cursor: grabbing; }
+        .module-card { transition: transform 0.2s, border-color 0.2s; background-color: #242629 !important; }
+        .module-card:hover { transform: translateY(-2px); border-color: var(--bs-primary) !important; }
+        /* Prevent stretched-link from blocking the toggle */
+        .form-check { position: relative; z-index: 2; }
+        
+        /* Custom Toggle Styling */
+        .form-check-input.module-toggle {
+            background-color: #343a40; /* Dark gray for disabled state */
+            border-color: #495057;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23adb5bd'/%3e%3c/svg%3e");
+        }
+        .form-check-input.module-toggle:checked {
+            background-color: #7f5af0; /* Vippy Purple */
+            border-color: #7f5af0;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+        }
+        .form-check-input.module-toggle:focus {
+            border-color: #7f5af0;
+            box-shadow: 0 0 0 0.25rem rgba(127, 90, 240, 0.25);
+        }
+    </style>
+</body>
+</html>

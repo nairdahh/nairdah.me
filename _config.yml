@@ -91,3 +91,4 @@ exclude:
   - "to-do"
   - admin/
   - .b2-config.json
+  - vippy-admin/

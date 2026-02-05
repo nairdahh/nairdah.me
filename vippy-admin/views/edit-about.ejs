@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Edit About Page' }) %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <style>
+        .CodeMirror {
+            background-color: #16161a;
+            color: #fffffe;
+            border: 1px solid #7f5af0;
+        }
+        .CodeMirror-cursor {
+            border-left: 1px solid #fffffe;
+        }
+        .editor-toolbar {
+            background-color: #242629;
+            border-color: #7f5af0;
+            opacity: 1;
+        }
+        .editor-toolbar a {
+            color: #fffffe !important;
+        }
+        .editor-toolbar a.active, .editor-toolbar a:hover {
+            background-color: #7f5af0;
+            border-color: #7f5af0;
+        }
+        .editor-preview {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+        .editor-preview-side {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container px-4 pb-5">
+        <div class="d-flex align-items-center mb-4">
+            <a href="/vippy" class="btn btn-outline-secondary me-3 border-0">
+                <i class="bi bi-arrow-left fs-5"></i>
+            </a>
+            <h2 class="mb-0">Edit About Page</h2>
+        </div>
+
+        <% if (success) { %>
+            <div class="alert alert-dismissible fade show text-white" role="alert" style="background-color: #2cb67d; border: none;">
+                About page updated successfully!
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+
+        <form action="/vippy/about/save" method="POST">
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Content (Markdown)</label>
+                                <textarea class="form-control" id="content" name="content"><%= content %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header bg-transparent fw-bold">Page Settings</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Page Title</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<%= frontMatter.title || 'About' %>">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="permalink" class="form-label">Permalink</label>
+                                <input type="text" class="form-control" id="permalink" name="permalink" value="<%= frontMatter.permalink || '/about/' %>" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-save me-2"></i>Save Page
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var simplemde = new SimpleMDE({ 
+            element: document.getElementById("content"),
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                uniqueId: "about_page_content",
+                delay: 1000,
+            },
+        });
+    </script>
+</body>
+</html>

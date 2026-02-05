@@ -369,7 +369,7 @@ layout: default
   }
 
   .markdown-body code {
-    background: var(--code-bg);
+    /* background: var(--code-bg); */
     color: var(--accent);
     padding: 0.2em 0.4em;
     border-radius: 4px;
@@ -377,8 +377,12 @@ layout: default
     font-size: 0.9em;
   }
 
+  .markdown-body pre code {
+    background: transparent;
+  }
+
   .markdown-body pre {
-    background: var(--code-bg);
+    /* background: var(--code-bg); */
     padding: 1.5rem;
     border-radius: 12px;
     overflow-x: auto;

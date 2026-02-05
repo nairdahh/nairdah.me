@@ -1,8 +1,0 @@
-{
-  "application_key_id": "application_key_id",
-  "application_key": "application_key",
-  "bucket_name": "bucket_name",
-  "bucket_id": "bucket_id",
-  "use_cdn": true,
-  "cdn_domain": "cdn.domain.com"
-}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Album Order - VP Admin' }) %>
+    <style>
+        .album-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid #010101;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: grab;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .album-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .album-item.sortable-chosen {
+            opacity: 0.9;
+            cursor: grabbing;
+        }
+        
+        .album-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-color: #010101;
+        }
+        
+        .order-number {
+            background-color: #010101;
+            color: var(--accent);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .drag-handle {
+            color: var(--secondary);
+            cursor: grab;
+            font-size: 1.25rem;
+        }
+
+        .album-info {
+            flex-grow: 1;
+        }
+
+        .album-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .album-meta {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .save-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-secondary);
+            border-top: 2px solid #010101;
+            padding: 1.25rem;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .save-bar.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container px-4 pb-5" style="padding-bottom: 120px !important;">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center">
+                <a href="/vippy/vp" class="btn btn-outline-secondary me-3 border-0">
+                    <i class="bi bi-arrow-left fs-5"></i>
+                </a>
+                <div>
+                    <h2 class="mb-0">Album Order</h2>
+                    <p class="small text-secondary mb-0">Drag and drop to reorder albums on the site</p>
+                </div>
+            </div>
+            <button class="btn btn-secondary btn-sm px-3" id="autoSortBtn">
+                <i class="bi bi-sort-down me-1"></i> Auto-sort by date
+            </button>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <ul class="album-list" id="albumList">
+            <% albums.forEach(function(album, index) { %>
+                <li class="album-item" data-slug="<%= album.slug %>" data-date="<%= album.date %>">
+                    <span class="order-number"><%= index + 1 %></span>
+                    <i class="bi bi-grip-vertical drag-handle"></i>
+                    <% if (album.images.length > 0) { %>
+                        <img src="<%= album.images[album.cardImage]?.thumb || album.images[0]?.thumb %>" 
+                             class="album-thumb" 
+                             alt="<%= album.title %>">
+                    <% } else { %>
+                        <div class="album-thumb d-flex align-items-center justify-content-center">
+                            <i class="bi bi-image text-secondary"></i>
+                        </div>
+                    <% } %>
+                    <div class="album-info">
+                        <div class="album-title"><%= album.title %></div>
+                        <div class="album-meta">
+                            <% if (album.developer) { %><%= album.developer %> · <% } %>
+                            <%= album.imageCount %> photos · <%= album.date %>
+                        </div>
+                    </div>
+                    <a href="/vippy/vp/edit/<%= album.slug %>" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <div class="save-bar" id="saveBar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="text-secondary">You have unsaved changes</span>
+            <button class="btn btn-primary" id="saveBtn">
+                <i class="bi bi-check-lg me-1"></i> Save Order
+            </button>
+        </div>
+    </div>
+
+    <%- include('partials/settings-modal') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+        const albumList = document.getElementById('albumList');
+        const saveBar = document.getElementById('saveBar');
+        const saveBtn = document.getElementById('saveBtn');
+        const alertContainer = document.getElementById('alertContainer');
+        
+        let hasChanges = false;
+        let originalOrder = getOrder();
+
+        // Initialize Sortable
+        const sortable = new Sortable(albumList, {
+            animation: 150,
+            handle: '.drag-handle',
+            ghostClass: 'sortable-ghost',
+            chosenClass: 'sortable-chosen',
+            onEnd: function(evt) {
+                updateOrderNumbers();
+                checkForChanges();
+            }
+        });
+
+        function getOrder() {
+            const items = albumList.querySelectorAll('.album-item');
+            return Array.from(items).map(item => item.dataset.slug);
+        }
+
+        function updateOrderNumbers() {
+            const items = albumList.querySelectorAll('.album-item');
+            items.forEach((item, index) => {
+                item.querySelector('.order-number').textContent = index + 1;
+            });
+        }
+
+        function checkForChanges() {
+            const currentOrder = getOrder();
+            hasChanges = JSON.stringify(currentOrder) !== JSON.stringify(originalOrder);
+            saveBar.classList.toggle('show', hasChanges);
+        }
+
+        function showAlert(type, message) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            alertContainer.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+
+        saveBtn.addEventListener('click', async function() {
+            const order = getOrder();
+            
+            this.disabled = true;
+            this.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
+            
+            try {
+                const response = await fetch('/vippy/vp/reorder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('success', 'Album order saved!');
+                    originalOrder = order;
+                    hasChanges = false;
+                    saveBar.classList.remove('show');
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch (err) {
+                showAlert('danger', 'Error: ' + err.message);
+            }
+            
+            this.disabled = false;
+            this.innerHTML = '<i class="bi bi-check-lg me-1"></i> Save Order';
+        });
+
+        // Auto-sort by date (newest first)
+        document.getElementById('autoSortBtn').addEventListener('click', function() {
+            const items = Array.from(albumList.querySelectorAll('.album-item'));
+            
+            // Sort by date descending (newest first)
+            items.sort((a, b) => {
+                const dateA = new Date(a.dataset.date);
+                const dateB = new Date(b.dataset.date);
+                return dateB - dateA;
+            });
+            
+            // Reorder DOM
+            items.forEach(item => albumList.appendChild(item));
+            
+            // Update numbers and check for changes
+            updateOrderNumbers();
+            checkForChanges();
+            
+            showAlert('success', 'Albums sorted by date (newest first). Click "Save Order" to apply.');
+        });
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', function(e) {
+            if (hasChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>

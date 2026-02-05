@@ -1,0 +1,226 @@
+<%- include('partials/head', { title: 'Vippy Admin - Site Settings' }) %>
+
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container py-5">
+        <header class="mb-5 d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <a href="/vippy" class="btn btn-outline-secondary me-3 border-0">
+                    <i class="bi bi-arrow-left fs-4"></i>
+                </a>
+                <div>
+                    <h1 class="display-5 fw-bold text-white mb-0">Site Settings</h1>
+                    <p class="lead text-secondary mb-0">Configure general website settings.</p>
+                </div>
+            </div>
+            <div>
+                <button type="submit" form="settingsForm" class="btn btn-success btn-lg">
+                    <i class="bi bi-save me-2"></i>Save Changes
+                </button>
+            </div>
+        </header>
+
+        <style>
+            .card {
+                background-color: #242629 !important;
+                border: none !important;
+            }
+            .form-control, .input-group-text {
+                background-color: #16161a !important;
+                border: none !important;
+                color: #fffffe !important;
+            }
+            .form-control:focus {
+                border: 1px solid #7f5af0 !important;
+                box-shadow: none !important;
+            }
+            .card-header i {
+                color: #2cb67d !important;
+            }
+        </style>
+        <form id="settingsForm" action="/vippy/settings" method="POST" enctype="multipart/form-data">
+            <div class="row g-4">
+                <!-- General Information -->
+                <div class="col-lg-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-transparent p-4">
+                            <h3 class="h4 mb-0"><i class="bi bi-globe me-2"></i>General Information</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <label for="title" class="form-label text-secondary">Site Title</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<%= config.title %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label text-secondary">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"><%= config.description %></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="url" class="form-label text-secondary">Site URL</label>
+                                <input type="url" class="form-control" id="url" name="url" value="<%= config.url %>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="favicon" class="form-label text-secondary">Favicon (ICO format)</label>
+                                <input class="form-control" type="file" id="favicon" name="favicon" accept=".ico">
+                                <div class="form-text text-secondary">Upload a new .ico file to replace the current favicon.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Author Information -->
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column gap-4 h-100">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent p-4">
+                                <h3 class="h4 mb-0"><i class="bi bi-person-badge me-2"></i>Author Information</h3>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="mb-0">
+                                    <label for="author_name" class="form-label text-secondary">Name</label>
+                                    <input type="text" class="form-control" id="author_name" name="author_name" value="<%= config.author ? config.author.name : '' %>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card shadow-sm flex-grow-1">
+                            <div class="card-header bg-transparent p-4">
+                                <h3 class="h4 mb-0"><i class="bi bi-palette me-2"></i>Theme Settings</h3>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="mb-3">
+                                    <label class="form-label text-secondary">Theme Color</label>
+                                    <input type="hidden" name="theme_color_mode" id="theme_color_mode" value="<%= Object.values(presets).some(p => p.dark.toLowerCase() === currentThemeColor.toLowerCase()) ? 'preset' : 'custom' %>">
+                                    <input type="hidden" name="theme_color_preset" id="theme_color_preset" value="<%= Object.keys(presets).find(k => presets[k].dark.toLowerCase() === currentThemeColor.toLowerCase()) || '' %>">
+                                    
+                                    <div class="d-flex flex-wrap gap-2 mb-3">
+                                        <% 
+                                        let activePreset = null;
+                                        Object.entries(presets).forEach(([name, colors]) => { 
+                                            const isActive = colors.dark.toLowerCase() === currentThemeColor.toLowerCase();
+                                            if (isActive) activePreset = name;
+                                        %>
+                                        <div class="color-preset" 
+                                             data-name="<%= name %>" 
+                                             data-color="<%= colors.dark %>"
+                                             title="<%= name %>"
+                                             style="width: 30px; height: 30px; border-radius: 50%; background-color: <%= colors.dark %>; cursor: pointer; border: 2px solid <%= isActive ? '#fff' : 'transparent' %>; box-shadow: <%= isActive ? '0 0 0 2px #7f5af0' : 'none' %>;">
+                                        </div>
+                                        <% }); %>
+                                    </div>
+                                
+                                    <div class="input-group">
+                                        <span class="input-group-text text-secondary bg-dark border-0">Custom</span>
+                                        <input type="color" class="form-control form-control-color" id="theme_color_custom_picker" value="<%= currentThemeColor %>" title="Choose your color" style="max-width: 50px;">
+                                        <input type="text" class="form-control" id="theme_color_custom" name="theme_color_custom" value="<%= currentThemeColor %>">
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        const presets = document.querySelectorAll('.color-preset');
+                                        const modeInput = document.getElementById('theme_color_mode');
+                                        const presetInput = document.getElementById('theme_color_preset');
+                                        const customPicker = document.getElementById('theme_color_custom_picker');
+                                        const customText = document.getElementById('theme_color_custom');
+                                    
+                                        // Preset Click
+                                        presets.forEach(preset => {
+                                            preset.addEventListener('click', () => {
+                                                // UI Update
+                                                presets.forEach(p => {
+                                                    p.style.border = '2px solid transparent';
+                                                    p.style.boxShadow = 'none';
+                                                });
+                                                preset.style.border = '2px solid #fff';
+                                                preset.style.boxShadow = '0 0 0 2px #7f5af0';
+                                                
+                                                // Logic Update
+                                                modeInput.value = 'preset';
+                                                presetInput.value = preset.dataset.name;
+                                                customPicker.value = preset.dataset.color;
+                                                customText.value = preset.dataset.color;
+                                            });
+                                        });
+                                    
+                                        // Custom Change
+                                        function handleCustomChange(e) {
+                                            const color = e.target.value;
+                                            customPicker.value = color;
+                                            customText.value = color;
+                                            
+                                            // Deselect presets
+                                            presets.forEach(p => {
+                                                p.style.border = '2px solid transparent';
+                                                p.style.boxShadow = 'none';
+                                            });
+                                    
+                                            modeInput.value = 'custom';
+                                            presetInput.value = '';
+                                        }
+                                    
+                                        customPicker.addEventListener('input', handleCustomChange);
+                                        customText.addEventListener('input', handleCustomChange);
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO & Analytics -->
+                <div class="col-12">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-transparent p-4">
+                            <h3 class="h4 mb-0"><i class="bi bi-graph-up me-2"></i>SEO & Analytics</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <label for="keywords" class="form-label text-secondary">Keywords (comma separated)</label>
+                                <input type="text" class="form-control" id="keywords" name="keywords" value="<%= config.keywords %>">
+                            </div>
+
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="analytics_enabled" name="analytics_enabled" <%= config.analytics && config.analytics.enabled ? 'checked' : '' %>>
+                                <label class="form-check-label text-light" for="analytics_enabled">Enable Google Analytics</label>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="analytics_id" class="form-label text-secondary">Tracking ID (G-XXXXXXXXXX)</label>
+                                <input type="text" class="form-control" id="analytics_id" name="analytics_id" value="<%= config.analytics && config.analytics.google ? config.analytics.google.tracking_id : '' %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-transparent p-4">
+                            <h3 class="h4 mb-0"><i class="bi bi-share me-2"></i>Social Media Links</h3>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="row g-3">
+                                <% Object.entries(socialMedia).forEach(([key, data]) => { %>
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="social_<%= key %>" class="form-label text-secondary text-capitalize">
+                                        <% if (data.icon) { %><i class="<%= data.icon %> me-1" style="color: #<%= data.color %>;"></i><% } %>
+                                        <%= key %>
+                                    </label>
+                                    <input type="text" class="form-control" 
+                                           id="social_<%= key %>" name="social_<%= key %>" 
+                                           value="<%= config.author && config.author[key] ? config.author[key] : '' %>"
+                                           placeholder="Username">
+                                </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>

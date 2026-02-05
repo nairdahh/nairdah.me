@@ -1,0 +1,161 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'VP Admin' %></title>
+    <link rel="icon" type="image/svg+xml" href="/assets/vippy-logo.svg?v=2">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@200..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #16161a;
+            --bg-secondary: #242629;
+            --bg-tertiary: #010101;
+            --text-primary: #fffffe; /* Headline */
+            --text-secondary: #94a1b2; /* Paragraph */
+            --accent: #7f5af0; /* Button */
+            --accent-hover: #9171f2;
+            --danger: #ef4565;
+            --success: #2cb67d; /* Tertiary */
+            --secondary: #72757e;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            font-family: 'Reddit Sans', sans-serif;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .navbar-brand, .card-title {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        
+        .navbar {
+            background-color: var(--bg-secondary) !important;
+            border-bottom: none;
+        }
+        
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid transparent;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card-header {
+            color: var(--text-primary);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+            background-color: var(--accent-hover) !important;
+            border-color: var(--accent-hover) !important;
+            color: var(--text-primary) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-outline-primary {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--accent);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary {
+            background-color: #16161a;
+            border-color: #16161a;
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:active, .btn-secondary:focus {
+            background-color: #010101 !important;
+            border-color: #010101 !important;
+            color: var(--text-primary) !important;
+            box-shadow: none !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--text-secondary);
+            border-color: var(--secondary);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--accent) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--accent) !important;
+        }
+        
+        .badge {
+            background-color: #010101;
+            color: var(--text-secondary);
+            border: 1px solid var(--secondary);
+        }
+
+        .form-control, .form-select {
+            background-color: #16161a !important;
+            border: none !important;
+            color: var(--text-primary) !important;
+            border-radius: 8px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #16161a !important;
+            border: none !important;
+            color: var(--text-primary) !important;
+            box-shadow: 0 0 0 0.25rem rgba(127, 90, 240, 0.25) !important;
+        }
+        
+        /* Form Controls */
+        .form-check-input:checked {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .form-check-input:focus {
+            border-color: var(--success);
+            box-shadow: 0 0 0 0.25rem rgba(44, 182, 125, 0.25);
+        }
+
+        .form-control::placeholder, .form-select::placeholder {
+            color: #94a1b2;
+            opacity: 1; /* Firefox fix */
+        }
+
+        .form-label {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-custom-dark {
+            background-color: #16161a;
+            border-color: #16161a;
+            color: var(--text-primary);
+        }
+        
+        .btn-custom-dark:hover {
+            background-color: #010101;
+            border-color: #010101;
+            color: var(--text-primary);
+        }
+
+        .btn-close-custom {
+            background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fffffe'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 12.293 2.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 3.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        }
+    </style>
+</head>

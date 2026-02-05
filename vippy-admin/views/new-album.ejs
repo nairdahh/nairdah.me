@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Create New Album - VP Admin' }) %>
+    <style>
+        .card {
+            border: 2px solid #010101;
+        }
+
+        .card-header {
+            background-color: var(--bg-secondary);
+            border-bottom: 2px solid #010101;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .form-control, .form-select {
+            border: none;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border: none;
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        /* Slider Styles */
+        .form-range::-webkit-slider-runnable-track {
+            background-color: var(--secondary);
+            border-radius: 1rem;
+            height: 0.5rem;
+        }
+        .form-range::-moz-range-track {
+            background-color: var(--secondary);
+            border-radius: 1rem;
+            height: 0.5rem;
+        }
+        .form-range::-webkit-slider-thumb {
+            background: var(--success);
+            margin-top: -0.25rem;
+        }
+        .form-range::-moz-range-thumb {
+            background: var(--success);
+            border: none;
+        }
+        .form-range::-ms-thumb {
+            background: var(--success);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+        
+        .dropzone {
+            border: 2px dashed var(--secondary);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: #16161a;
+            transition: all 0.3s;
+        }
+        
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--accent);
+            background-color: rgba(127, 90, 240, 0.1);
+            color: var(--text-primary);
+        }
+        
+        .dropzone i {
+            font-size: 3rem;
+            color: var(--secondary);
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #010101;
+            border: 1px solid #010101;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background-color: var(--danger);
+            color: var(--text-primary);
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .progress {
+            background-color: var(--secondary) !important;
+            height: 0.6rem !important;
+            border-radius: 1rem !important;
+            border: 1px solid #010101;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--success) !important;
+            transition: width 0.3s ease;
+        }
+
+        .settings-panel {
+            background-color: #16161a;
+            border: 2px solid #010101;
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-4">
+                    <a href="/vippy/vp" class="btn btn-secondary btn-sm me-3">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <h2 class="mb-0">Create New Album</h2>
+                </div>
+
+                <div id="alertContainer"></div>
+
+                <form id="createForm">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Album Details</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <label for="title" class="form-label text-primary small fw-bold">Game Title *</label>
+                                <input type="text" class="form-control" id="title" name="title" required 
+                                       placeholder="e.g., Alan Wake 2">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="developer" class="form-label text-primary small fw-bold">Developer</label>
+                                <input type="text" class="form-control" id="developer" name="developer"
+                                       placeholder="e.g., Remedy Entertainment">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label text-primary small fw-bold">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"
+                                          placeholder="Brief description..."></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="date" class="form-label text-primary small fw-bold">Date</label>
+                                <input type="date" class="form-control" id="date" name="date"
+                                       value="<%= new Date().toISOString().split('T')[0] %>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Photos</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="dropzone" id="dropzone">
+                                <i class="bi bi-images mb-3 d-block"></i>
+                                <h6>Drag images here</h6>
+                                <p class="text-secondary small mb-0">or click to select files</p>
+                                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                            </div>
+
+                            <div class="preview-grid" id="previewGrid"></div>
+                            
+                            <div class="mt-4 settings-panel">
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="compressToggle" checked>
+                                    <label class="form-check-label fw-bold small text-primary" for="compressToggle">
+                                        Squoosh Compression (WASM)
+                                    </label>
+                                </div>
+                                
+                                <div id="advancedCompressSettings">
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-bold mb-1">Encoder</label>
+                                        <select class="form-select form-select-sm" id="squooshEncoder">
+                                            <option value="mozjpeg">MozJPEG</option>
+                                            <option value="webp">WebP</option>
+                                            <option value="avif">AVIF</option>
+                                            <option value="oxipng">OxiPNG</option>
+                                        </select>
+                                    </div>
+
+                                    <div id="settings-mozjpeg" class="encoder-settings">
+                                        <div class="mb-2">
+                                            <label class="form-label small d-flex justify-content-between mb-1">
+                                                Quality <span class="badge bg-dark border border-secondary" id="val-mozjpeg-quality">75</span>
+                                            </label>
+                                            <input type="range" class="form-range" id="mozjpeg-quality" min="0" max="100" value="75">
+                                        </div>
+                                    </div>
+
+                                    <div id="settings-webp" class="encoder-settings" style="display: none;">
+                                        <div class="mb-2">
+                                            <label class="form-label small d-flex justify-content-between mb-1">
+                                                Quality <span class="badge bg-dark border border-secondary" id="val-webp-quality">75</span>
+                                            </label>
+                                            <input type="range" class="form-range" id="webp-quality" min="0" max="100" value="75">
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="settings-avif" class="encoder-settings" style="display: none;">
+                                        <div class="mb-2">
+                                            <label class="form-label small d-flex justify-content-between mb-1">
+                                                Quality <span class="badge bg-dark border border-secondary" id="val-avif-quality">50</span>
+                                            </label>
+                                            <input type="range" class="form-range" id="avif-quality" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+
+                                    <div id="settings-oxipng" class="encoder-settings" style="display: none;">
+                                        <div class="mb-2">
+                                            <label class="form-label small d-flex justify-content-between mb-1">
+                                                Effort <span class="badge bg-dark border border-secondary" id="val-oxipng-effort">2</span>
+                                            </label>
+                                            <input type="range" class="form-range" id="oxipng-effort" min="0" max="6" value="2">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check form-switch mt-3">
+                                        <input class="form-check-input" type="checkbox" id="resizeToggle">
+                                        <label class="form-check-label small fw-bold text-primary" for="resizeToggle">Resize Image</label>
+                                    </div>
+                                    <div id="resizeSettings" style="display: none;" class="mt-2">
+                                        <div class="mb-2">
+                                            <label class="form-label small d-flex justify-content-between mb-1">
+                                                Resolution Scale <span class="badge bg-dark border border-secondary" id="val-resizeScale">100</span>%
+                                            </label>
+                                            <input type="range" class="form-range" id="resizeScale" min="10" max="100" value="100">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="progress-container mt-4" id="progressContainer" style="display: none;">
+                                <div class="progress mb-2">
+                                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+                                </div>
+                                <div class="upload-status small" id="uploadStatus">Preparing...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <a href="/vippy/vp" class="btn btn-secondary px-4">Cancel</a>
+                        <button type="submit" class="btn btn-primary flex-grow-1 py-2" id="submitBtn" disabled>
+                            <i class="bi bi-cloud-arrow-up-fill me-2"></i>Create Album
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/settings-modal') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const previewGrid = document.getElementById('previewGrid');
+        const createForm = document.getElementById('createForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const uploadStatus = document.getElementById('uploadStatus');
+        const alertContainer = document.getElementById('alertContainer');
+        
+        let selectedFiles = [];
+
+        // --- Functions ---
+
+        function handleFiles(files) {
+            for (const file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                selectedFiles.push(file);
+            }
+            updatePreview();
+            updateSubmitButton();
+        }
+
+        function updatePreview() {
+            previewGrid.innerHTML = '';
+            const isResizeEnabled = document.getElementById('resizeToggle').checked;
+            const resizeScale = parseInt(document.getElementById('resizeScale').value) / 100;
+
+            selectedFiles.forEach((file, index) => {
+                const div = document.createElement('div');
+                div.className = 'preview-item';
+                
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.innerHTML = '<i class="bi bi-x"></i>';
+                removeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    selectedFiles.splice(index, 1);
+                    updatePreview();
+                    updateSubmitButton();
+                };
+
+                const infoOverlay = document.createElement('div');
+                infoOverlay.style.cssText = 'position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.7); color:#fffffe; font-size:10px; padding:2px 4px; pointer-events:none;';
+                
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    if (isResizeEnabled && resizeScale < 1) {
+                        const newW = Math.round(tempImg.width * resizeScale);
+                        const newH = Math.round(tempImg.height * resizeScale);
+                        infoOverlay.textContent = `${tempImg.width}×${tempImg.height} → (${newW}×${newH})`;
+                    } else {
+                        infoOverlay.textContent = `${tempImg.width}×${tempImg.height}`;
+                    }
+                };
+                tempImg.src = URL.createObjectURL(file);
+
+                div.appendChild(img);
+                div.appendChild(removeBtn);
+                div.appendChild(infoOverlay);
+                previewGrid.appendChild(div);
+            });
+        }
+
+        function updateSubmitButton() {
+            const titleEl = document.getElementById('title');
+            if (!titleEl || !submitBtn) return;
+            submitBtn.disabled = !titleEl.value.trim() || selectedFiles.length === 0;
+        }
+
+        function showAlert(type, message) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.style.fontSize = '0.85rem';
+            alert.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+            alertContainer.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        async function decodeWithCanvas(file) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    resolve(ctx.getImageData(0, 0, img.width, img.height));
+                };
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
+        // --- Initialization ---
+
+        document.getElementById('squooshEncoder').addEventListener('change', (e) => {
+            document.querySelectorAll('.encoder-settings').forEach(el => el.style.display = 'none');
+            document.getElementById(`settings-${e.target.value}`).style.display = 'block';
+        });
+
+        document.getElementById('resizeToggle').addEventListener('change', (e) => {
+            document.getElementById('resizeSettings').style.display = e.target.checked ? 'block' : 'none';
+            updatePreview();
+        });
+
+        document.getElementById('resizeScale').addEventListener('input', (e) => {
+            document.getElementById('val-resizeScale').textContent = e.target.value;
+            updatePreview();
+        });
+
+        ['mozjpeg-quality', 'webp-quality', 'avif-quality', 'oxipng-effort'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', (e) => {
+                    document.getElementById(`val-${id}`).textContent = e.target.value;
+                });
+            }
+        });
+
+        if (dropzone && fileInput) {
+            dropzone.addEventListener('click', () => fileInput.click());
+            dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+            dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+            dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+            fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+        }
+
+        document.getElementById('title').addEventListener('input', updateSubmitButton);
+
+        createForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            
+            const formData = new FormData();
+            formData.append('title', document.getElementById('title').value);
+            formData.append('developer', document.getElementById('developer').value);
+            formData.append('description', document.getElementById('description').value);
+            formData.append('date', document.getElementById('date').value);
+            
+            const isCompressEnabled = document.getElementById('compressToggle').checked;
+            const isResizeEnabled = document.getElementById('resizeToggle').checked;
+            const resizeScale = parseInt(document.getElementById('resizeScale').value) / 100;
+            
+            let mozjpeg, webp, avif, oxipng, png, resize;
+            if (isCompressEnabled) {
+                uploadStatus.textContent = 'Loading codecs...';
+                try {
+                    [mozjpeg, webp, avif, oxipng, png, resize] = await Promise.all([
+                        import('https://esm.sh/@jsquash/jpeg@1.2.0'),
+                        import('https://esm.sh/@jsquash/webp@1.2.0'),
+                        import('https://esm.sh/@jsquash/avif@1.2.0'),
+                        import('https://esm.sh/@jsquash/oxipng@1.1.0'),
+                        import('https://esm.sh/@jsquash/png@1.1.0'),
+                        import('https://esm.sh/@jsquash/resize@1.1.0')
+                    ]);
+                } catch (err) {
+                    console.error('Failed to load codecs:', err);
+                }
+            }
+
+            for (let i = 0; i < selectedFiles.length; i++) {
+                let file = selectedFiles[i];
+                if (isCompressEnabled && mozjpeg) {
+                    uploadStatus.textContent = `Compressing ${i + 1}/${selectedFiles.length}...`;
+                    try {
+                        let imageData;
+                        const buffer = await file.arrayBuffer();
+                        if (file.type === 'image/jpeg' || file.type === 'image/jpg') imageData = await mozjpeg.decode(buffer);
+                        else if (file.type === 'image/webp') imageData = await webp.decode(buffer);
+                        else if (file.type === 'image/avif') imageData = await avif.decode(buffer);
+                        else if (file.type === 'image/png') imageData = await png.decode(buffer);
+                        else imageData = await decodeWithCanvas(file);
+
+                        if (isResizeEnabled && resizeScale < 1) {
+                            const width = Math.round(imageData.width * resizeScale);
+                            const height = Math.round(imageData.height * resizeScale);
+                            imageData = await resize.default(imageData, { width, height, method: 'lanczos3' });
+                        }
+
+                        const encoder = document.getElementById('squooshEncoder').value;
+                        let encodedBuffer;
+                        let extension = 'jpg';
+                        if (encoder === 'mozjpeg') encodedBuffer = await mozjpeg.encode(imageData, { quality: parseInt(document.getElementById('mozjpeg-quality').value) });
+                        else if (encoder === 'webp') { encodedBuffer = await webp.encode(imageData, { quality: parseInt(document.getElementById('webp-quality').value) }); extension = 'webp'; }
+                        else if (encoder === 'avif') { encodedBuffer = await avif.encode(imageData, { quality: parseInt(document.getElementById('avif-quality').value) }); extension = 'avif'; }
+                        else if (encoder === 'oxipng') { const b = await png.encode(imageData); encodedBuffer = await oxipng.encode(b, { level: parseInt(document.getElementById('oxipng-effort').value) }); extension = 'png'; }
+
+                        file = new File([encodedBuffer], `img.${extension}`, { type: `image/${extension === 'jpg' ? 'jpeg' : extension}` });
+                    } catch (err) { console.error(err); }
+                }
+                formData.append('images', file);
+                progressBar.style.width = `${((i + 0.5) / selectedFiles.length) * 50}%`;
+            }
+            
+            uploadStatus.textContent = 'Uploading...';
+            try {
+                const response = await fetch('/vippy/vp/create', { method: 'POST', body: formData });
+                const data = await response.json();
+                
+                if (data.success) window.location.href = `/vippy/vp/edit/${data.slug}`;
+                else throw new Error(data.error);
+            } catch (err) {
+                showAlert('danger', 'Error creating album');
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

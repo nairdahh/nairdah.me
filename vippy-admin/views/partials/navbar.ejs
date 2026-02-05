@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <% if (typeof album !== 'undefined') { %>
+        <!-- Edit Page Layout -->
+        <div class="container-fluid px-4 position-relative">
+            <!-- Left: Back & Title -->
+            <div class="d-flex align-items-center">
+                <a href="/vippy/vp" class="btn btn-outline-secondary me-3 border-0">
+                    <i class="bi bi-arrow-left fs-5"></i>
+                </a>
+                <h5 class="mb-0"><%= album.title %></h5>
+                <!-- Invisible brand to force consistent height -->
+                <span class="navbar-brand invisible" style="width: 0; padding-left: 0; padding-right: 0; margin: 0; overflow: hidden;">&nbsp;</span>
+            </div>
+
+            <!-- Center: Logo -->
+            <a class="navbar-brand position-absolute start-50 translate-middle-x" href="/vippy">
+                <img src="/assets/vippy-logo-and-text.svg" alt="Vippy" height="32">
+            </a>
+
+            <!-- Right: Actions -->
+            <div class="d-flex gap-2">
+                <a href="http://127.0.0.1:4000/virtual-photography/<%= album.slug %>" target="_blank" class="btn btn-custom-dark btn-sm px-3">
+                    <i class="bi bi-eye me-1"></i> View on Site
+                </a>
+            </div>
+        </div>
+    <% } else { %>
+        <!-- Default Layout -->
+        <div class="container px-4">
+            <a class="navbar-brand" href="/vippy">
+                <img src="/assets/vippy-logo-and-text.svg" alt="Vippy" height="32">
+            </a>
+            <div class="d-flex gap-2 align-items-center">
+                <!-- Cogwheel removed as requested -->
+            </div>
+        </div>
+    <% } %>
+</nav>

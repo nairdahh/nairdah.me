@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: post ? 'Edit Post' : 'New Post' }) %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <style>
+        .CodeMirror {
+            background-color: #16161a;
+            color: #fffffe;
+            border: 1px solid #7f5af0;
+        }
+        .CodeMirror-cursor {
+            border-left: 1px solid #fffffe;
+        }
+        .editor-toolbar {
+            background-color: #242629;
+            border-color: #7f5af0;
+            opacity: 1;
+        }
+        .editor-toolbar a {
+            color: #fffffe !important;
+        }
+        .editor-toolbar a.active, .editor-toolbar a:hover {
+            background-color: #7f5af0;
+            border-color: #7f5af0;
+        }
+        .editor-preview {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+        .editor-preview-side {
+            background-color: #16161a;
+            color: #fffffe;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="container px-4 pb-5">
+        <div class="d-flex align-items-center mb-4">
+            <a href="/vippy/blog" class="btn btn-outline-secondary me-3 border-0">
+                <i class="bi bi-arrow-left fs-5"></i>
+            </a>
+            <h2 class="mb-0"><%= post ? 'Edit Post' : 'New Post' %></h2>
+        </div>
+
+        <form action="/vippy/blog/save" method="POST" enctype="multipart/form-data">
+            <% if (post) { %>
+                <input type="hidden" name="originalFilename" value="<%= post.fileSlug %>">
+            <% } %>
+
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<%= post ? post.title : '' %>" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="excerpt" class="form-label">Excerpt</label>
+                                <textarea class="form-control" id="excerpt" name="excerpt" rows="3"><%= post ? post.excerpt : '' %></textarea>
+                                <div class="form-text">A short summary displayed on the blog list.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="content" class="form-label">Content (Markdown)</label>
+                                <textarea class="form-control" id="content" name="content"><%= post ? post.content : '' %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-header bg-transparent fw-bold">Metadata</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" value="<%= post ? post.date : new Date().toISOString().split('T')[0] %>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control" id="author" name="author" value="<%= post ? post.author : 'yourname' %>">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="categories" class="form-label">Categories</label>
+                                <input type="text" class="form-control" id="categories" name="categories" value="<%= post ? post.categories.join(', ') : 'blog' %>" placeholder="e.g. blog, tech">
+                                <div class="form-text">Comma separated</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tags" class="form-label">Tags</label>
+                                <input type="text" class="form-control" id="tags" name="tags" value="<%= post ? (post.tags || []).join(', ') : '' %>" placeholder="e.g. tutorial, news">
+                                <div class="form-text">Comma separated</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-transparent fw-bold">Header Image</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Image URL</label>
+                                <input type="text" class="form-control mb-2" id="imageUrl" name="imageUrl" value="<%= post ? post.image : '' %>" placeholder="https://...">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="headerImage" class="form-label">Or Upload New Image</label>
+                                <input type="file" class="form-control" id="headerImage" name="headerImage" accept="image/*">
+                            </div>
+
+                            <% if (post && post.image) { %>
+                                <div class="mt-2">
+                                    <small class="text-secondary d-block mb-1">Current Image:</small>
+                                    <img src="<%= post.image %>" class="img-fluid rounded" style="max-height: 150px;">
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-save me-2"></i>Save Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        var simplemde = new SimpleMDE({ 
+            element: document.getElementById("content"),
+            spellChecker: false,
+            autosave: {
+                enabled: true,
+                uniqueId: "post_content_<%= post ? post.fileSlug : 'new' %>",
+                delay: 1000,
+            },
+        });
+    </script>
+</body>
+</html>
