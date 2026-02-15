@@ -92,3 +92,29 @@ exclude:
   - admin/
   - .b2-config.json
   - vippy-admin/
+
+site_modules:
+  - id: vp
+    name: Virtual Photography
+    url: /virtual-photography
+    admin_url: /vippy/vp
+    icon: bi-camera-fill
+    enabled: true
+  - id: blog
+    name: Blog
+    url: /blog
+    admin_url: /vippy/blog
+    icon: bi-pencil-fill
+    enabled: true
+  - id: projects
+    name: Projects
+    url: /projects
+    admin_url: /vippy/projects
+    icon: bi-code-slash
+    enabled: true
+  - id: about
+    name: About
+    url: /about
+    admin_url: /vippy/about
+    icon: bi-person-fill
+    enabled: true

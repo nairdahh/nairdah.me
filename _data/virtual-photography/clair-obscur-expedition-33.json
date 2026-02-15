@@ -1,0 +1,51 @@
+[
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img002.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img002.webp",
+    "aspectRatio": 2.3341,
+    "width": 3200,
+    "height": 1371
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img000.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img000.webp",
+    "aspectRatio": 0.8,
+    "width": 2304,
+    "height": 2880
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img001.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img001.webp",
+    "aspectRatio": 2.3336,
+    "width": 2560,
+    "height": 1097
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img003.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img003.webp",
+    "aspectRatio": 1.6,
+    "width": 2880,
+    "height": 1800
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img004.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img004.webp",
+    "aspectRatio": 1.6,
+    "width": 2304,
+    "height": 1440
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img006.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img006.webp",
+    "aspectRatio": 1,
+    "width": 2160,
+    "height": 2160
+  },
+  {
+    "url": "https://cdn.nairdah.me/clair-obscur-expedition-33/img005.jpg",
+    "thumb": "https://cdn.nairdah.me/clair-obscur-expedition-33/thumb/img005.webp",
+    "aspectRatio": 1.6,
+    "width": 2880,
+    "height": 1800
+  }
+]
