@@ -1,5 +1,3 @@
-
-
 html {
   padding-left: calc(100vw - 100%);
 }
@@ -17,6 +15,7 @@ body {
 
 .bg-light,
 .badge-light {
+
   &,
   * {
     color: $text-black !important;
@@ -25,6 +24,7 @@ body {
 
 .bg-dark,
 .badge-dark {
+
   &,
   * {
     color: $text-white !important;

@@ -262,10 +262,12 @@
 
   img {
     margin: 0 !important;
-    width: 42px !important; /* Slightly smaller for better control */
+    width: 42px !important;
+    /* Slightly smaller for better control */
     height: 42px !important;
     box-shadow: none !important;
-    border-radius: 50%; /* Make them round */
+    border-radius: 50%;
+    /* Make them round */
     object-fit: cover;
     flex-shrink: 0;
   }
@@ -343,7 +345,7 @@
   }
 }
 
-.tippy-box[data-theme~="custom-theme"] > .tippy-arrow {
+.tippy-box[data-theme~="custom-theme"]>.tippy-arrow {
   color: #4c4f69;
 
   [data-theme="dark"] & {

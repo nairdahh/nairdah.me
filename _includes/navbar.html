@@ -1,8 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-themed">
 
-  <a class="navbar-brand" href="{{ site.baseurl }}/"><h5><b>{{ site.title }}</b></h5></a>
+  <a class="navbar-brand" href="{{ site.baseurl }}/">
+    <h5><b>{{ site.title }}</b></h5>
+  </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <i class="fas fa-1x fa-bars text-themed"></i>
   </button>
 
@@ -12,46 +15,47 @@
       {%- assign html_pages = site.html_pages | sort: 'weight' -%}
       {%- assign filtered_pages = "" | split: "" -%}
 
-      {%- for html_page in html_pages -%} 
+      {%- for html_page in html_pages -%}
 
-        {%- assign exclude = false -%}
+      {%- assign exclude = false -%}
 
-        {%- for exclude_path in site.nav_exclude -%}
+      {%- for exclude_path in site.nav_exclude -%}
 
-          {%- if exclude_path == html_page.path -%}
-            {%- assign exclude = true -%}
-            {%- break -%}
-          {%- elsif exclude_path contains '**' -%}
-            {%- assign match = exclude_path | remove: '**' -%}
-            {%- if html_page.path contains match -%}
-              {%- assign exclude = true -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endif -%}
-
-        {%- endfor -%}
-
-        {%- unless exclude -%}
-          {%- assign filtered_pages = filtered_pages | push: html_page -%}
-        {%- endunless -%}
+      {%- if exclude_path == html_page.path -%}
+      {%- assign exclude = true -%}
+      {%- break -%}
+      {%- elsif exclude_path contains '**' -%}
+      {%- assign match = exclude_path | remove: '**' -%}
+      {%- if html_page.path contains match -%}
+      {%- assign exclude = true -%}
+      {%- break -%}
+      {%- endif -%}
+      {%- endif -%}
 
       {%- endfor -%}
 
-      {% for html_page in filtered_pages %}  
+      {%- unless exclude -%}
+      {%- assign filtered_pages = filtered_pages | push: html_page -%}
+      {%- endunless -%}
 
-        {%- if page.url contains html_page.url -%}
-          {%- assign active_status = "active" -%}
-        {%- else -%}
-          {%- assign active_status = "" -%}
-        {%- endif -%}
+      {%- endfor -%}
 
-        {%- if html_page.external_url -%}
-          {%- assign url = html_page.external_url -%}
-        {%- else -%}
-          {%- assign url = html_page.url | relative_url -%}
-        {%- endif -%}
+      {% for html_page in filtered_pages %}
 
-        <a class="nav-item nav-link {{ active_status }}" href="{{ url }}">{{ html_page.title }}</a>
+      {%- if page.url contains html_page.url -%}
+      {%- assign active_status = "active" -%}
+      {%- else -%}
+      {%- assign active_status = "" -%}
+      {%- endif -%}
+
+      {%- if html_page.external_url -%}
+      {%- assign url = html_page.external_url -%}
+      {%- else -%}
+      {%- assign url = html_page.url | relative_url -%}
+      {%- endif -%}
+
+      <a class="nav-item nav-link {{ active_status }}" href="{{ url }}" {% if html_page.external_url %}target="_blank"
+        rel="noopener noreferrer" {% endif %}>{{ html_page.title }}</a>
 
       {% endfor %}
 

@@ -4,423 +4,310 @@ permalink: /portfolio-projects/toni
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="TONI - Vinyl Turntable Audio Pass-Through Application built with Tauri and Svelte."
-    />
-    <title>TONI | Adrian-Nicolae Neacșu</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/portfolio.css' | relative_url }}"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="TONI - Vinyl Turntable Audio Pass-Through Application built with Tauri and Svelte." />
+  <title>TONI | Adrian-Nicolae Neacșu</title>
 
-    <style>
-      .footer {
-        width: 100vw !important;
-        position: relative !important;
-        left: 50% !important;
-        right: 50% !important;
-        margin-left: -50vw !important;
-        margin-right: -50vw !important;
-        display: flex !important;
-        justify-content: center !important;
-        text-align: center !important;
-      }
-      .footer .container {
-        width: 100% !important;
-        max-width: 100% !important;
-        display: flex !important;
-        justify-content: center !important;
-      }
-      .footer__inner {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        text-align: center !important;
-      }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="{{ '/assets/css/portfolio.css' | relative_url }}" />
 
-    <script>
-      (function () {
-        const saved = localStorage.getItem("portfolio-theme");
-        const system = window.matchMedia("(prefers-color-scheme: light)")
-          .matches
-          ? "light"
-          : "dark";
-        document.documentElement.setAttribute("data-theme", saved || system);
-      })();
-    </script>
-  </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
+  <style>
+    .footer {
+      width: 100vw !important;
+      position: relative !important;
+      left: 50% !important;
+      right: 50% !important;
+      margin-left: -50vw !important;
+      margin-right: -50vw !important;
+      display: flex !important;
+      justify-content: center !important;
+      text-align: center !important;
+    }
 
-    <!-- Header -->
-    <header class="header">
-      <div class="container header__inner">
-        <a href="{{ '/portfolio' | relative_url }}" class="header__logo"
-          >Adrian</a
-        >
+    .footer .container {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
 
-        <nav class="header__nav">
-          <a
-            href="{{ '/portfolio#about' | relative_url }}"
-            class="header__nav-link"
-            >About</a
-          >
-          <a
-            href="{{ '/portfolio#projects' | relative_url }}"
-            class="header__nav-link"
-            >Projects</a
-          >
-          <a
-            href="{{ '/portfolio#contact' | relative_url }}"
-            class="header__nav-link"
-            >Contact</a
-          >
-        </nav>
+    .footer__inner {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      text-align: center !important;
+    }
+  </style>
 
-        <button class="theme-toggle" aria-label="Toggle dark/light mode">
-          <svg
-            class="icon-moon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg
-            class="icon-sun"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-        </button>
+  <script>
+    (function () {
+      const saved = localStorage.getItem("portfolio-theme");
+      const system = window.matchMedia("(prefers-color-scheme: light)")
+        .matches
+        ? "light"
+        : "dark";
+      document.documentElement.setAttribute("data-theme", saved || system);
+    })();
+  </script>
+</head>
 
-        <button class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="{{ '/portfolio' | relative_url }}" class="header__logo">Adrian</a>
+
+      <nav class="header__nav">
+        <a href="{{ '/portfolio#about' | relative_url }}" class="header__nav-link">About</a>
+        <a href="{{ '/portfolio#projects' | relative_url }}" class="header__nav-link">Projects</a>
+        <a href="{{ '/portfolio#contact' | relative_url }}" class="header__nav-link">Contact</a>
+      </nav>
+
+      <button class="theme-toggle" aria-label="Toggle dark/light mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="project-page">
+    <div class="container container--narrow">
+      <!-- Back Link -->
+      <a href="{{ '/portfolio#projects' | relative_url }}" class="project-page__back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Projects
+      </a>
+
+      <!-- Hero Image -->
+      <div class="project-page__hero">
+        <img src="../assets/portfolio/toni/hero.png" alt="TONI Hero" />
       </div>
-    </header>
 
-    <main id="main" class="project-page">
-      <div class="container container--narrow">
-        <!-- Back Link -->
-        <a
-          href="{{ '/portfolio#projects' | relative_url }}"
-          class="project-page__back"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Projects
-        </a>
-
-        <!-- Hero Image -->
-        <div class="project-page__hero">
-          <img src="../assets/portfolio/toni/hero.png" alt="TONI Hero" />
+      <!-- Header -->
+      <div class="project-page__header">
+        <div class="project-page__title-group">
+          <h1 class="project-page__title gradient-text">TONI</h1>
+          <p class="project-page__tagline">
+            Vinyl Turntable Audio Pass-Through Application
+          </p>
         </div>
+        <div class="project-page__status project-page__status--active">
+          <span class="project-page__status-dot"></span>
+          Active
+        </div>
+      </div>
 
-        <!-- Header -->
-        <div class="project-page__header">
-          <div class="project-page__title-group">
-            <h1 class="project-page__title gradient-text">TONI</h1>
-            <p class="project-page__tagline">
-              Vinyl Turntable Audio Pass-Through Application
-            </p>
+      <!-- Overview -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Overview</h2>
+        <div class="project-page__text">
+          <p>
+            TONI is a cross-platform desktop application designed to provide
+            professional-grade audio pass-through capabilities for vinyl
+            turntable enthusiasts and audiophiles. Built with Tauri for a
+            lightweight, native feel and Svelte for a responsive, intuitive
+            UI, TONI bridges vintage hardware with modern computing.
+          </p>
+          <p>
+            The application enables real-time audio processing and routing
+            from turntables through your computer while maintaining lossless
+            audio quality. Whether you're digitizing your vinyl collection or
+            mixing live, TONI provides the tools to achieve professional
+            results with minimal latency.
+          </p>
+          <p>
+            TONI runs natively on Windows, macOS, and Linux, with a unified
+            codebase that ensures consistent behavior across all platforms.
+            The compact Tauri runtime means fast startup times and minimal
+            system resource consumption compared to Electron alternatives.
+          </p>
+        </div>
+      </section>
+
+      <!-- Technologies -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Technologies</h2>
+        <div class="tech-stack">
+          <span class="tech-badge">Tauri</span>
+          <span class="tech-badge">Svelte</span>
+          <span class="tech-badge">Vite</span>
+          <span class="tech-badge">Rust</span>
+          <span class="tech-badge">Web Audio API</span>
+          <span class="tech-badge">Cross-Platform</span>
+        </div>
+      </section>
+
+      <!-- Planned Features -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Planned Features</h2>
+        <div class="features-list">
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <span class="feature-item__text">Real-time audio pass-through with minimal latency</span>
           </div>
-          <div class="project-page__status project-page__status--dev">
-            <span class="project-page__status-dot"></span>
-            In Development
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="1"></circle>
+              <circle cx="19" cy="12" r="1"></circle>
+              <circle cx="5" cy="12" r="1"></circle>
+            </svg>
+            <span class="feature-item__text">Multi-track audio routing and mixing capabilities</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M3 12h18M9 16l-6-4 6-4m6 8l6-4-6-4"></path>
+            </svg>
+            <span class="feature-item__text">Advanced audio equalization and filtering presets</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span class="feature-item__text">Cross-platform support for Windows, macOS, and Linux</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span class="feature-item__text">Session recording and playback for vinyl digitization</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span class="feature-item__text">Input device management and configuration</span>
+          </div>
+          <div class="feature-item">
+            <svg class="feature-item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+            </svg>
+            <span class="feature-item__text">Real-time visualizers and waveform analysis</span>
           </div>
         </div>
+      </section>
 
-        <!-- Overview -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Overview</h2>
-          <div class="project-page__text">
-            <p>
-              TONI is a cross-platform desktop application designed to provide
-              professional-grade audio pass-through capabilities for vinyl
-              turntable enthusiasts and audiophiles. Built with Tauri for a
-              lightweight, native feel and Svelte for a responsive, intuitive
-              UI, TONI bridges vintage hardware with modern computing.
-            </p>
-            <p>
-              The application enables real-time audio processing and routing
-              from turntables through your computer while maintaining lossless
-              audio quality. Whether you're digitizing your vinyl collection or
-              mixing live, TONI provides the tools to achieve professional
-              results with minimal latency.
-            </p>
-            <p>
-              TONI runs natively on Windows, macOS, and Linux, with a unified
-              codebase that ensures consistent behavior across all platforms.
-              The compact Tauri runtime means fast startup times and minimal
-              system resource consumption compared to Electron alternatives.
-            </p>
+      <!-- Approach -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Approach & Architecture</h2>
+        <div class="project-page__text">
+          <p>
+            TONI leverages Tauri's lightweight architecture built on Rust and
+            Webview to create a native desktop application with web
+            technologies. This hybrid approach provides native performance
+            while maintaining the flexibility and rapid development
+            capabilities of modern web frameworks.
+          </p>
+          <p>
+            Svelte powers the user interface with reactive components that
+            respond to real-time audio state changes. Vite provides hot module
+            replacement during development and optimized production builds.
+            The separation between Tauri's Rust backend and Svelte frontend
+            ensures clean architecture and maintainability.
+          </p>
+          <p>
+            Audio processing is handled through the Web Audio API combined
+            with native system audio drivers, ensuring low-latency,
+            high-fidelity audio pass-through. The application communicates
+            with audio hardware through platform-specific APIs while
+            maintaining a unified interface across operating systems.
+          </p>
+        </div>
+      </section>
+
+      <!-- Screenshots -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Screenshots</h2>
+        <div class="screenshot-gallery">
+          <div class="screenshot-item">
+            <img src="../assets/portfolio/toni/screenshot-1.png" alt="Screenshot 1" />
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Technologies -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Technologies</h2>
-          <div class="tech-stack">
-            <span class="tech-badge">Tauri</span>
-            <span class="tech-badge">Svelte</span>
-            <span class="tech-badge">Vite</span>
-            <span class="tech-badge">Rust</span>
-            <span class="tech-badge">Web Audio API</span>
-            <span class="tech-badge">Cross-Platform</span>
-          </div>
-        </section>
 
-        <!-- Planned Features -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Planned Features</h2>
-          <div class="features-list">
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path
-                  d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
-                ></path>
-              </svg>
-              <span class="feature-item__text"
-                >Real-time audio pass-through with minimal latency</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="19" cy="12" r="1"></circle>
-                <circle cx="5" cy="12" r="1"></circle>
-              </svg>
-              <span class="feature-item__text"
-                >Multi-track audio routing and mixing capabilities</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M3 12h18M9 16l-6-4 6-4m6 8l6-4-6-4"></path>
-              </svg>
-              <span class="feature-item__text"
-                >Advanced audio equalization and filtering presets</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-              <span class="feature-item__text"
-                >Cross-platform support for Windows, macOS, and Linux</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
-                ></path>
-                <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                <polyline points="7 3 7 8 15 8"></polyline>
-              </svg>
-              <span class="feature-item__text"
-                >Session recording and playback for vinyl digitization</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              <span class="feature-item__text"
-                >Input device management and configuration</span
-              >
-            </div>
-            <div class="feature-item">
-              <svg
-                class="feature-item__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <circle cx="12" cy="12" r="4"></circle>
-                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
-              </svg>
-              <span class="feature-item__text"
-                >Real-time visualizers and waveform analysis</span
-              >
-            </div>
-          </div>
-        </section>
+      <!-- Links -->
+      <section class="project-page__section">
+        <h2 class="project-page__section-title">Links</h2>
+        <div class="project-links">
+          <a href="https://github.com/nairdahh/toni" target="_blank" rel="noopener noreferrer"
+            class="project-link project-link--secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            View on GitHub
+          </a>
+          <a href="https://toni.nairdah.me" target="_blank" rel="noopener noreferrer"
+            class="project-link project-link--primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+            Live Website
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
 
-        <!-- Approach -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Approach & Architecture</h2>
-          <div class="project-page__text">
-            <p>
-              TONI leverages Tauri's lightweight architecture built on Rust and
-              Webview to create a native desktop application with web
-              technologies. This hybrid approach provides native performance
-              while maintaining the flexibility and rapid development
-              capabilities of modern web frameworks.
-            </p>
-            <p>
-              Svelte powers the user interface with reactive components that
-              respond to real-time audio state changes. Vite provides hot module
-              replacement during development and optimized production builds.
-              The separation between Tauri's Rust backend and Svelte frontend
-              ensures clean architecture and maintainability.
-            </p>
-            <p>
-              Audio processing is handled through the Web Audio API combined
-              with native system audio drivers, ensuring low-latency,
-              high-fidelity audio pass-through. The application communicates
-              with audio hardware through platform-specific APIs while
-              maintaining a unified interface across operating systems.
-            </p>
-          </div>
-        </section>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__text">Built with passion by Adrian-Nicolae Neacșu</p>
+    </div>
+  </footer>
 
-        <!-- Screenshots -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Screenshots</h2>
-          <div class="screenshot-gallery">
-            <div class="screenshot-item">
-              <img
-                src="../assets/portfolio/toni/screenshot-1.png"
-                alt="Screenshot 1"
-              />
-            </div>
-          </div>
-        </section>
+  <script src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
+</body>
 
-        <!-- Status -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Development Status</h2>
-          <div class="project-page__text">
-            <p>
-              TONI is currently in active development. The core Tauri + Svelte
-              architecture is established, with foundational audio routing
-              implemented. Current focus is on refining the audio processing
-              pipeline and building out the intuitive user interface.
-            </p>
-          </div>
-        </section>
-
-        <!-- Links -->
-        <section class="project-page__section">
-          <h2 class="project-page__section-title">Links</h2>
-          <div class="project-links">
-            <a
-              href="https://github.com/nairdahh/toni"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="project-link project-link--secondary"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                />
-              </svg>
-              View Source
-            </a>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container footer__inner">
-        <p class="footer__text">Built with passion by Adrian-Nicolae Neacșu</p>
-      </div>
-    </footer>
-
-    <script src="{{ '/assets/js/portfolio.js' | relative_url }}"></script>
-  </body>
 </html>

@@ -1,5 +1,5 @@
 :root {
-  --primary-light: #8839ef; 
+  --primary-light: #8839ef;
   --primary-dark: #cba6f7;
 }
 
@@ -20,7 +20,7 @@
 
 .nav-link,
 .navbar-brand {
-  user-select:none;
+  user-select: none;
 
   &::after {
     @extend .link-after;
@@ -52,6 +52,7 @@
 
 .navbar-brand {
   margin-bottom: -14px;
+
   &::after {
     margin-top: -0.25em;
   }
