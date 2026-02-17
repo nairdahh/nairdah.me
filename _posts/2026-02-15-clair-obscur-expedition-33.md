@@ -8,11 +8,11 @@ categories:
   - virtual-photography
 tags: []
 slug: clair-obscur-expedition-33
-card-image: 0
-card-offset: 50
+card-image: 8
+card-offset: 79
 card-offset-x: 50
 card-zoom: 100
-banner-image: 0
+banner-image: 7
 banner-offset: 50
 banner-offset-x: 50
 banner-zoom: 100

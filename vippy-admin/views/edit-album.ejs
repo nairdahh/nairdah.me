@@ -736,10 +736,10 @@
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
         <script type="module">
-            const albumSlug = '<%= album.slug %>';
-            let cardImage = <%= album.cardImage %>;
-            let bannerImage = <%= album.bannerImage %>;
-            let images = <% - JSON.stringify(album.images) %>;
+            const albumSlug = <%- JSON.stringify(album.slug) %>;
+            let cardImage = <%= album.cardImage || 0 %>;
+            let bannerImage = <%= album.bannerImage || 0 %>;
+            let images = <%- JSON.stringify(album.images || []) %>;
 
             const dropzone = document.getElementById('dropzone');
             const fileInput = document.getElementById('fileInput');
@@ -1160,7 +1160,10 @@
                         })
                     });
                     const data = await response.json();
-                    if (data.success) showAlert('success', 'Preview settings saved!', document.getElementById('previewAlertContainer'));
+                    if (data.success) {
+                        showAlert('success', 'Preview settings saved!', document.getElementById('previewAlertContainer'));
+                        setTimeout(() => window.location.reload(), 1000);
+                    }
                 } catch (err) {
                     showAlert('danger', 'Error saving settings', document.getElementById('previewAlertContainer'));
                 }
@@ -1184,7 +1187,10 @@
                         })
                     });
                     const data = await response.json();
-                    if (data.success) showAlert('success', 'Details saved!', document.getElementById('detailsAlertContainer'));
+                    if (data.success) {
+                        showAlert('success', 'Details saved!', document.getElementById('detailsAlertContainer'));
+                        setTimeout(() => window.location.reload(), 1000);
+                    }
                 } catch (err) {
                     showAlert('danger', 'Error saving details', document.getElementById('detailsAlertContainer'));
                 }
