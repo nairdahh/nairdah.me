@@ -55,7 +55,12 @@
       {%- endif -%}
 
       <a class="nav-item nav-link {{ active_status }}" href="{{ url }}" {% if html_page.external_url %}target="_blank"
-        rel="noopener noreferrer" {% endif %}>{{ html_page.title }}</a>
+        rel="noopener noreferrer" {% endif %}>
+        {{ html_page.title }}
+        {% if html_page.external_url %}
+        <i class="fas fa-external-link-alt ml-1" style="font-size: 0.85em;"></i>
+        {% endif %}
+      </a>
 
       {% endfor %}
 

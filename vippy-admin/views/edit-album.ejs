@@ -428,7 +428,7 @@
                                                 }
                                                 %>
                                                 <div class="preview-bg" id="cardPreviewMainBg" style="background-image: url('<%= cardImg?.thumb || '' %>');
-                                                    background-position: <%= album.cardOffsetX %>% <%= 100 - (album.cardOffset || 0) %>%;
+                                                    background-position: <%= album.cardOffsetX ?? 50 %>% <%= 100 - (album.cardOffset ?? 50) %>%;
                                                     background-size: <%= cardBgSize %>;">
                                                 </div>
                                         </div>
@@ -441,7 +441,7 @@
                                                 }
                                                 %>
                                                 <div class="preview-bg" id="bannerPreviewBg" style="background-image: url('<%= bannerImg?.url || '' %>');
-                                                    background-position: <%= album.bannerOffsetX || 50 %>% <%= 100 - (album.bannerOffset || 0) %>%;
+                                                    background-position: <%= album.bannerOffsetX ?? 50 %>% <%= 100 - (album.bannerOffset ?? 50) %>%;
                                                     background-size: <%= bannerBgSize %>;">
                                                 </div>
                                         </div>
@@ -454,17 +454,17 @@
                                         </span>)</div>
                                     <div class="mt-2">
                                         <label class="form-label small">Horizontal: <span id="val-cardOffsetX">
-                                                <%= album.cardOffsetX %>
+                                                <%= album.cardOffsetX ?? 50 %>
                                             </span>%</label>
                                         <input type="range" class="form-range card-slider" id="cardOffsetX" min="0"
-                                            max="100" value="<%= album.cardOffsetX %>">
+                                            max="100" value="<%= album.cardOffsetX ?? 50 %>">
                                     </div>
                                     <div class="mt-2">
                                         <label class="form-label small">Vertical: <span id="val-cardOffset">
-                                                <%= album.cardOffset %>
+                                                <%= album.cardOffset ?? 50 %>
                                             </span>%</label>
                                         <input type="range" class="form-range card-slider" id="cardOffset" min="0"
-                                            max="100" value="<%= album.cardOffset %>">
+                                            max="100" value="<%= album.cardOffset ?? 50 %>">
                                     </div>
                                     <div class="mt-2">
                                         <label class="form-label small">Zoom: <span id="val-cardZoom">
@@ -481,17 +481,17 @@
                                         </span>)</div>
                                     <div class="mt-2">
                                         <label class="form-label small">Horizontal: <span id="val-bannerOffsetX">
-                                                <%= album.bannerOffsetX %>
+                                                <%= album.bannerOffsetX ?? 50 %>
                                             </span>%</label>
                                         <input type="range" class="form-range" id="bannerOffsetX" min="0" max="100"
-                                            value="<%= album.bannerOffsetX %>">
+                                            value="<%= album.bannerOffsetX ?? 50 %>">
                                     </div>
                                     <div class="mt-2">
                                         <label class="form-label small">Vertical: <span id="val-bannerOffset">
-                                                <%= album.bannerOffset %>
+                                                <%= album.bannerOffset ?? 50 %>
                                             </span>%</label>
                                         <input type="range" class="form-range" id="bannerOffset" min="0" max="100"
-                                            value="<%= album.bannerOffset %>">
+                                            value="<%= album.bannerOffset ?? 50 %>">
                                     </div>
                                     <div class="mt-2">
                                         <label class="form-label small">Zoom: <span id="val-bannerZoom">
@@ -735,11 +735,17 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
+        <div id="albumData" data-slug="<%= album.slug %>" data-card="<%= album.cardImage || 0 %>"
+            data-banner="<%= album.bannerImage || 0 %>" data-images="<%= JSON.stringify(album.images || []) %>"
+            style="display: none;">
+        </div>
+
         <script type="module">
-            const albumSlug = <%- JSON.stringify(album.slug) %>;
-            let cardImage = <%= album.cardImage || 0 %>;
-            let bannerImage = <%= album.bannerImage || 0 %>;
-            let images = <%- JSON.stringify(album.images || []) %>;
+            const __dt = document.getElementById('albumData').dataset;
+            const albumSlug = __dt.slug;
+            let cardImage = parseInt(__dt.card, 10);
+            let bannerImage = parseInt(__dt.banner, 10);
+            let images = JSON.parse(__dt.images);
 
             const dropzone = document.getElementById('dropzone');
             const fileInput = document.getElementById('fileInput');
@@ -1000,10 +1006,7 @@
                     });
                     const data = await response.json();
                     if (data.success) {
-                        items.forEach((item, i) => {
-                            item.dataset.index = i;
-                            item.querySelector('.index-badge').textContent = `#${i}`;
-                        });
+                        window.location.reload();
                     }
                 } catch (err) {
                     console.error('Error saving order:', err);
