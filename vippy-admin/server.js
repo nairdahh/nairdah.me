@@ -208,7 +208,16 @@ function getCdnUrl(filePath) {
     if (b2Config.use_cdn && b2Config.cdn_domain) {
         return `https://${b2Config.cdn_domain}/${filePath}`;
     }
-    return `https://f003.backblazeb2.com/file/${b2Config.bucket_name}/${filePath}`;
+
+    if (b2AuthData && b2AuthData.data && b2AuthData.data.s3ApiUrl) {
+        const s3Host = b2AuthData.data.s3ApiUrl.replace('https://', '');
+        return `https://${b2Config.bucket_name}.${s3Host}/${filePath}`;
+    }
+    const baseDownloadUrl = (b2AuthData && b2AuthData.data && b2AuthData.data.downloadUrl)
+        ? b2AuthData.data.downloadUrl
+        : 'https://f003.backblazeb2.com';
+
+    return `${baseDownloadUrl}/file/${b2Config.bucket_name}/${filePath}`;
 }
 
 // Helper: Read all albums (Now Async)
